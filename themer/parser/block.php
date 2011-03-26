@@ -29,6 +29,16 @@ namespace Themer\Parser;
 class Block {
   
   /**
+   * Matches all blocks in a given string
+   * 
+   * Taken from Thimble by Mark Wunsch -- github.com/mwunsch/thimble
+   *
+   * @access  public
+   * @var     string
+   */
+  const MATCHER = '/{block:([A-Za-z][A-Za-z0-9]*)}(.*?){\/block:\\1}/is';
+  
+  /**
    * Strips the open and close tags from a matched block.
    * 
    * Taken from Thimble by Mark Wunsch -- github.com/mwunsch/thimble
@@ -74,6 +84,21 @@ class Block {
     }
     
     return $block;
+  }
+  
+  /**
+   * Removes all other block tags from a given block
+   * 
+   * Taken from Thimble by Mark Wunsch -- github.com/mwunsch/thimble
+   * 
+   * @static
+   * @access  public
+   * @param   string  the given block
+   * @return  string  the cleaned up block
+   */
+  public static function cleanup($block)
+  {
+    return preg_replace(self::MATCHER, '', $block);
   }
   
   /**
