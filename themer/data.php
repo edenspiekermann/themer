@@ -23,16 +23,16 @@ class Data {
     if( ! empty(\Themer::$home))
     {
       static::$paths = array(
-        THEMER_BASEPATH.'themer/data/',
-        \Themer::$home.'.themer/',
         \Themer::$pwd.'themer/',
+        \Themer::$home.'.themer/',
+        THEMER_BASEPATH.'themer/data/',
       );
     }
     else
     {
       static::$paths = array(
-        THEMER_BASEPATH.'themer/data/',
         \Themer::$pwd.'themer/',
+        THEMER_BASEPATH.'themer/data/',
       );
     }
   
