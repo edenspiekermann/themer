@@ -264,7 +264,6 @@ class Templatize {
    *
    * @access  private
    * @param   int     the number of plays 
-   * @param   bool    whether to include a label or not
    * @return  string  the formatted play count
    */
   private static function _playcount_label($plays)
@@ -307,7 +306,7 @@ class Templatize {
    * @access  private
    * @param   int     the timestamp
    * @param   string  the date flag to use
-   * @return  mized   the specific representation of the time
+   * @return  mixed   the specific representation of the time
    */
   private static function _time($time, $flag)
   {
