@@ -88,7 +88,7 @@ class Tumblr {
       $url .= "?".http_build_query($options);
     }
     
-    $c = curl_init($url."");
+    $c = curl_init($url);
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		$output = curl_exec($c);
 		curl_close($c);
