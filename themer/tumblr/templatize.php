@@ -30,7 +30,7 @@ class Templatize {
   protected static $_blog_template = array(
     'Title'           => array('title', 'Untitled'),
     'Description'     => 'description',
-    'MetaDescription' => 'description',
+    'MetaDescription' => array('description', '', 'strip_tags'),
     'RSS'             => array('rss', '/rss'),
   );
   
