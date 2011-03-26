@@ -87,6 +87,11 @@ class Templatize {
     'PlayCountWithLable'  => array('audio-plays', 0, 'self::_playcount_label'),
   );
   
+  protected static $_chat_post_template = array(
+    'Title' => 'title',
+    'Lines' => array('conversation', array(), 'self::_chat_post')
+  );
+  
   protected static $_link_post_template = array(
     'Name'        => 'link-text',
     'URL'         => 'link-url',
@@ -163,6 +168,10 @@ class Templatize {
           
         case 'regular':
           $post['type'] = 'text';
+          break;
+          
+        case 'conversation':
+          $post['type'] = 'chat';
           break;
       }
       
@@ -303,6 +312,40 @@ class Templatize {
   private static function _time($time, $flag)
   {
     return date($flag, $time);
+  }
+  
+  /**
+   * Parses a timestamp using the passed flag
+   *
+   * @access  private
+   * @param   array   the chat information
+   * @return  array   the converted chat post keys
+   */
+  private static function _chat_post($data)
+  { 
+    $lines = array();
+    $names = array();
+    
+    foreach($data as $k => $v)
+    {
+      $tmp = array();
+      
+      $tmp['Name']  = (isset($v['name'])) ? $v['name'] : '';
+      $tmp['Lable'] = (isset($v['label'])) ? $v['label'] : '';
+      $tmp['Line']  = (isset($v['phrase'])) ? $v['phrase'] : '';
+      $tmp['Alt']   = (($k + 1) % 2) ? 'Odd' : 'Even';
+      
+      if( ! array_key_exists($v['name'], $names))
+      {
+        $names[$tmp['Name']] = count($names) + 1;
+      }
+      
+      $tmp['UserNumber'] = $names[$tmp['Name']];
+    
+      $lines[] = $tmp;
+    }
+    
+    return $lines;
   }
   
   /**
