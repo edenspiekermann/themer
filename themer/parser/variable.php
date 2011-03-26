@@ -39,7 +39,7 @@ class Variable {
    * @param   string  the tag name to replace
    * @param   string  the replacement value
    * @param   bool    whether the variable is transformable or not
-   * @return  void
+   * @return  string  the parsed block
    */
   public static function render($block, $search, $replace = '', $transformable = TRUE)
   {

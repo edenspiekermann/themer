@@ -162,8 +162,8 @@ class Block {
   
   /**
    * Formats a tag name for If and IfNot blocks. We have to reformat the
-   * tag for the blocks (they can't be spaced and the _ comes from setting
-   * form input names)
+   * tag for the blocks (they can't be spaced and the _'s comes from Themer
+   * setting form input names with _'s in the keys)
    * 
    * @access  public
    * @param   string  the tag name to format
