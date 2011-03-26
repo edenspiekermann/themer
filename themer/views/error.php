@@ -8,7 +8,7 @@
   <meta name="Copyright" content="Copyright (c) 2011 Braden Schaeffer" />  
   <style type="text/css" media="screen">
     body { font-family: Helvetica, Arial, sans-serf; }
-    #page { width: 450px; margin: 50px auto; }
+    #page { width: 600px; margin: 50px auto; }
     h1 { font-size: 32px; margin: 0 0 15px 0; }
     h2 { margin: 5px 0 10px 0; }
     p { font-size: 14px; line-height: 20px; }
