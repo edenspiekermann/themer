@@ -39,7 +39,7 @@ class Data {
     static::$config = array();
     
     self::load('tumblr');
-    self::load('blog', TRUE);
+    self::load('data');
   }
   
   /**
