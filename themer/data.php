@@ -48,10 +48,10 @@ class Data {
    * @static
    * @access  public
    * @param   string  the name of the yaml file to load
-   * @param   bool    whether or not to replace the existing data, if there is any
+   * @param   bool    whether or not to use the file name as an array index
    * @return  array   the config data, so it's there if you want
    */
-  public static function load($file, $replace = FALSE)
+  public static function load($file, $index = NULL)
   {
     $config = array();
     
@@ -61,25 +61,18 @@ class Data {
       
       if(($tmp = self::load_file($path)) !== FALSE)
       {
-        
-        if(empty($config) || $replace)
+        if(empty($index))
         {
-          $config = $tmp;
+          static::$config[$file] = $tmp;
         }
         else
         {
-          array_merge($config, $tmp);
+            static::$config[$index] = $tmp;
         }
+        
+        return $tmp;
       }
     }
-    
-    if( ! empty($config))
-    {
-      static::$config[$file] = $config;
-      return $config;
-    }
-    
-    return NULL;
   }
   
   /**
