@@ -114,7 +114,8 @@ class Variable {
    */
   private static function _jsplaintext($block, $search, $replace = '')
   {
-    $replace = json_encode(htmlentities($replace));
+    $replace = htmlspecialchars($replace);
+    $replace = json_encode($replace);
     return preg_replace('/{JSPlaintext'.$search.'}/i', $replace, $block);
   }
   
