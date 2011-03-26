@@ -80,6 +80,9 @@ class Templatize {
     'Album'     => 'id3-album',
     'TrackName' => 'id3-title',
     'PlayCount' => array('audio-plays', 0),
+    'AudioPlayer'         => 'audio-player',
+    'AudioPlayerBlack'    => array('audio-player', '', 'self::_audio_player_black'),
+    'AudioPlayerGrey'     => array('audio-player', '', 'self::_audio_player_grey'),  
     'FormmatedPlayCount'  => array('audio-plays', 0, 'number_format'),
     'PlayCountWithLable'  => array('audio-plays', 0, 'self::_playcount_label'),
   );
@@ -263,6 +266,30 @@ class Templatize {
     }
     
     return number_format((int)$plays)." plays";
+  }
+  
+  /**
+   * Formats the audio player as black
+   *
+   * @access  private
+   * @param   string  the audio player
+   * @return  string  the formatted formatted black audio player
+   */
+  private static function _audio_player_black($player)
+  {
+    return str_replace('audio_player.swf', 'audio_player_black.swf', $player);
+  }
+  
+  /**
+   * Formats the audio player as grey
+   *
+   * @access  private
+   * @param   string  the audio player
+   * @return  string  the formatted formatted grey audio player
+   */
+  private static function _audio_player_grey($player)
+  {
+    return str_replace('&color=FFFFFF', '&color=E4E4E4', $player);
   }
   
   /**
