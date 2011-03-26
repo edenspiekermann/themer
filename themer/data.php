@@ -167,24 +167,29 @@ class Data {
       }
     }
     
-    try
+    if(isset(static::$config[$key]))
     {
       if( ! empty($subitem))
       {
         if( ! empty($subsubitem))
         {
-          return static::$config[$key][$subitem][$subsubitem];
+          if(isset(static::$config[$key][$subitem][$subsubitem]))
+          {
+            return static::$config[$key][$subitem][$subsubitem]; 
+          }
         }
-      
-        return static::$config[$key][$subitem];
+        elseif(isset(static::$config[$key][$subitem]))
+        {
+          return static::$config[$key][$subitem];
+        }
       }
+      else
+      {
+        return static::$config[$key];
+      }
+    }
     
-      return static::$config[$key];
-    }
-    catch(\Exception $e)
-    {
-      return 'Item not found: '.$item;
-    }
+    return FALSE;
   }
   
   /**
