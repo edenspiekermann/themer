@@ -17,6 +17,7 @@
 
 namespace Themer;
 
+use Themer\Parser\Lang;
 use Themer\Parser\Meta;
 use Themer\Parser\Posts;
 use Themer\Parser\Block;
@@ -50,11 +51,28 @@ class Parser {
 	public static function parse($theme = '', $page = 'Index')
 	{
 	  if(empty($theme)) return '';
+	  
+	  $theme = self::_render_page($theme, $page);
 
+	  $theme = Lang::render($theme);
 	  $theme = Meta::render($theme);
 	  $theme = Posts::render($theme);
+	  
+	  return $theme;
+	}
+	
+	private static function _render_page($theme, $page)
+	{
+	  foreach(static::$pages as $k => $v)
+		{
+		  if( ! in_array($k, static::$pages[$page]))
+		  {
+		    $block = $k.'Page';
+		    $theme = Block::remove($theme, $block);
+		  }
+		}
 		
-		return $theme;
+	  return $theme;
 	}
 }
 
