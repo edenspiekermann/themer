@@ -153,7 +153,6 @@ No results for SearchQuery: 'No results for: {SearchQuery}'
 No results for SearchQuery 2: 'No results for <span class="search_query">{SearchQuery}</span>'
 No search results for SearchQuery: 'No search results for: {SearchQuery}'
 No search results for SearchQuery 2: 'No search results for <span class="search_query">{SearchQuery}</span>'
-
 SearchResultCount results: '{SearchResultCount} results'
 SearchResultCount results for SearchQuery: '{SearchResultCount} results for {SearchQuery}'
 SearchResultCount results for SearchQuery 2: '{SearchResultCount} results for <span class="search_query">{SearchQuery}</span>'
@@ -161,6 +160,11 @@ Showing SearchResultCount results for SearchQuery: 'Showing {SearchResultCount} 
 Showing SearchResultCount results for SearchQuery 2: 'Showing {SearchResultCount} results for <span class="search_query">{SearchQuery}</span>'
 Your search for SearchQuery returned SearchResultCount results: 'Your search for {SearchQuery} returned {SearchResultCount} results'
 Your search for SearchQuery returned SearchResultCount results 2: 'Your search for <span class="search_query"></span> returned {SearchResultCount} results'
+
+#-------------------
+# Day Page Variables
+#-------------------
+Viewing everything posted on Month DayOfMonth Year: "Viewing everything posted on {Month} {DayOfMonth}, {Year}"
 
 #-------------------------------
 # Post Dependent Variables
@@ -236,18 +240,18 @@ Posted by PostAuthorName 2: 'Posted by <a href="{PostAuthorURL}">{PostAuthorName
 Posted on DayOfMonth Month Year: 'Posted on {DayOfMonth} {Month}, {Year}'
 Posted on DayOfWeek DayOfMonth Month Year: 'Posted on {DayOfWeek}, {DayOfMonth} {Month} {Year}'
 Posted on DayOfWeek DayOfMonth Month Year 2: 'Posted on <span class="date">{DayOfWeek}, {DayOfMonth} {Month} {Year}</span>'
-Posted on DayOfWeek DayOfMonth Month Year 3: 'Posted on <a href="/day/{Year}/{DayOfMonthWithZero}/{DayOfMonth}" class="date">{DayOfWeek}, {DayOfMonth} {Month} {Year}</a>'
+Posted on DayOfWeek DayOfMonth Month Year 3: 'Posted on <a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonth}" class="date">{DayOfWeek}, {DayOfMonth} {Month} {Year}</a>'
 Posted on DayOfWeek Month DayOfMonth Year: 'Posted on {DayOfWeek}, {Month} {DayOfMonth} {Year}'
 Posted on DayOfWeek Month DayOfMonth Year 2: 'Posted on <span class="date">{DayOfWeek}, {Month} {DayOfMonth} {Year}</span>'
-Posted on DayOfWeek Month DayOfMonth Year 3: 'Posted on <a href="/day/{Year}/{DayOfMonthWithZero}/{DayOfMonth}" class="date">{DayOfWeek}, {Month} {DayOfMonth} {Year}</a>'
+Posted on DayOfWeek Month DayOfMonth Year 3: 'Posted on <a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonth}" class="date">{DayOfWeek}, {Month} {DayOfMonth} {Year}</a>'
 Posted on DayOfWeek Month DayOfMonthWithSuffix: 'Posted on {DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}'
 Posted on DayOfWeek Month DayOfMonthWithSuffix 2: 'Posted on <span class="date">{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}</span>'
-Posted on DayOfWeek Month DayOfMonthWithSuffix 3: 'Posted on <a href="/day/{Year}/{DayOfMonthWithZero}/{DayOfMonth}" class="date">{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}</a>'
+Posted on DayOfWeek Month DayOfMonthWithSuffix 3: 'Posted on <a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonth}" class="date">{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}</a>'
 Posted on DayOfWeek Month DayOfMonthWithSuffix Year: 'Posted on {DayOfWeek}, {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}'
 Posted on DayOfWeek the DayOfMonthWithSuffix of Month Year at FormattedTime: 'Posted on {DayOfWeek} the {DayOfMonth}{DayOfMonthSuffix} of {Month} {Year} at {12Hour}:{Minutes} {CapitalAmPm}'
 Posted on Month DayOfMonth Year: 'Posted on {Month} {DayOfMonth}, {Year}'
 Posted on Month DayOfMonth Year with NoteCount notes: 'Posted on {Month} {DayOfMonth}, {Year} with {NoteCount}'
-Posted on Month DayOfMonth Year with NoteCount notes 2: 'Posted on <a href="/day/{Year}/{DayOfMonthWithZero}/{DayOfMonth}" class="date">{Month} {DayOfMonth}, {Year}</a> with {NoteCount}'
+Posted on Month DayOfMonth Year with NoteCount notes 2: 'Posted on <a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonth}" class="date">{Month} {DayOfMonth}, {Year}</a> with {NoteCount}'
 This was posted TimeAgo: 'This was posted {TimeAgo}'
 TimeAgo with NoteCount notes: '{TimeAgo} with {NoteCountWithLabel}'
 
