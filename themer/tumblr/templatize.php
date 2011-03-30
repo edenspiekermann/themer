@@ -128,6 +128,13 @@ class Templatize {
     'Body'  => 'regular-body'
   );
   
+  protected static $_video_post_template = array(
+    'Caption'   => 'video-caption',
+    'Video-500' => 'video-source',
+    'Video-400' => 'video-source',
+    'Video-250' => 'video-source',   
+  );
+  
   // --------------------------------------------------------------------
   
   /**
