@@ -2,7 +2,7 @@
 
 namespace Themer;
 
-require 'SymfonyComponents/YAML/sfYaml.php';
+require_once 'SymfonyComponents/YAML/sfYaml.php';
 
 class Data {
   
