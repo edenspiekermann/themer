@@ -49,10 +49,10 @@ class Parser {
 	 */
 	public static function parse($theme = '', $page = 'Index')
 	{
-		if(empty($theme)) return '';
+	  if(empty($theme)) return '';
 
-		$theme = Meta::render($theme);
-		$theme = Posts::render($theme);
+	  $theme = Meta::render($theme);
+	  $theme = Posts::render($theme);
 		
 		return $theme;
 	}
