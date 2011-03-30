@@ -20,6 +20,8 @@ namespace Themer\Parser;
 use Themer\Parser\Variable;
 use Themer\Parser\Block;
 
+require THEMER_BASEPATH.'themer/third_party/simple_html_dom.php';
+
 /**
  * Themer Meta Class 
  *
@@ -58,7 +60,7 @@ class Meta {
   {
     $this->theme = $theme;
     
-    $this->dom = new simple_html_dom;
+    $this->dom = new \simple_html_dom;
     $this->dom->load($this->theme);
       
     $this->parse_metas();
