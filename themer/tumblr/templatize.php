@@ -83,8 +83,8 @@ class Templatize {
     'AudioPlayer'         => 'audio-player',
     'AudioPlayerBlack'    => array('audio-player', '', 'self::_audio_player_black'),
     'AudioPlayerGrey'     => array('audio-player', '', 'self::_audio_player_grey'),  
-    'FormmatedPlayCount'  => array('audio-plays', 0, 'number_format'),
-    'PlayCountWithLable'  => array('audio-plays', 0, 'self::_playcount_label'),
+    'FormattedPlayCount'  => array('audio-plays', 0, 'number_format'),
+    'PlayCountWithLabel'  => array('audio-plays', 0, 'self::_playcount_label'),
   );
   
   protected static $_chat_post_template = array(
