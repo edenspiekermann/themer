@@ -22,6 +22,19 @@ class Error {
   }
   
   /**
+   * A custom exception handler
+   *
+   * @static
+   * @access  public
+   * @param   obj     the Exception object
+   * @return  void
+   */
+  public static function exception_handler(\Exception $e)
+	{
+		self::php_error($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+	}
+  
+  /**
    * Display a Themer error.
    * 
    * @static

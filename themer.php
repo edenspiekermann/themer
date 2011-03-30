@@ -40,6 +40,7 @@ define('EOL', PHP_EOL);
 require THEMER_BASEPATH.'themer/autoloader.php';
 require THEMER_BASEPATH.'themer/base.php';
 
+set_exception_handler('Themer\Error::exception_handler');
 set_error_handler('Themer\Error::php_error');
 
 /* End of file themer.php */
