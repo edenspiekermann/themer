@@ -35,12 +35,12 @@ class Tumblr {
    * 
    * @access  public
    * @param   string  the url or username for the Tumblr blog
-   * @param   array   whether or not to 'templatize' the results
+   * @param   bool   whether or not to 'templatize' the results
    * @return  mixed
    */
-  public static function get_all($username, $templatize = FALSE)
+  public static function all($username, $templatize = FALSE)
   {
-    $blog = self::_blog_and_posts($username);
+    $blog = self::read($username);
     
     if( ! $templatize)
     {
@@ -58,15 +58,15 @@ class Tumblr {
    * given user
    * 
    * @static
-   * @access  private
+   * @access  public
    * @param   string  the username
    * @param   array   the options to include in the request
    * @return  array   the blog and post data
    */
-  private static function _blog_and_posts($username, $options = array())
+  public static function read($username, $options = array())
   {
     $url = self::_parse_url($username, 'read/json');
-    $data = self::_curl($url, $options, TRUE);
+    $data = self::_curl($url, $options);
     
     return $data;
   }
@@ -78,27 +78,26 @@ class Tumblr {
    * @access  private
    * @param   string  the url to make the request
    * @param   array   the options to include in the request
-   * @param   bool    whether the request will return json or not
+   * @param   bool    whether the request is a POST or not
+   * @param   array   the post data
    * @return  array   the resulting data
    */
-  private static function _curl($url, $options = array(), $json = TRUE)
+  private static function _curl($url, $options = array())
   {
-    if( ! empty($options))
+    if(! empty($options))
     {
       $url .= "?".http_build_query($options);
     }
     
     $c = curl_init($url);
+    
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		$output = curl_exec($c);
 		curl_close($c);
-		
-		if($json)
-		{
-  		$output = str_replace('var tumblr_api_read = ', '', $output);
-  		$output = rtrim(trim($output), ';');
-      $output = json_decode($output, TRUE);
-    }
+  	
+  	$output = str_replace('var tumblr_api_read = ', '', $output);
+  	$output = rtrim(trim($output), ';');
+    $output = json_decode($output, TRUE);
     
     return $output;
   }
@@ -114,9 +113,14 @@ class Tumblr {
    * @param   string  the type of data (ie 'read', 'pages', etc...)
    * @return  string  the Tumblr API endpoint in url form
    */
-  private static function _parse_url($target, $type = 'read')
+  private static function _parse_url($target = '', $type = 'read')
   {
-    return "http://$target.tumblr.com/api/$type";
+    if( ! empty($target))
+    {
+      return "http://$target.tumblr.com/api/$type";
+    }
+    
+    return "http://tumblr.com/api/$type";
   }
 }
 
