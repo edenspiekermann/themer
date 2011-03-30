@@ -80,6 +80,8 @@ class Templatize {
     'Album'     => 'id3-album',
     'TrackName' => 'id3-title',
     'PlayCount' => array('audio-plays', 0),
+    'RawAudioURL'         => array('raw-audio-url', '/themer_asset/audio/sample.mp3'),
+    'ExternalAudioURL'    => array('external-audio-url', '/themer_asset/audio/sample.mp3'),
     'AudioPlayer'         => 'audio-player',
     'AudioPlayerBlack'    => array('audio-player', '', 'self::_audio_player_black'),
     'AudioPlayerGrey'     => array('audio-player', '', 'self::_audio_player_grey'),  
