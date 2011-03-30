@@ -133,13 +133,13 @@ class Block {
    * @access  public
    * @param   string  the parent block
    * @param   string  the tag to search for
-   * @return  mixed   NULL if there were no matches, else an array of matches
+   * @return  array   empty array for no matches, else the matches
    */
   public static function find($block, $tag)
   {
     if( ! preg_match_all(self::_matcher($tag), $block, $matches))
     {
-      return NUll;
+      return array();
     }
     
     return $matches[0];
