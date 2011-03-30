@@ -35,7 +35,7 @@ define('YML', '.yml');
 define('EOL', PHP_EOL);
 
 /*-------------------------------------------------------
-* Require the two base Themer classes
+* Setup Themer
 -------------------------------------------------------*/
 
 require THEMER_BASEPATH.'themer/autoloader.php';
