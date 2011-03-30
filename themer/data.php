@@ -6,8 +6,6 @@ require 'SymfonyComponents/YAML/sfYaml.php';
 
 class Data {
   
-  const YAML_EXT = '.yml';
-  
   public static $paths = array();
   public static $config = array();
   
@@ -57,7 +55,7 @@ class Data {
     
     foreach(static::$paths as $p)
     {
-      $path = $p.$file.self::YAML_EXT;
+      $path = $p.$file.YML;
       
       if(($tmp = self::load_file($path)) !== FALSE)
       {
@@ -92,7 +90,7 @@ class Data {
       Error::display("cannot locate \$HOME directory within the current environment", 500);
     }
     
-    $file_name = $name.self::YAML_EXT;
+    $file_name = $name.YML;
     $data = (is_array($data)) ? self::to_yaml($data) : $data;
     
     $dir = ($local) ? \Themer::$pwd."themer/" : \Themer::$home.".themer/";
@@ -105,11 +103,11 @@ class Data {
       }
     }
     
-    $file_path = $dir.$name.self::YAML_EXT;
+    $file_path = $dir.$name.YML;
     
     if( ! ($fh = @fopen($file_path, 'w')))
     {
-      Error::display("cannot open file '".$name.self::YAML_EXT."' at path $path");
+      Error::display("cannot open file '".$name.YML."' at path $path");
     }
     
     $result = fwrite($fh, $data);
