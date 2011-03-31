@@ -5,7 +5,7 @@
  * A Tumblr theme parser for local development.
  *
  * @package   Themer
- * @author    Braden Schaeffer <braden.schaeffer@gmail.com>
+ * @author    Braden Schaeffer 
  * @version   0.1.0
  * @link      http://github.com/bschaeffer/themer
  *
@@ -24,7 +24,7 @@ use Themer\Parser;
  * A view management class for Themer's internal views and assets.
  * 
  * @package   Themer
- * @author    Braden Schaeffer <braden.schaeffer@gmail.com>
+ * @author    Braden Schaeffer 
  */
 
 class View {

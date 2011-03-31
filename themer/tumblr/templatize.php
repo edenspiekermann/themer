@@ -5,7 +5,7 @@
  * A Tumblr theme parser for local development.
  *
  * @package   Themer
- * @author    Braden Schaeffer <braden.schaeffer@gmail.com>
+ * @author    Braden Schaeffer 
  * @version   0.1.0
  * @link      http://github.com/bschaeffer/themer
  *
@@ -23,7 +23,7 @@ namespace Themer\Tumblr;
  *
  * @package     Themer
  * @subpackage  Tumblr
- * @author      Braden Schaeffer <braden.schaeffer@gmail.com>
+ * @author      Braden Schaeffer 
  */
 class Templatize {
   
