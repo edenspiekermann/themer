@@ -6,7 +6,7 @@
  *
  * @package   Themer
  * @author    Braden Schaeffer 
- * @version   0.1.0
+ * @version   beta
  * @link      http://github.com/bschaeffer/themer
  *
  * @copyright Copyright (c) 2011
