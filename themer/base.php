@@ -63,7 +63,7 @@ class Themer {
    * @static
    * @access  private
    * @param   string  the potential file path
-   * @return  void  the theme file path 
+   * @return  void 
    */
   private static function _set_themer_paths($path = '')
   {
