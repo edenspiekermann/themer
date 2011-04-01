@@ -120,13 +120,14 @@ class Data {
    * @access  public
    * @param   string  the config item to look for
    * @param   array   the params to match
+   * @param   bool    whether or not the search value can be in an array itself
    * @return  array   an empty array or the matched data
    */
-  public static function find($item, $params = array())
+  public static function find($item, $params = array(), $in_array = FALSE)
   {
     if( ! ($data = self::get($item)))
     {
-      return array();
+      return FALSE;
     }
     
     if(empty($params))
@@ -134,7 +135,7 @@ class Data {
       return $data;
     }
     
-    $new = array();
+    $new = FALSE;
     
     foreach($data as $d)
     {
@@ -142,8 +143,20 @@ class Data {
       
       foreach($params as $k => $v)
       {
-        $found = ( ! isset($d[$k]) || $d[$k] !== $v) ? FALSE : TRUE;
-        if($found == FALSE) break;
+        if( ! isset($d[$k])) 
+        {
+          $found = FALSE;
+        }
+        elseif($in_array)
+        {
+          $found = in_array($v, $d[$k]);
+        }
+        else
+        {
+          $found = ($d[$k] === $v);
+        }
+          
+        if( ! $found) break;
       }
       
       if($found) $new[] = $d;
