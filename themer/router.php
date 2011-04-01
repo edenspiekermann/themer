@@ -91,7 +91,12 @@ class Router {
       'DayOfMonth'          => $segments[2],
     );
     
-    $post_data = self::_get_post_data($params);
+    $post_data = Data::find('data.posts', $params);
+    
+    if(empty($post_data))
+    {
+      self::_not_found();
+    }
   
     $date = strtotime(implode($segments, '-'));
     
@@ -121,7 +126,12 @@ class Router {
       self::_not_found();
     }
     
-    $post_data = self::_get_post_data(array('PostID' => $segments[0]));
+    $post_data = Data::find(array('PostID' => $segments[0]));
+    
+    if(empty($post_data))
+    {
+      self::_not_found();
+    }
     
     $summary = ( ! empty($post_data['Body'])) ? $post_data['Body'] : $post_data['Title'];
     $summary = strip_tags($summary);
@@ -172,26 +182,6 @@ class Router {
     Parser::set_page(ucwords($page));
     Parser::set_post_data($post_data);
     Parser::set_page_data($page_data);
-  }
-  
-  /**
-   * Loads post data based on certain params
-   * 
-   * @static
-   * @access  private
-   * @param   array   the search parameters
-   * @return  mixed   FALSE or the search results array
-   */
-  private static function _get_post_data($params)
-  {
-    $data = Data::find('data.posts', $params);
-    
-    if(empty($data))
-    {
-      self::_not_found();
-    }
-    
-    return $data;
   }
   
   // --------------------------------------------------------------------
