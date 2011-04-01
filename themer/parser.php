@@ -35,10 +35,10 @@ use Themer\Parser\Variable;
 class Parser {
   
 	protected static $pages = array(
-	 'Index'      => array('Index'),
- 	 'Permalink'  => array('Permalink'),
-	 'Search'     => array('Search', 'Index'),
-	 'Tag'        => array('Tag', 'Index')
+	  'Index'     => array('Index'),
+ 	  'Permalink' => array('Permalink'),
+	  'Search'    => array('Search', 'Index'),
+	  'Tag'       => array('Tag', 'Index')
 	);
 	
 	/**
