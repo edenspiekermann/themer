@@ -21,7 +21,7 @@ Install Symfony's YAML library:
 
     $ [sudo] pear install pear.symfony-project.com/YAML
 
-Create an index.php that looks like this in your server:
+Create an index.php that looks like this in your project directory:
 
     <?php
     
