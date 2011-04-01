@@ -52,7 +52,7 @@ class Error {
     
     $title = isset($codes[$code]) ? $codes[$code] : $codes[500];
     
-    echo View::load('error', array('title' => $title, 'message' => $message), TRUE);
+    echo Load::view('error', array('title' => $title, 'message' => $message), TRUE);
     exit();
   }
   

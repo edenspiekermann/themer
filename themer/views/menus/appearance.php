@@ -20,7 +20,7 @@
    
     <label for="meta[font][<?php echo $k; ?>]"><?php echo str_replace("_", " ", $k); ?> font:</label>
     
-    <?php \Themer\View::load('menus/fonts', array('index' => $k, 'selected' => $v)) ?>
+    <?php \Themer\Load::view('menus/fonts', array('index' => $k, 'selected' => $v)) ?>
   
   </div>
 <?php endforeach; ?>

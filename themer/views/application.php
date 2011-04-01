@@ -29,11 +29,11 @@
 
     <a href="#" name="export" class="action button">Export</a>
 
-    <?php \Themer\View::load('menus', $data); ?>
+    <?php \Themer\Load::view('menus', $data); ?>
   </div>
   
   <div id="theme-container">
-    <iframe id="theme-frame" scrolling="auto" frameborder="0" src="/?theme"></iframe>
+    <iframe id="theme-frame" scrolling="auto" frameborder="0" src="/?iframe"></iframe>
   </div>
 </body>
 </html>

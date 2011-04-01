@@ -16,7 +16,7 @@
  */
 
 use Themer\Parser;
-use Themer\View;
+use Themer\Load;
 use Themer\Error;
 
 class Themer {
@@ -54,7 +54,7 @@ class Themer {
     
     $theme = self::load_theme();
     $theme = Parser::parse($theme);
-    View::display_html($theme);
+    Load::display_html($theme);
   }
   
   /**

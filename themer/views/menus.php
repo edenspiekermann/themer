@@ -1,6 +1,6 @@
 <form id="menus" action="/index.php" method="post">
   <div id="info" class="menu">
-    <?php \Themer\View::load('menus/info', $info); ?>
+    <?php \Themer\Load::view('menus/info', $info); ?>
   </div>
 
   <div id="appearance" class="menu">
@@ -14,7 +14,7 @@
     
     <div class="content">
     <?php if( ! empty($metas)) : ?>
-      <?php \Themer\View::load('menus/appearance', $metas); ?>
+      <?php \Themer\Load::view('menus/appearance', $metas); ?>
     <?php else : ?>
       <p class="info">There doesn't appear to be any custom Tumblr variable data embedded in this theme.</p>
     <?php endif ?>

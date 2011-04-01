@@ -19,15 +19,14 @@ namespace Themer;
 use Themer\Parser;
 
 /**
- * Themer View Class
+ * Themer Loader Class
  * 
- * A view management class for Themer's internal views and assets.
+ * Load's Themer views and assets
  * 
  * @package   Themer
  * @author    Braden Schaeffer 
  */
-
-class View {
+class Load {
   
   protected static $asset_headers = array(
     'css' => 'text/css',
@@ -58,7 +57,7 @@ class View {
    * @access  public
    * @return  void
    */
-  public static function load_application()
+  public static function application()
   {
     $theme_contents = \Themer::load_theme();
     
@@ -68,7 +67,7 @@ class View {
       'Description' => Data::get('data.Description')
     );
     
-    $themer = static::load('application', array('data' => $data), TRUE);
+    $themer = static::view('application', array('data' => $data), TRUE);
     
     static::display_html($themer);
   }
@@ -81,7 +80,7 @@ class View {
    * @param   string  the asset to load
    * @return  void
    */
-  public static function load_asset($asset_path = '')
+  public static function asset($asset_path = '')
   {
     $path = THEMER_BASEPATH.'themer/public/'.$asset_path;
     
@@ -105,8 +104,8 @@ class View {
   }
   
   /**
-   * Loads a child view for the Themer application. The general idea for
-   * this code was taken from CodeIgniter v2.0.0 (beta).
+   * Loads a view for the Themer application. The general idea for his
+   * code was taken from CodeIgniter v2.0.0 (beta).
    * 
    * @access  public
    * @param   string  the view file to load
@@ -114,7 +113,7 @@ class View {
    * @param   bool    whether to return the view or not
    * @return  void
    */
-  public static function load($_t_file = '', $_t_vars = array(), $_t_return = FALSE)
+  public static function view($_t_file = '', $_t_vars = array(), $_t_return = FALSE)
   {
     $_t_path = THEMER_BASEPATH.'themer/views/'.$_t_file.'.php';
     
@@ -175,10 +174,10 @@ class View {
    */
   private static function _not_found($path = '')
   {
-    header('HTTP/1.0 400 Not Found', TRUE);
-    exit("File not found: $path");
+    header('HTTP/1.0 404 Not Found', TRUE);
+    exit("<h1>File not found: $path</h1>");
   }
 }
 
-/* End of file view.php */
-/* Location: ./themer/view.php */
+/* End of file load.php */
+/* Location: ./themer/load.php */
