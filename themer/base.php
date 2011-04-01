@@ -15,6 +15,8 @@
  * @filesource
  */
 
+use Themer\Data;
+use Themer\Router;
 use Themer\Parser;
 use Themer\Load;
 use Themer\Error;
@@ -37,19 +39,20 @@ class Themer {
    * @return  void
    */
   public static function run($path = '')
-  { 
+  {     
     self::_set_themer_paths($path);
     
-    if(isset($_GET['themer_asset']))
+    Data::load('data');
+  
+    // If $_GET['iframe'] is set, we are loading a theme within an iframe
+    // so we don't need any extra mumbo jumbo... I think
+    if(isset($_GET['iframe']))
     {
-      View::load_asset($_GET['themer_asset']);
-      return;
+      Parser::set_post_data(Data::get('data.posts'));
     }
-    
-    if( ! isset($_GET['theme']))
+    else
     {
-      View::load_application();
-      return;
+      Router::route();
     }
     
     self::parse_theme();

@@ -21,39 +21,26 @@ use Themer\Parser\Block;
 use Themer\Parser\Variable;
 
 class Posts {
-  
-  protected static $_post_data = array();
-  
-  public static function __autoinit()
-  {
-    if( ! ($data = Data::get('data.posts')))
-    {
-      $data = Data::load('data');
-      $data = $data['posts'];
-    }
-    
-    static::$_post_data = $data;
-  }
 	
-	public static function render($theme)
-	{ 
+	public static function render($theme, $post_data)
+	{ 	  
 	  $posts = Block::find($theme, 'Posts');
 	  
 	  foreach($posts as $post)
 	  { 
 	    $tmp = Block::render($post, 'Posts');
-	    $tmp = self::_render_posts($tmp);
+	    $tmp = self::_render_posts($tmp, $post_data);
 	    $theme = str_replace($post, $tmp, $theme);
 	  }
 	  
 	  return $theme;
 	}
 	
-	public static function _render_posts($block)
+	public static function _render_posts($block, $post_data)
 	{ 
 	  $rendered = '';
 	  
-	  foreach(static::$_post_data as $index => $post)
+	  foreach($post_data as $index => $post)
 	  { 
 	    $index = $index + 1;
 	    $offset = (($index) % 2) ? 'Odd' : 'Even';
@@ -62,8 +49,11 @@ class Posts {
 	    $tmp = Block::render($tmp, $offset);
 	    $tmp = Block::render($tmp, $post['PostType']);
 
-	    $tmp = self::_render_tags($tmp, $post['Tags']);
-	    unset($post['Tags']);
+      if(isset($post['Tags']))
+      {
+	      $tmp = self::_render_tags($tmp, $post['Tags']);
+	      unset($post['Tags']);
+	    }
 	    
 	    foreach($post as $k => $v)
 	    {
