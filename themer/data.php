@@ -24,7 +24,7 @@ class Data {
     );
     
     self::load('tumblr');
-    self::load('data');
+    self::load('defaults');
   }
   
   /**
