@@ -52,9 +52,33 @@ class Themer {
       return;
     }
     
+    self::parse_theme();
+  }
+  
+  /**
+   * A simple wrapper that sends the theme parser on it's way
+   * 
+   * @static
+   * @access  public
+   * @return  void
+   */
+  public static function parse_theme()
+  {
     $theme = self::load_theme();
     $theme = Parser::parse($theme);
     Load::display_html($theme);
+  }
+
+  /**
+   * Loads the theme from a specified path.
+   * 
+   * @static
+   * @access  public
+   * @return  string  the theme contents
+   */
+  public static function load_theme()
+  {
+    return file_get_contents(static::$theme_path);
   }
   
   /**
@@ -108,18 +132,6 @@ class Themer {
     }
 
     return rtrim($path, '/').'/';
-  }
-  
-  /**
-   * Loads the theme from a specified path.
-   * 
-   * @static
-   * @access  public
-   * @return  string  the theme contents
-   */
-  public static function load_theme()
-  {
-    return file_get_contents(static::$theme_path);
   }
 }
 
