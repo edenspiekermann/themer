@@ -83,7 +83,6 @@ class Router {
     if( ! isset($segments[2]))
     {
       self::_not_found();
-      return;
     }
   
     $params = array(
@@ -120,7 +119,6 @@ class Router {
     if( ! isset($segments[0]))
     {
       self::_not_found();
-      exit();
     }
     
     $post_data = self::_get_post_data(array('PostID' => $segments[0]));
