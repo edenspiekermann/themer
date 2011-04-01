@@ -64,6 +64,17 @@ class Meta {
     $this->dom->load($this->theme);
       
     $this->parse_metas();
+    
+    if(isset($_GET['meta']))
+    {
+      foreach($this->metas as $key => $ignore)
+      {
+        if(isset($_GET['meta'][$key]))
+        {
+          $this->metas[$key] = $_GET['meta'][$key];
+        }
+      }
+    }
   }
   
   /**
