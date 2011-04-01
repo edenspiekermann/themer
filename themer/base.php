@@ -23,8 +23,8 @@ class Themer {
   
   const VERSION = '0.1.0';
   
-  public static $pwd = '';
-  public static $home = '';
+  public static $PWD  = '';
+  public static $HOME = '';
   public static $theme_file = 'theme.html';
   public static $theme_path = '';
   
@@ -37,7 +37,7 @@ class Themer {
    * @return  void
    */
   public static function run($path = '')
-  {
+  { 
     self::_set_themer_paths($path);
     
     if(isset($_GET['themer_asset']))
@@ -66,39 +66,48 @@ class Themer {
    * @return  void 
    */
   private static function _set_themer_paths($path = '')
-  {
-    if(empty($path) && empty(static::$pwd))
-    {
-      Error::display('a path to the project directory is required.');
-    }
+  { 
+    static::$PWD = self::_get_pwd($path);
     
-    $path = (empty($path)) ? static::$pwd : $path;
-    
-    if(@is_file($path))
-    { 
-      static::$pwd = rtrim(dirname($path), '/').'/';
-      static::$theme_file = basename($path);
-    }
-    
-    if(empty(self::$theme_file))
-    {
-      Error::display('a theme_file name is required');
-    }
-    
-    static::$pwd = rtrim($path, '/').'/';
-    
-    static::$theme_path = static::$pwd.static::$theme_file;
+    static::$theme_path = static::$PWD.static::$theme_file;
     
     if( ! @file_exists(static::$theme_path))
     {
-      Error::display("the theme file `".static::$theme_file."` could not be found in $path");
+      Error::display("The theme file `".static::$theme_file."` could not be found in ".static::$PWD);
     }
-    
-    // Set the $HOME directory
-    if(isset($_SERVER['HOME']))
+  }
+  
+  /**
+   * Attempts to get the current working directory
+   * 
+   * @static
+   * @access  private
+   * @param   string  the potential PWD
+   * @return  string  the valid PWD
+   */
+  private static function _get_pwd($path)
+  {
+    if(empty($path))
     {
-      static::$home = rtrim($_SERVER['HOME'], '/').'/';
+      if( ! empty(static::$PWD))
+      {
+        $path = static::$PWD;
+      }
+      elseif(isset($_SERVER['PWD']))
+      {
+        $path = $_SERVER['PWD'];
+      }
+      elseif(isset($_SERVER['DOCUMENT_ROOT']))
+      {
+        $path = $_SERVER['DOCUMENT_ROOT'];
+      }
+      elseif( ! ($path = getcwd()))
+      {
+        Error::display('Cannot discover the current working directory in the current environment.');
+      }
     }
+
+    return rtrim($path, '/').'/';
   }
   
   /**

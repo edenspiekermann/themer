@@ -18,23 +18,10 @@ class Data {
    */
   public static function __autoinit()
   {
-    if( ! empty(\Themer::$home))
-    {
-      static::$paths = array(
-        \Themer::$pwd.'themer/',
-        \Themer::$home.'.themer/',
-        THEMER_BASEPATH.'themer/data/',
-      );
-    }
-    else
-    {
-      static::$paths = array(
-        \Themer::$pwd.'themer/',
-        THEMER_BASEPATH.'themer/data/',
-      );
-    }
-  
-    static::$config = array();
+    static::$paths = array(
+      \Themer::$PWD.'themer/',
+      THEMER_BASEPATH.'themer/data/',
+    );
     
     self::load('tumblr');
     self::load('data');
@@ -84,16 +71,11 @@ class Data {
    * @return  bool    whether or not the file was able to be written
    */
   public static function write($data, $name, $local = TRUE)
-  {
-    if( ! $local && empty(\Themer::$home))
-    {
-      Error::display("cannot locate \$HOME directory within the current environment", 500);
-    }
-    
+  { 
     $file_name = $name.YML;
     $data = (is_array($data)) ? self::to_yaml($data) : $data;
     
-    $dir = ($local) ? \Themer::$pwd."themer/" : \Themer::$home.".themer/";
+    $dir = Themer::$PWD."themer/";
     
     if( ! file_exists($dir))
     {
