@@ -20,6 +20,16 @@ use Themer\Data;
 use Themer\Parser\Block;
 use Themer\Parser\Variable;
 
+/**
+ * Themer Posts Class
+ * 
+ * Renders Tumblr's {block:Posts} block along with all relevant
+ * information
+ * 
+ * @package     Themer
+ * @subpackage  Parser
+ * @author      Braden Schaeffer
+ */
 class Posts {
 	
 	public static function render($theme, $post_data)
