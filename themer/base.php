@@ -21,7 +21,7 @@ use Themer\Error;
 
 class Themer {
   
-  const VERSION = '0.1.0';
+  const VERSION = 'beta';
   
   public static $PWD  = '';
   public static $HOME = '';
