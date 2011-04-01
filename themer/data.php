@@ -61,58 +61,6 @@ class Data {
   }
   
   /**
-   * Write a PHP array or YAML string to a file
-   * 
-   * @static
-   * @access  public
-   * @param   mixed   the PHP array or YAML string to write
-   * @param   string  the file name to use
-   * @param   bool    are we writing to the PWD or HOME directory
-   * @return  bool    whether or not the file was able to be written
-   */
-  public static function write($data, $name, $local = TRUE)
-  { 
-    $file_name = $name.YML;
-    $data = (is_array($data)) ? self::to_yaml($data) : $data;
-    
-    $dir = Themer::$PWD."themer/";
-    
-    if( ! file_exists($dir))
-    {
-      if( ! @mkdir($dir, 0755))
-      {
-        Error::display("could not create directory: $dir", 500);
-      }
-    }
-    
-    $file_path = $dir.$name.YML;
-    
-    if( ! ($fh = @fopen($file_path, 'w')))
-    {
-      Error::display("cannot open file '".$name.YML."' at path $path");
-    }
-    
-    $result = fwrite($fh, $data);
-    fclose($fh);
-  
-    return ($result !== FALSE);
-  }
-  
-  /**
-   * Converts an array to a string representing a valid YAML <file></file>
-   * 
-   * @static
-   * @access  public
-   * @param   array   an array of data to dump
-   * @return  string  the YAML representation of the data
-   */
-  public static function to_yaml($data)
-  {
-    $yaml = \sfYaml::dump($data, 5);
-    return $yaml;
-  }
-  
-  /**
    * Returns the value of the specified 'config' item
    *
    * @static  
@@ -163,6 +111,97 @@ class Data {
     }
     
     return FALSE;
+  }
+  
+  /**
+   * Finds data based on certain params
+   * 
+   * @static
+   * @access  public
+   * @param   string  the config item to look for
+   * @param   array   the params to match
+   * @return  array   an empty array or the matched data
+   */
+  public static function find($item, $params = array())
+  {
+    if( ! ($data = self::get($item)))
+    {
+      return array();
+    }
+    
+    if(empty($params))
+    {
+      return $data;
+    }
+    
+    $new = array();
+    
+    foreach($data as $d)
+    {
+      $found = FALSE;
+      
+      foreach($params as $k => $v)
+      {
+        $found = ( ! isset($d[$k]) || $d[$k] !== $v) ? FALSE : TRUE;
+        if($found == FALSE) break;
+      }
+      
+      if($found) $new[] = $d;
+    }
+    
+    return $new;
+  }
+  
+  /**
+   * Write a PHP array or YAML string to a file
+   * 
+   * @static
+   * @access  public
+   * @param   mixed   the PHP array or YAML string to write
+   * @param   string  the file name to use
+   * @param   bool    are we writing to the PWD or HOME directory
+   * @return  bool    whether or not the file was able to be written
+   */
+  public static function write($data, $name, $local = TRUE)
+  { 
+    $file_name = $name.YML;
+    $data = (is_array($data)) ? self::to_yaml($data) : $data;
+    
+    $dir = Themer::$PWD."themer/";
+    
+    if( ! file_exists($dir))
+    {
+      if( ! @mkdir($dir, 0755))
+      {
+        Error::display("could not create directory: $dir", 500);
+      }
+    }
+    
+    $file_path = $dir.$name.YML;
+    
+    if( ! ($fh = @fopen($file_path, 'w')))
+    {
+      Error::display("cannot open file '".$name.YML."' at path $path");
+    }
+    
+    $result = fwrite($fh, $data);
+    fclose($fh);
+  
+    return ($result !== FALSE);
+  }
+  
+  /**
+   * Converts an array to a string representing a valid YAML <file></file>
+   * 
+   * @static
+   * @access  public
+   * @param   array   an array of data to dump
+   * @return  string  the YAML representation of the data
+   */
+  public static function to_yaml($data)
+  {
+    $yaml = \sfYaml::dump($data, 5);
+    return $yaml;
   }
   
   /**
