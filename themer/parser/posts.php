@@ -80,6 +80,14 @@ class Posts {
 	      {
 	        $tmp = self::_render_array($tmp, $k, $v);
 	      }
+	      
+	      // Render stuff like {block:Title} for text posts or
+	      // {block:Caption} for photos, etc..
+	      
+	      if(Block::find($tmp, $k) && ! empty($v))
+	      {
+	        $tmp = Block::render($tmp, $k);
+	      }
 	    }
 	    
 	    $rendered .= Block::cleanup($tmp);
