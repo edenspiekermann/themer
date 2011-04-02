@@ -52,10 +52,10 @@ class Block {
   public static function render($block, $tag)
   {
     return preg_replace_callback(
-			self::_matcher($tag),
-			create_function('$matches', 'return $matches[2];'),
-			$block
-		);
+      self::_matcher($tag),
+      create_function('$matches', 'return $matches[2];'),
+      $block
+    );
   }
   
   /**

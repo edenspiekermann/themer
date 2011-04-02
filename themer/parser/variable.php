@@ -43,15 +43,15 @@ class Variable {
    */
   public static function render($block, $search, $replace = '', $transformable = TRUE)
   {
-  	$block = self::_simple($block, $search, $replace);
-  	
-  	if($transformable === TRUE)
-  	{
-  	  $block = self::_plaintext($block, $search, $replace);
-    	$block = self::_js($block, $search, $replace);  	
-    	$block = self::_jsplaintext($block, $search, $replace);
-    	$block = self::_urlencoded($block, $search, $replace);
-  	}
+    $block = self::_simple($block, $search, $replace);
+    
+    if($transformable === TRUE)
+    {
+      $block = self::_plaintext($block, $search, $replace);
+      $block = self::_js($block, $search, $replace);    
+      $block = self::_jsplaintext($block, $search, $replace);
+      $block = self::_urlencoded($block, $search, $replace);
+    }
     
     return $block;
   }
@@ -83,7 +83,7 @@ class Variable {
    */
   private static function _plaintext($block, $search, $replace = '')
   {
-  	return preg_replace('/{Plaintext'.$search.'}/i', htmlentities($replace), $block);
+    return preg_replace('/{Plaintext'.$search.'}/i', htmlentities($replace), $block);
   }
   
   /**

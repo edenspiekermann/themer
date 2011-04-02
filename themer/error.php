@@ -30,9 +30,9 @@ class Error {
    * @return  void
    */
   public static function exception_handler(\Exception $e)
-	{
-		self::php_error($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
-	}
+  {
+    self::php_error($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
+  }
   
   /**
    * Display a Themer error.

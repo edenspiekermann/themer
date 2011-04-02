@@ -128,8 +128,8 @@ class Meta {
   
     foreach($elements as $el)
     {
-			if(isset($el->content))
-			{
+      if(isset($el->content))
+      {
         $attr = explode(':', $el->name);
         
         if(array_key_exists($attr[0], $this->metas))
@@ -139,10 +139,10 @@ class Meta {
           // like so: <input type="text" name="meta[text][Flickr_ID]" />
           
           $key = str_replace(" ", "_", $attr[1]);
-				  $this->metas[$attr[0]][$key] = $el->content;
-			  }
-			}
-		}
+          $this->metas[$attr[0]][$key] = $el->content;
+        }
+      }
+    }
   }
   
   /**

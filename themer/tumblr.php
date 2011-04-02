@@ -91,12 +91,12 @@ class Tumblr {
     
     $c = curl_init($url);
     
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-		$output = curl_exec($c);
-		curl_close($c);
-  	
-  	$output = str_replace('var tumblr_api_read = ', '', $output);
-  	$output = rtrim(trim($output), ';');
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($c);
+    curl_close($c);
+    
+    $output = str_replace('var tumblr_api_read = ', '', $output);
+    $output = rtrim(trim($output), ';');
     $output = json_decode($output, TRUE);
     
     return $output;

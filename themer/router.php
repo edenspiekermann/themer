@@ -249,17 +249,17 @@ class Router {
     }
     
     // Is there a PATH_INFO variable?
-		// Note: some servers seem to have trouble with getenv() so we'll test it two ways
-		
-		$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
-		
-		if(trim($path, '/') != '' && $path != "/".SELF)
-		{
-			static::$uri = $path;
-			return;
-		}
-		
-		static::$uri = '';
+    // Note: some servers seem to have trouble with getenv() so we'll test it two ways
+    
+    $path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
+    
+    if(trim($path, '/') != '' && $path != "/".SELF)
+    {
+      static::$uri = $path;
+      return;
+    }
+    
+    static::$uri = '';
   }
   
   /**
@@ -274,85 +274,85 @@ class Router {
    * @access  private
    * @return  string  the uri string
    */
-	private static function _detect_uri()
-	{
-		if( ! isset($_SERVER['REQUEST_URI']))
-		{
-			return '';
-		}
+  private static function _detect_uri()
+  {
+    if( ! isset($_SERVER['REQUEST_URI']))
+    {
+      return '';
+    }
 
-		$uri = $_SERVER['REQUEST_URI'];
-		
-		if(strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
-		{
-			$uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
-		}
-		elseif(strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
-		{
-			$uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
-		}
+    $uri = $_SERVER['REQUEST_URI'];
+    
+    if(strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
+    {
+      $uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
+    }
+    elseif(strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
+    {
+      $uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+    }
 
-		// This section ensures that even on servers that require the URI to be in the
-		// query string (Nginx) a correct URI is found, and also fixes the QUERY_STRING
-		// server var and $_GET array.
-		
-		if(strncmp($uri, '?/', 2) === 0)
-		{
-			$uri = substr($uri, 2);
-		}
-		
-		$parts = preg_split('#\?#i', $uri, 2);
-		$uri = $parts[0];
-		
-		if(isset($parts[1]))
-		{
-			$_SERVER['QUERY_STRING'] = $parts[1];
-			parse_str($_SERVER['QUERY_STRING'], $_GET);
-		}
-		else
-		{
-			$_SERVER['QUERY_STRING'] = '';
-			$_GET = array();
-		}
-		
-		if ($uri == '/' || empty($uri))
-		{
-			return '/';
-		}
-				
-		$uri = parse_url($uri, PHP_URL_PATH);
+    // This section ensures that even on servers that require the URI to be in the
+    // query string (Nginx) a correct URI is found, and also fixes the QUERY_STRING
+    // server var and $_GET array.
+    
+    if(strncmp($uri, '?/', 2) === 0)
+    {
+      $uri = substr($uri, 2);
+    }
+    
+    $parts = preg_split('#\?#i', $uri, 2);
+    $uri = $parts[0];
+    
+    if(isset($parts[1]))
+    {
+      $_SERVER['QUERY_STRING'] = $parts[1];
+      parse_str($_SERVER['QUERY_STRING'], $_GET);
+    }
+    else
+    {
+      $_SERVER['QUERY_STRING'] = '';
+      $_GET = array();
+    }
+    
+    if ($uri == '/' || empty($uri))
+    {
+      return '/';
+    }
+        
+    $uri = parse_url($uri, PHP_URL_PATH);
 
-		// Do some final cleaning of the URI and return it
-		return str_replace(array('//', '../'), '/', trim($uri, '/'));
-	}
-	
-	/**
-	 * Explode the URI Segments. The individual segments will
-	 * be stored in the Router::$segments array.
-	 *
-	 * @static
-	 * @access	private
-	 * @return	void
-	 */
-	private static function _set_segments()
-	{
-	  static::$segments = array();
-	  
-	  if(empty(static::$uri))
-	  {
-	    return array();
-	  }
-	  
-		foreach(explode("/", preg_replace("|/*(.+?)/*$|", "\\1", static::$uri)) as $val)
-		{
-			if($val != '')
-			{
-				static::$segments[] = $val;
-			}
-		}
-		
-		return static::$segments;
-	}
+    // Do some final cleaning of the URI and return it
+    return str_replace(array('//', '../'), '/', trim($uri, '/'));
+  }
+  
+  /**
+   * Explode the URI Segments. The individual segments will
+   * be stored in the Router::$segments array.
+   *
+   * @static
+   * @access  private
+   * @return  void
+   */
+  private static function _set_segments()
+  {
+    static::$segments = array();
+    
+    if(empty(static::$uri))
+    {
+      return array();
+    }
+    
+    foreach(explode("/", preg_replace("|/*(.+?)/*$|", "\\1", static::$uri)) as $val)
+    {
+      if($val != '')
+      {
+        static::$segments[] = $val;
+      }
+    }
+    
+    return static::$segments;
+  }
 }
 
 /* End of file router.php */

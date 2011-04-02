@@ -139,14 +139,14 @@ class Load {
     }
     
     if(ob_get_level() > static::$_ob_level + 1)
-		{
-			ob_end_flush();
-		}
-		else
-		{
-			echo ob_get_contents();
-			@ob_end_clean();
-		}
+    {
+      ob_end_flush();
+    }
+    else
+    {
+      echo ob_get_contents();
+      @ob_end_clean();
+    }
   }
   
   /**

@@ -30,12 +30,12 @@ use Themer\Error;
 class Pages {
   
   protected static $_pages = array(
-	  'Day'       => array('Day', 'Index'),
-	  'Index'     => array('Index'),
- 	  'Permalink' => array('Permalink'),
-	  'Search'    => array('Search', 'Index'),
-	  'Tag'       => array('Tag', 'Index')
-	);
+    'Day'       => array('Day', 'Index'),
+    'Index'     => array('Index'),
+     'Permalink' => array('Permalink'),
+    'Search'    => array('Search', 'Index'),
+    'Tag'       => array('Tag', 'Index')
+  );
   
   /**
    * Renders Tumblr {block:ItemPage} blocks
