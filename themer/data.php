@@ -135,7 +135,7 @@ class Data {
       return $data;
     }
     
-    $new = FALSE;
+    $new = array();
     
     foreach($data as $d)
     {
