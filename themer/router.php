@@ -133,15 +133,7 @@ class Router {
       self::_not_found();
     }
     
-    $summary = ( ! empty($post_data['Body'])) ? $post_data['Body'] : $post_data['Title'];
-    $summary = strip_tags($summary);
-    $summary = str_replace(array("\n", "\t"), " ", $summary);
-    
-    $page_data = array(
-      'PostSummary' => $summary,
-    );
-    
-    self::_set_data('Permalink', $post_data, $page_data);
+    self::_set_data('Permalink', $post_data, array());
   }
   
   /**
