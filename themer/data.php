@@ -180,7 +180,7 @@ class Data {
     $file_name = $name.YML;
     $data = (is_array($data)) ? self::to_yaml($data) : $data;
     
-    $dir = Themer::$PWD."themer/";
+    $dir = \Themer::$PWD."themer/";
     
     if( ! file_exists($dir))
     {
