@@ -37,7 +37,7 @@ class Templatize {
   protected static $_single_post_template = array(
     'PostID'      => 'id',
     'PostType'    => 'type',
-    'Permalink'   => 'url-with-slug',
+    'Permalink'   => array('id', '/post/%x%'),
     'Bookmarklet' => array('bookmarklet', 0),
     'Mobile'      => array('mobile', 0),
     'Tags'        => array('tags', array()),
