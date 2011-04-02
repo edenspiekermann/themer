@@ -145,6 +145,63 @@ class Router {
   }
   
   /**
+   * Search page routing
+   * 
+   * @access  private
+   * @param   array   the uri segments
+   * @return  string  the parsed template
+   */
+  private static function _route_search($query = '')
+  {
+    if(empty($query))
+    {
+      self::_not_found();
+    }
+    
+    $query = (is_array($query)) ? $query[0] : $query;
+    $query = urldecode(str_replace(array('%20', '+'), ' ', $query));
+    $safe  = urlencode(str_replace(array(' ', '%20'), '+', $query));
+    
+    
+    $post_data = Data::find('data.posts', array('Tags' => $query), TRUE);
+    
+    $page_data = array(
+      'SearchQuery'         => $query,
+      'URLSafeSearchQuery'  => $safe,
+      'SearchResultCount'   => count($post_data)
+    );
+    
+    self::_set_data("Search", $post_data, $page_data);
+  }
+  
+  /**
+   * Tag page routing
+   * 
+   * @static
+   * @access  private
+   * @param   array the uri segments
+   * @return  void
+   */
+ private static function _route_tagged($segments)
+  {
+    if( ! isset($segments[0]))
+    {
+      self::_not_found();
+    }
+    
+    $tag = urldecode(str_replace('+', ' ', $segments[0]));
+    
+    $post_data = Data::find('data.posts', array('Tags' => $tag), TRUE);
+    
+    if(empty($post_data))
+    {
+      self::_not_found();
+    }
+    
+    self::_set_data('Tag', $post_data, $tag);
+  }
+  
+  /**
    * Set's 404 not found page data, which is basically a single text
    * post with some pre-populated data, then loads the theme
    * 
