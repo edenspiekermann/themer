@@ -71,6 +71,10 @@ class Posts {
 	      {
 	        $tmp = Variable::render($tmp, $k, $v);
 	      }
+	      else
+	      {
+	        $tmp = self::_render_array($tmp, $k, $v);
+	      }
 	    }
 	    
 	    $rendered .= Block::cleanup($tmp);
@@ -103,9 +107,9 @@ class Posts {
 	      $chrono = $url.'/chrono';
 	      
 	      $tmp = Variable::render($cache, 'Tag',          $tag, FALSE);
-	      $tmp = Variable::render($tmp, 'URLSafeTag',   $safe, FALSE);
-	      $tmp = Variable::render($tmp, 'TagURL',       $url, FALSE);
-	      $tmp = Variable::render($tmp, 'TagURLChrono', $chrono, FALSE);
+	      $tmp = Variable::render($tmp,   'URLSafeTag',   $safe, FALSE);
+	      $tmp = Variable::render($tmp,   'TagURL',       $url, FALSE);
+	      $tmp = Variable::render($tmp,   'TagURLChrono', $chrono, FALSE);
 	      
 	      $rendered .= $tmp;
 	    }
@@ -113,6 +117,38 @@ class Posts {
 	    $block = str_replace($tb, $rendered, $block);
 	  }
 	  
+	  return $block;
+	}
+	
+	private static function _render_array($block, $tag, $data)
+	{
+	  foreach(Block::find($block, $tag) as $b)
+	  {
+	    $rendered = '';
+	    $tmp = Block::render($b, $tag);
+	    
+	    foreach($data as $k => $v)
+	    {
+	      $cache = $tmp;
+	      
+	      if(is_array($v))
+	      {
+	        foreach($v as $kk => $vv)
+	        {
+	          $cache = Variable::render($cache, $kk, $vv);
+	        }
+	        
+	        $rendered .= $cache;
+	      }
+	      else
+	      {
+	        $rendered .= Variable::render($cache, $k, $v);
+	      }
+	    }
+	    
+	    $block = str_replace($b, $rendered, $block);
+	  }
+    
 	  return $block;
 	}
 }
