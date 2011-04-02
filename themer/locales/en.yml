@@ -145,8 +145,8 @@ Zoom: 'Zoom'
 #------------------------
 # Search Result Variables
 #------------------------
-Found SearchResultCount results for SearchQuery: ''
-Found SearchResultCount results for SearchQuery 2: ''
+Found SearchResultCount results for SearchQuery: 'Found {SearchResultCount} results for {SearchQuery}'
+Found SearchResultCount results for SearchQuery 2: 'Found {SearchResultCount} results for <span class="search_query">{SearchQuery}</span'
 No posts containing SearchQuery: 'No posts containing {SearchQuery}'
 No posts containing SearchQuery 2: 'No posts containing <span class="search_query">{SearchQuery}</span>'
 No results for SearchQuery: 'No results for: {SearchQuery}'
@@ -166,6 +166,22 @@ Your search for SearchQuery returned SearchResultCount results 2: 'Your search f
 #-------------------
 Viewing everything posted on Month DayOfMonth Year: "Viewing everything posted on {Month} {DayOfMonth}, {Year}"
 
+#-------------------
+# Tag Page Variables
+#-------------------
+Showing TagResultCount posts tagged Tag: 'Showing posts tagged {Tag}'
+Showing TagResultCount posts tagged Tag 2: 'Showing 1 post tagged <span class="tag">{Tag}</span>'
+Showing TagResultCount posts tagged Tag 3: 'Showing 1 post tagged <a href="{TagURL}" class="tag">{Tag}</a>'
+Showing posts tagged Tag: 'Showing posts tagged {Tag}'
+Showing posts tagged Tag 2: 'Showing posts tagged <span class="tag">{Tag}</span>'
+Showing posts tagged Tag 3: 'Showing posts tagged <a href="{TagURL}" class="tag">{Tag}</a>'
+TagResultCount posts tagged Tag: 'Posts tagged {Tag}'
+TagResultCount posts tagged Tag 2: 'Posts tagged <span class="tag">{Tag}</span>'
+TagResultCount posts tagged Tag 3: 'Posts tagged <a href="" class="tag">{Tag}</a>'
+Posts tagged Tag: 'Posts tagged {Tag}'
+Posts tagged Tag 2: 'Posts tagged <span class="tag">{Tag}</span>'
+Posts tagged Tag 3: 'Posts tagged <a href="{TagURL}" class="tag">{Tag}</a>'
+
 #-------------------------------
 # Post Dependent Variables
 #-------------------------------
@@ -175,10 +191,10 @@ Viewing everything posted on Month DayOfMonth Year: "Viewing everything posted o
 #----------------------
 By PostAuthorName: 'By {PostAuthorName}'
 By PostAuthorName 2: 'By <a href="{PostAuthorURL}">{PostAuthorName}</a>'
-It has NoteCount notes: 'It has {NoteCountWithLabel}'
-It has NoteCount notes and 0 comments: 'It has {NoteCountWithLabel} and <a href="{Permalink}#disqus_thread" class="comments_link">0 comments</a>'
-PostTypeNoun with NoteCount notes: '{PostType} post with {NoteCountWithLabel}'
-PostTypeNoun with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> with {NoteCountWithLabel}'
+It has NoteCount notes: 'It has {NoteCount} notes'
+It has NoteCount notes and 0 comments: 'It has {NoteCount} notes and <a href="{Permalink}#disqus_thread" class="comments_link">0 comments</a>'
+PostTypeNoun with NoteCount notes: '{PostType} post with {NoteCount} notes'
+PostTypeNoun with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> with {NoteCount} notes'
 
 #-----------------
 # Reblog Variables
@@ -189,20 +205,20 @@ Originally from ReblogRootTitle: 'Originally from {ReblogParentTitle}'
 Originally from ReblogRootTitle 2: 'Originally from <a href="{ReblogParentURL}">{ReblogParentTitle}</a>'
 PostTypeNoun reblogged from ReblogParentName: '{PostType} post reblogged from {ReblogParentParent}'
 PostTypeNoun reblogged from ReblogParentName 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>'
-PostTypeNoun reblogged from ReblogParentName with NoteCount notes: '{PostType} post reblogged from {ReblogParentName} with {NoteCountWithLabel}'
-PostTypeNoun reblogged from ReblogParentName with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a> with {NoteCountWithLabel}'
+PostTypeNoun reblogged from ReblogParentName with NoteCount notes: '{PostType} post reblogged from {ReblogParentName} with {NoteCount} notes'
+PostTypeNoun reblogged from ReblogParentName with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a> with {NoteCount} notes'
 PostTypeNoun reblogged from ReblogParentTitle: '{PostType} post reblogged from {ReblogParentTitle}'
 PostTypeNoun reblogged from ReblogParentTitle 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a>'
-PostTypeNoun reblogged from ReblogParentTitle with NoteCount notes: '{PostType} post reblogged from {ReblogParentTitle} with {NoteCountWithLabel}'
-PostTypeNoun reblogged from ReblogParentTitle with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a> with {NoteCountWithLabel}'
+PostTypeNoun reblogged from ReblogParentTitle with NoteCount notes: '{PostType} post reblogged from {ReblogParentTitle} with {NoteCount} notes'
+PostTypeNoun reblogged from ReblogParentTitle with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a> with {NoteCount} notes'
 PostTypeNoun reblogged from ReblogRootName: '{PostType} post reblogged from {ReblogParentName}'
 PostTypeNoun reblogged from ReblogRootName 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>'
-PostTypeNoun reblogged from ReblogRootName with NoteCount notes: '{PostType} post reblogged from {ReblogParentName} with {NoteCountWithLabel}'
-PostTypeNoun reblogged from ReblogRootName with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a> with {NoteCountWithLabel}'
+PostTypeNoun reblogged from ReblogRootName with NoteCount notes: '{PostType} post reblogged from {ReblogParentName} with {NoteCount} notes'
+PostTypeNoun reblogged from ReblogRootName with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a> with {NoteCount} notes'
 PostTypeNoun reblogged from ReblogRootTitle: '{PostType} post reblogged from {ReblogParentTitle}'
 PostTypeNoun reblogged from ReblogRootTitle 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a>'
-PostTypeNoun reblogged from ReblogRootTitle with NoteCount notes: '{PostType} post reblogged from {ReblogParentTitle} with {NoteCountWithLabel}'
-PostTypeNoun reblogged from ReblogRootTitle with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a> with {NoteCountWithLabel}'
+PostTypeNoun reblogged from ReblogRootTitle with NoteCount notes: '{PostType} post reblogged from {ReblogParentTitle} with {NoteCount} notes'
+PostTypeNoun reblogged from ReblogRootTitle with NoteCount notes 2: '<a href="{Permalink}">{PostType} post</a> reblogged from <a href="{ReblogParentURL}">{ReblogParentTitle}</a> with {NoteCount} notes'
 Reblogged TimeAgo from ReblogParentName: 'Reblogged {TimeAgo} from {ReblogParentName}'
 Reblogged TimeAgo from ReblogParentName 2: 'Reblogged {TimeAgo} from <a href="{ReblogParentURL}">{ReblogParentName}</a>'
 Reblogged TimeAgo from ReblogParentTitle: 'Reblogged {TimeAgo} from {ReblogParentTitle}'
@@ -230,8 +246,8 @@ Posted TimeAgo: 'Posted {TimeAgo}'
 Posted TimeAgo by PostAuthorName: 'Posted {TimeAgo} by {PostAuthorName}'
 Posted TimeAgo by PostAuthorName 2: 'Posted {TimeAgo} by <a href="{PostAuthorURL}">{PostAuthorName}</a>'
 Posted TimeAgo from source: 'Posted {TimeAgo}'
-Posted TimeAgo with NoteCount notes: 'Posted {TimeAgo} with {NoteCountWithLabel}'
-Posted TimeAgo with NoteCount notes and PlayCount plays: 'Posted {TimeAgo} with {NoteCountWithLabel} and {PlayCount}'
+Posted TimeAgo with NoteCount notes: 'Posted {TimeAgo} with {NoteCount} notes'
+Posted TimeAgo with NoteCount notes and PlayCount plays: 'Posted {TimeAgo} with {NoteCount} notes and {PlayCount}'
 Posted at FormattedTime: 'Posted at {12Hour}:{Minutes} {CapitalAmPm}'
 Posted at FormattedTime 2: 'Posted at <span class="date">{12Hour}:{Minutes} {CapitalAmPm}</span>'
 Posted at FormattedTime 3: 'Posted at <a href="{Permalink}" class="date">{12Hour}:{Minutes} {CapitalAmPm}</a>'
@@ -253,7 +269,7 @@ Posted on Month DayOfMonth Year: 'Posted on {Month} {DayOfMonth}, {Year}'
 Posted on Month DayOfMonth Year with NoteCount notes: 'Posted on {Month} {DayOfMonth}, {Year} with {NoteCount}'
 Posted on Month DayOfMonth Year with NoteCount notes 2: 'Posted on <a href="/day/{Year}/{MonthNumberWithZero}/{DayOfMonth}" class="date">{Month} {DayOfMonth}, {Year}</a> with {NoteCount}'
 This was posted TimeAgo: 'This was posted {TimeAgo}'
-TimeAgo with NoteCount notes: '{TimeAgo} with {NoteCountWithLabel}'
+TimeAgo with NoteCount notes: '{TimeAgo} with {NoteCount} notes'
 
 
 
@@ -266,4 +282,4 @@ Asker asked: '{Asker} asked'
 #---------------------
 # Audio Post Variables
 #---------------------
-TimeAgo with NoteCount notes and PlayCount plays: '{TimeAgo} with {NoteCount} and {PlayCount}'
+TimeAgo with NoteCount notes and PlayCount plays: '{TimeAgo} with {NoteCount} notes and {PlayCount}'
