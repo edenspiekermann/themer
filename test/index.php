@@ -1,7 +1,4 @@
 <?php
 
-require '/Users/bschaeffer/Documents/projects/php/themer/themer.php';
-
-// Themer::$theme_file = 'fieldnotes.html';
-
+require realpath('../themer.php');
 Themer::run(__DIR__);
