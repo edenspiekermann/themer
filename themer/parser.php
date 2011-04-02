@@ -20,6 +20,7 @@ namespace Themer;
 use Themer\Parser\Lang;
 use Themer\Parser\Meta;
 use Themer\Parser\Posts;
+use Themer\Parser\Pages;
 use Themer\Parser\Block;
 use Themer\Parser\Variable;
 
@@ -33,14 +34,6 @@ use Themer\Parser\Variable;
  * @author      Braden Schaeffer 
  */
 class Parser {
-  
-	protected static $pages = array(
-	  'Day'       => array('Day', 'Index'),
-	  'Index'     => array('Index'),
- 	  'Permalink' => array('Permalink'),
-	  'Search'    => array('Search', 'Index'),
-	  'Tag'       => array('Tag', 'Index')
-	);
 	
 	private static $current_page = 'Index';
 	private static $post_data    = array();
@@ -57,9 +50,8 @@ class Parser {
 	{
 	  if(empty($theme)) return '';
 	  
-	  $theme = self::_render_page($theme);
-
 	  $theme = Lang::render($theme);
+	  $theme = Pages::render($theme, static::$current_page, static::$page_data);
 	  $theme = Meta::render($theme);
 	  $theme = Posts::render($theme, static::$post_data);
 	  
@@ -103,20 +95,6 @@ class Parser {
 	public static function set_page_data($data)
 	{
 	  static::$page_data = $data;
-	}
-	
-	private static function _render_page($theme)
-	{
-	  foreach(static::$pages as $k => $v)
-		{
-		  if( ! in_array($k, static::$pages[static::$current_page]))
-		  {
-		    $block = $k.'Page';
-		    $theme = Block::remove($theme, $block);
-		  }
-		}
-		
-	  return $theme;
 	}
 }
 

@@ -11,6 +11,7 @@ Right now, Themer supports these Tumblr template features:
 * Posts
 * Tags
 * Meta Data (custom variables)
+* Page specific rendering (Day, Tag, Search, Index and Permalink)
 * Localizations (English only for now)
 
 ...and much more will come as it happens.
