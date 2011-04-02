@@ -224,7 +224,14 @@ class Templatize {
       
       if(isset($data[$index]) && ! empty($data[$index]))
       {
-        $new[$k] = $data[$index];
+        if( ! empty($default) && ! is_array($default) && preg_match("/%x%/", $default))
+        {
+          $new[$k] = str_replace("%x%", $data[$index], $default);
+        }
+        else
+        {
+          $new[$k] = $data[$index];
+        }
       }
       else
       {
