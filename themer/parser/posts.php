@@ -48,8 +48,13 @@ class Posts {
 	
 	public static function _render_posts($block, $post_data)
 	{ 
-	  $rendered = '';
+	  if(empty($post_data))
+	  {
+	    return '';
+	  }
 	  
+	  $rendered = '';
+  
 	  foreach($post_data as $index => $post)
 	  { 
 	    $index = $index + 1;
