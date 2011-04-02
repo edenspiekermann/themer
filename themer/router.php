@@ -126,7 +126,7 @@ class Router {
       self::_not_found();
     }
     
-    $post_data = Data::find(array('PostID' => $segments[0]));
+    $post_data = Data::find('data.posts', array('PostID' => $segments[0]));
     
     if(empty($post_data))
     {
