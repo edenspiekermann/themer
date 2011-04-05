@@ -47,7 +47,7 @@ class Themer {
     // so we don't need any extra mumbo jumbo... I think
     if(isset($_GET['iframe']))
     {
-      Parser::set_post_data(Data::get('data.posts'));
+      Parser::$post_data = Data::get('posts');
     }
     else
     {

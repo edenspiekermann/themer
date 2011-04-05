@@ -4,6 +4,17 @@ $(function(){
       COLOR_PICKER_INPUT  = $('#picker-input'),
       COLOR_PICKER_OK     = $('#picker-ok'),
       COLOR_PICKER_CANCEL = $('#picker-cancel');
+      
+  /*-------------------------------------------------------
+  * Initialize the iFrame
+  -------------------------------------------------------*/
+  
+  $('iframe').attr('src', '/?theme');
+  
+  $('#menus input').change(function(){
+    var url = "/?theme&" + $("#menus").serialize();
+    $('iframe').attr('src', url);
+  });
   
   /*-------------------------------------------------------
   * Option Box Display
@@ -87,6 +98,7 @@ $(function(){
   
   COLOR_PICKER_OK.click(function(e){
     e.preventDefault();
+    $('input').first().change();
     resetPicker();
   });
   
