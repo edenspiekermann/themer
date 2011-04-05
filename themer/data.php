@@ -60,8 +60,13 @@ class Data {
    * @param   string  the item to fetch
    * @return  string  the value of the item or 'Item not found for: $item'
    */
-  public static function get($item)
+  public static function get($item = '')
   {
+    if(empty($item))
+    {
+      return static::$config;
+    }
+    
     $key = $item;
     $subitem = '';
     $subsubitem = '';
