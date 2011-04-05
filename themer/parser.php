@@ -48,7 +48,7 @@ class Parser {
    */
   public static function parse($theme = '')
   {
-    if(empty($theme) && empty(static::$_theme)
+    if(empty($theme) && empty(static::$_theme))
     {
       return '';
     }
