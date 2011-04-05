@@ -240,14 +240,7 @@
       <td>Contributors</td>
       <td>{lang:Contributors}</td>
     </tr>
-    <tr class="locale">
-      <td>CurrentPage of TotalPages</td>
-      <td>{lang:CurrentPage of TotalPages}</td>
-    </tr>
-    <tr class="locale">
-      <td>CurrentPage of TotalPages 2</td>
-      <td>{lang:CurrentPage of TotalPages 2}</td>
-    </tr>
+    
     <tr class="locale">
       <td>Download</td>
       <td>{lang:Download}</td>
@@ -461,14 +454,7 @@
       <td>Originally from ReblogRootTitle 2</td>
       <td>{lang:Originally from ReblogRootTitle 2}</td>
     </tr>
-    <tr class="locale">
-      <td>Page CurrentPage of TotalPages</td>
-      <td>{lang:Page CurrentPage of TotalPages}</td>
-    </tr>
-    <tr class="locale">
-      <td>Page CurrentPage of TotalPages 2</td>
-      <td>{lang:Page CurrentPage of TotalPages 2}</td>
-    </tr>
+    
     <tr class="locale">
       <td>Pages</td>
       <td>{lang:Pages}</td>
@@ -1012,6 +998,48 @@
   
   <div class="clear"></div>
   {/block:IndexPage}
+  
+  {block:Pagination}
+  <h3>Pagination</h3>
+  <table class="pagination">
+    <tr>
+      <td>CurrentPage</td>
+      <td>{CurrentPage}</td>
+    </tr>
+    <tr>
+      <td>TotalPages</td>
+      <td>{TotalPages}</td>
+    </tr>
+    {block:PreviousPage}
+    <tr>
+      <td>PreviousPage</td>
+      <td><a href="{PreviousPage}">Previous Page</a></td>
+    </tr>
+    {/block:PreviousPage}
+    {block:NextPage}
+    <tr>
+      <td>NextPage</td>
+      <td><a href="{NextPage}">Next Page</a></td>
+    </tr>
+    {/block:NextPage}
+    <tr class="locale">
+      <td>CurrentPage of TotalPages</td>
+      <td>{lang:CurrentPage of TotalPages}</td>
+    </tr>
+    <tr class="locale">
+      <td>CurrentPage of TotalPages 2</td>
+      <td>{lang:CurrentPage of TotalPages 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Page CurrentPage of TotalPages</td>
+      <td>{lang:Page CurrentPage of TotalPages}</td>
+    </tr>
+    <tr class="locale">
+      <td>Page CurrentPage of TotalPages 2</td>
+      <td>{lang:Page CurrentPage of TotalPages 2}</td>
+    </tr>
+  </table>
+  {/block:Pagination}
   
   {block:DayPage}
   <h3>Day Page</h3>
