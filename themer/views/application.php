@@ -28,8 +28,10 @@
     <a href="#" name="advanced" class="option button">Advanced</a>
 
     <a href="#" name="export" class="action button">Export</a>
-
-    <?php \Themer\Load::view('menus', $data); ?>
+    
+    <form id="menus" action="/" method="get">
+      <?php \Themer\Load::view('menus', $data); ?>
+    </form>
   </div>
   
   <div id="theme-container">
