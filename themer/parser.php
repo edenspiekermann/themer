@@ -81,8 +81,8 @@ class Parser {
    */
   public static function not_found()
   {
-    self::$page = 'Permalink';
-    self::$page_data = array();
+    Pages::$page = 'Permalink';
+    Pages::$page_data = array();
     
     self::$post_data = array(
       array(
