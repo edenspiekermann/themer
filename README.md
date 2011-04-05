@@ -12,6 +12,8 @@ Right now, Themer supports these Tumblr template features:
 * Tags
 * Meta Data (custom variables)
 * Page specific rendering (Day, Tag, Search, Index and Permalink)
+* Permalink Pagination (rudimentary)
+* Index page pagination (including tag, search, and day pages)
 * Localizations (English only for now)
 
 ...and much more will come as it happens.
@@ -57,6 +59,7 @@ Point your server to your project directory and go...
 * Notes: because Tumblr doesn't have a great API for reading notes, we'll have to set up some defaults and distribute them with the library for now
 * Reblog Attribution: see notes
 * Sources: see notes
+* Real permalink pagination
 * Improve localizations
 * '-X, --no-teen-posts' (this will make sense later)
 
