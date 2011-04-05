@@ -91,7 +91,7 @@ class Router {
       'DayOfMonth'          => $segments[2],
     );
     
-    $post_data = Data::find('data.posts', $params);
+    $post_data = Data::find('posts', $params);
     
     if(empty($post_data))
     {
@@ -126,7 +126,7 @@ class Router {
       self::_not_found();
     }
     
-    $post_data = Data::find('data.posts', array('PostID' => $segments[0]));
+    $post_data = Data::find('posts', array('PostID' => $segments[0]));
     
     if(empty($post_data))
     {
@@ -155,7 +155,7 @@ class Router {
     $safe  = urlencode(str_replace(array(' ', '%20'), '+', $query));
     
     
-    $post_data = Data::find('data.posts', array('Tags' => $query), TRUE);
+    $post_data = Data::find('posts', array('Tags' => $query), TRUE);
     
     $page_data = array(
       'SearchQuery'         => $query,
@@ -183,7 +183,7 @@ class Router {
     
     $tag = urldecode(str_replace('+', ' ', $segments[0]));
     
-    $post_data = Data::find('data.posts', array('Tags' => $tag), TRUE);
+    $post_data = Data::find('posts', array('Tags' => $tag), TRUE);
     
     if(empty($post_data))
     {

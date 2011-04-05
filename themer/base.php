@@ -127,6 +127,7 @@ class Themer {
    */
   private static function _setup_data()
   {
+    Data::load('defaults');
     Data::load('data');
   }
   

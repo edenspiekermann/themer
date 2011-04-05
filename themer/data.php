@@ -19,8 +19,8 @@ class Data {
   public static function __autoinit()
   {
     static::$paths = array(
-      \Themer::$PWD.'themer/',
       THEMER_BASEPATH.'themer/data/',
+      \Themer::$PWD.'themer/',
     );
     
     self::load('tumblr');
@@ -33,10 +33,9 @@ class Data {
    * @static
    * @access  public
    * @param   string  the name of the yaml file to load
-   * @param   bool    whether or not to use the file name as an array index
    * @return  array   the config data, so it's there if you want
    */
-  public static function load($file, $index = NULL)
+  public static function load($file)
   {
     $config = array();
     
@@ -46,18 +45,11 @@ class Data {
       
       if(($tmp = self::load_file($path)) !== FALSE)
       {
-        if(empty($index))
-        {
-          static::$config[$file] = $tmp;
-        }
-        else
-        {
-            static::$config[$index] = $tmp;
-        }
-        
-        return $tmp;
+        static::$config = array_merge(static::$config, $tmp);
       }
     }
+    
+    return $tmp;
   }
   
   /**
@@ -69,7 +61,7 @@ class Data {
    * @return  string  the value of the item or 'Item not found for: $item'
    */
   public static function get($item)
-  { 
+  {
     $key = $item;
     $subitem = '';
     $subsubitem = '';
