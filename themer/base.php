@@ -41,9 +41,7 @@ class Themer {
    */
   public static function run($path = '')
   {     
-    self::_set_themer_paths($path);
-    
-    Data::load('data');
+    self::_init($path);
   
     // If $_GET['iframe'] is set, we are loading a theme within an iframe
     // so we don't need any extra mumbo jumbo... I think
@@ -86,6 +84,21 @@ class Themer {
   }
   
   /**
+   * Initializes Themer.
+   * 
+   * This function should not be called 'publicly'.
+   * 
+   * @access  private
+   * @param   string  the project path
+   * @return  void
+   */
+  public static function _init($path)
+  {
+    self::_setup_paths($path);
+    self::_setup_data();
+  }
+  
+  /**
    * Parses the project directory and the theme file path.
    *
    * @static
@@ -93,7 +106,7 @@ class Themer {
    * @param   string  the potential file path
    * @return  void 
    */
-  private static function _set_themer_paths($path = '')
+  private static function _setup_paths($path = '')
   { 
     static::$PWD = self::_get_pwd($path);
     
@@ -103,6 +116,18 @@ class Themer {
     {
       Error::display("The theme file `".static::$theme_file."` could not be found in ".static::$PWD);
     }
+  }
+  
+  /**
+   * Loads Tumblr blog data, merging it default Themer data (bundled
+   * notes and reblog data files) along the way.
+   * 
+   * @access  private
+   * @return  void
+   */
+  private static function _setup_data()
+  {
+    Data::load('data');
   }
   
   /**
