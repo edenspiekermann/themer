@@ -67,14 +67,8 @@ class Meta {
     
     if(isset($_GET['meta']))
     {
-      foreach($this->metas as $key => $ignore)
-      {
-        if(isset($_GET['meta'][$key]))
-        {
-          $this->metas[$key] = $_GET['meta'][$key];
-        }
-      }
-    }
+      $this->_parse_get_metas($_GET['meta']);
+    } 
   }
   
   /**
@@ -141,6 +135,54 @@ class Meta {
           $key = str_replace(" ", "_", $attr[1]);
           $this->metas[$attr[0]][$key] = $el->content;
         }
+      }
+    }
+  }
+  
+  /**
+   * Merges meta data from GET params into the already parsed meta data
+   * 
+   * @access  private
+   * @param   array   the GET data
+   * @return  void
+   */
+  private function _parse_get_metas($get_metas)
+  {
+    // Use $this->metas instead of the passed $get_metas so we are
+    // sure to include the keys and values extracted from the theme
+    
+    foreach($this->metas as $meta => $data)
+    {
+      foreach($data as $k => $v)
+      {
+        if(isset($get_metas[$meta][$k]) && ! empty($get_metas[$meta][$k]))
+        {
+          $value = $get_metas[$meta][$k];
+        }
+        else
+        {
+          $value = NULL;
+        }
+        
+        switch($meta)
+        {
+          // If's need a special case because they are presented as
+          // checkboxes and unchecked inputs don't get sent as $_GET
+          // params from a form seriailized by jQuery. This means that,
+          // if a checkbox is unchecked, it would have been set as the
+          // default in the theme file, even if the default is "1"
+          // (or checked).
+          
+          case 'if':
+            $value = (empty($value)) ? 0 : 1;
+            break;
+          
+          default:
+            $value = (empty($value)) ? $v : $value;
+            break;
+        }
+        
+        $this->metas[$meta][$k] = $value;
       }
     }
   }
