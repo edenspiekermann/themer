@@ -21,6 +21,7 @@ use Themer\Parser\Lang;
 use Themer\Parser\Meta;
 use Themer\Parser\Posts;
 use Themer\Parser\Pages;
+use Themer\Parser\Paginate;
 use Themer\Parser\Block;
 use Themer\Parser\Variable;
 
@@ -60,6 +61,8 @@ class Parser {
     ## parsed while the parsing is good (ie. when data is present).
     
     $theme = Lang::render($theme);
+    
+    $theme = Paginate::render($theme);
     
     $theme = Pages::render($theme);
     $theme = Meta::render($theme);
