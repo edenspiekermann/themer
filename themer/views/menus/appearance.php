@@ -31,6 +31,7 @@
     <input
       <?php if($v == '1') : ?>checked="yes"<?php endif; ?>
       type="checkbox"
+      value="1"
       name="meta[if][<?php echo $k; ?>]"/>
     
     <label for="meta[if][<?php echo $k; ?>]"><?php echo str_replace("_", " ", $k); ?></label>
