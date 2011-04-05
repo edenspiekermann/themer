@@ -28,7 +28,8 @@ class Themer {
   public static $PWD  = '';
   public static $HOME = '';
   public static $theme_file = 'theme.html';
-  public static $theme_path = '';
+  
+  private static $_theme_path = '';
   
   /**
    * Run the Themer parsing library.
@@ -81,7 +82,7 @@ class Themer {
    */
   public static function load_theme()
   {
-    return file_get_contents(static::$theme_path);
+    return file_get_contents(static::$_theme_path);
   }
   
   /**
@@ -96,9 +97,9 @@ class Themer {
   { 
     static::$PWD = self::_get_pwd($path);
     
-    static::$theme_path = static::$PWD.static::$theme_file;
+    static::$_theme_path = static::$PWD.static::$theme_file;
     
-    if( ! @file_exists(static::$theme_path))
+    if( ! @file_exists(static::$_theme_path))
     {
       Error::display("The theme file `".static::$theme_file."` could not be found in ".static::$PWD);
     }
