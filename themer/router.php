@@ -84,6 +84,11 @@ class Router {
     {
       Parser::not_found();
     }
+    
+    if(isset($segments[3]) && is_int($segments[3]))
+    {
+      Parser\Paginate::$page_number = $segments[3];
+    }
   
     $params = array(
       'Year'                => $segments[0],
@@ -168,11 +173,10 @@ class Router {
     $query = urldecode(str_replace(array('%20', '+'), ' ', $query));
     $safe  = urlencode(str_replace(array(' ', '%20'), '+', $query));
     
-    if(isset($segments))
+    if(isset($segments[1]) && is_int($segments[1]))
     {
-      
+      Parser\Paginate::$page_number = $segments[1];
     }
-    
     
     $post_data = Data::find('posts', array('Tags' => $query), TRUE);
     
@@ -201,6 +205,11 @@ class Router {
     }
     
     $tag = urldecode(str_replace('+', ' ', $segments[0]));
+    
+    if(isset($segments[1]) && is_int($segments[1]))
+    {
+      Parser\Paginate::$page_number = $segments[1];
+    }
     
     $post_data = Data::find('posts', array('Tags' => $tag), TRUE);
     
