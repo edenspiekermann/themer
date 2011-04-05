@@ -72,6 +72,9 @@ class Posts {
       
       foreach($post as $k => $v)
       {
+        // Is it a private variable? If so, skip it.
+        if(strpos($k, '_') === 0) break;
+        
         if( ! is_array($v))
         {
           $tmp = Variable::render($tmp, $k, $v);
