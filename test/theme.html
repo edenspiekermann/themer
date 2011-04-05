@@ -31,16 +31,10 @@
       $('tr').each(function(){
         var text = $(this).find('td:eq(1)').text(),
             match = false;
-            
-        if($(this).hasClass('locale')) {
+        if($(this).hasClass('locale'))
           match = text.match(/\{.*\}/);
-        }
-        else {
+        else
           match = text.match(/^\{.*\}$/);
-        }
-        
-        console.log(match);
-        
         if(match) $(this).addClass('error');
       });
     });
