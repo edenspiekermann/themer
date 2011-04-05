@@ -2,6 +2,14 @@
 <html>
 <head>
   
+  <!-- Custom Tumblr Theme Data -->
+	<meta name="color:Test" content="#4eadcf">
+	<meta name="font:Test" content="Futura"/>
+	<meta name="image:Test" content="/themer_asset/images/test.jpg" />
+	<meta name="if:One" content="1"/>
+	<meta name="if:Two" content="0"/>
+	<meta name="text:Test" content=""/>
+  
   <style type="text/css" media="screen">
     body { font-family: Helvetica, sans-serif; }
     #page { width: 900px; margin: 40px auto; }
@@ -104,6 +112,42 @@
   </table>
 
   <div class="clear"></div>
+  
+  <h3>Meta Variables</h3>
+  <table class="meta">
+    <tr>
+      <td>color:Test</td>
+      <td>{color:Test}</td>
+    </tr>
+    <tr>
+      <td>font:Test</td>
+      <td>{font:Test}</td>
+    </tr>
+    {block:IfOne}
+    <tr>
+      <td>if:One</td>
+      <td>One should be checked</td>
+    </tr>
+    {/block:IfOne}
+    {block:ifNotOne}
+    <tr>
+      <td>if:One</td>
+      <td>One should not be checked.</td>
+    </tr>
+    {/block:IfNotOne}
+    {block:IfTwo}
+    <tr>
+      <td>if:Two</td>
+      <td>Two should be checked.</td>
+    </tr>
+    {/block:IfTwo}
+    {block:IfNotTwo}
+    <tr>
+      <td>if:Two</td>
+      <td>Two should not be checked</td>
+    </tr>
+    {/block:IfNotTwo}
+  </table>
   
   {block:IndexPage}
   <h3>Language Variables (interpolated only)</h3>
