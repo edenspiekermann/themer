@@ -143,16 +143,21 @@ class Router {
    * @param   array   the uri segments
    * @return  string  the parsed template
    */
-  private static function _route_search($query = '')
+  private static function _route_search($segments)
   {
-    if(empty($query))
+    if(empty($segments))
     {
-      self::_not_found();
+      Parser::not_found();
     }
     
-    $query = (is_array($query)) ? $query[0] : $query;
+    $query = $segments[0];
     $query = urldecode(str_replace(array('%20', '+'), ' ', $query));
     $safe  = urlencode(str_replace(array(' ', '%20'), '+', $query));
+    
+    if(isset($segments))
+    {
+      
+    }
     
     
     $post_data = Data::find('posts', array('Tags' => $query), TRUE);
