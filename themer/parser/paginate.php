@@ -72,7 +72,7 @@ class Paginate {
   {
     $theme = Block::remove($theme, self::BLOCK_PERMALINK);
     
-    if(count(Parser::$post_data) <= static::$per_page)
+    if(count(Parser::$data['posts']) <= static::$per_page)
     {
       $theme = Block::remove($theme, self::BLOCK_INDEX);
       return $theme;
@@ -135,7 +135,7 @@ class Paginate {
   
   private static function _parse_pages($current_page = 1, $per_page = 6)
   {
-    $all_posts = Data::get('posts');
+    $all_posts = Parser::$data['posts'];
     
     $total = count($all_posts);
     $total_pages = ceil($total / $per_page);
@@ -152,7 +152,7 @@ class Paginate {
     $start = ($current_page == 1) ? 0 : ($current_page - 1) * $per_page;
     
     // then we clip from the beginning of the post data...
-    $clipped = array_slice(Parser::$post_data, $start, count($all_posts));
+    $clipped = array_slice($all_posts, $start, count($all_posts));
     
     // then we clip the remaining post so we can have a 'page'...
     $final = array_slice($clipped, 0, $per_page);

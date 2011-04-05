@@ -36,6 +36,7 @@ use Themer\Parser\Variable;
  */
 class Parser {
   
+  public static $data = array();
   public static $post_data = array();
   
   private static $_theme = '';
@@ -84,7 +85,7 @@ class Parser {
     Pages::$page = 'Permalink';
     Pages::$page_data = array();
     
-    self::$post_data = array(
+    self::$data['posts'] = array(
       array(
         'PostType'  => 'text',
         'PostID'    => '404-not-found',

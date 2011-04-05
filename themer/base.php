@@ -45,11 +45,7 @@ class Themer {
   
     // If $_GET['theme'] is set, we are loading a theme within an iframe
     // so we don't need any extra mumbo jumbo... I think
-    if(isset($_GET['theme']))
-    {
-      Parser::$post_data = Data::get('posts');
-    }
-    else
+    if( ! isset($_GET['theme']))
     {
       Router::route();
     }
@@ -129,6 +125,7 @@ class Themer {
   {
     Data::load('defaults');
     Data::load('data');
+    Parser::$data = Data::get();
   }
   
   /**
