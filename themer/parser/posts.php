@@ -142,6 +142,9 @@ class Posts {
       
       foreach($data as $k => $v)
       {
+        // We have to cache the template here so we can reuse
+        // it inside the loop
+    
         $cache = $tmp;
         
         if(is_array($v))

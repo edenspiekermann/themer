@@ -43,9 +43,9 @@ class Themer {
   {     
     self::_init($path);
   
-    // If $_GET['iframe'] is set, we are loading a theme within an iframe
+    // If $_GET['theme'] is set, we are loading a theme within an iframe
     // so we don't need any extra mumbo jumbo... I think
-    if(isset($_GET['iframe']))
+    if(isset($_GET['theme']))
     {
       Parser::$post_data = Data::get('posts');
     }
