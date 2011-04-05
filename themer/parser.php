@@ -35,9 +35,9 @@ use Themer\Parser\Variable;
  */
 class Parser {
   
-  private static $current_page = 'Index';
-  private static $post_data    = array();
-  private static $page_data    = array();
+  public static $post_data = array();
+  
+  private static $_theme = '';
   
   /**
    * Parses the Tumblr theme
@@ -48,10 +48,20 @@ class Parser {
    */
   public static function parse($theme = '')
   {
-    if(empty($theme)) return '';
+    if(empty($theme) && empty(static::$_theme)
+    {
+      return '';
+    }
+    
+    $theme = (empty($theme)) ? static::$_theme : $theme;
+    
+    ## NOTE: Language tags must be parsed first due to that fact that they are
+    ## interpolated with other template tags and those variables depend on being
+    ## parsed while the parsing is good (ie. when data is present).
     
     $theme = Lang::render($theme);
-    $theme = Pages::render($theme, static::$current_page, static::$page_data);
+    
+    $theme = Pages::render($theme);
     $theme = Meta::render($theme);
     $theme = Posts::render($theme, static::$post_data);
     
@@ -59,42 +69,29 @@ class Parser {
   }
   
   /**
-   * Sets the page
-   *
+   * Set's 404 not found page data, which is basically a single text
+   * post with some pre-populated data, then loads the theme
+   * 
    * @static
-   * @access  public
-   * @param   string  the page
+   * @access  private
    * @return  void
    */
-  public static function set_page($page)
+  public static function not_found()
   {
-    static::$current_page = $page;
-  }
-  
-  /**
-   * Sets the post data, if there is any
-   *
-   * @static
-   * @access  public
-   * @param   array   the post data
-   * @return  void
-   */
-  public static function set_post_data($data)
-  {
-    static::$post_data = $data;
-  }
-  
-  /**
-   * Sets the page data, if there is any
-   *
-   * @static
-   * @access  public
-   * @param   array   the page data
-   * @return  void
-   */
-  public static function set_page_data($data)
-  {
-    static::$page_data = $data;
+    self::$page = 'Permalink';
+    self::$page_data = array();
+    
+    self::$post_data = array(
+      array(
+        'PostType'  => 'text',
+        'PostID'    => '404-not-found',
+        'Title'     => 'Not Found',
+        'Body'      => 'The URL you requested could not be found.'
+      )
+    );
+    
+    self::render();
+    exit(1);
   }
 }
 

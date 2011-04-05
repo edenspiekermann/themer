@@ -31,7 +31,7 @@ use Themer\Load;
  */
 class Router {
   
-  protected static $_valid_pages = array('day', 'post', 'search', 'tagged');
+  protected static $_valid_pages = array('day', 'page', 'post', 'search', 'tagged');
   
   public static $uri = '';
   public static $segments = array();
@@ -66,7 +66,7 @@ class Router {
       return;
     }
     
-    self::_not_found();
+    Parser::not_found();
   }
   
   /**
@@ -82,7 +82,7 @@ class Router {
     // If there are not at least three segments, it's not a valid day page
     if( ! isset($segments[2]))
     {
-      self::_not_found();
+      Parser::not_found();
     }
   
     $params = array(
@@ -95,7 +95,7 @@ class Router {
     
     if(empty($post_data))
     {
-      self::_not_found();
+      Parser::not_found();
     }
   
     $date = strtotime(implode($segments, '-'));
@@ -112,6 +112,20 @@ class Router {
   }
   
   /**
+   * Pagination routing
+   * 
+   * @access  private
+   * @param   array   the uri segments
+   * @return  void
+   */
+  private static function _route_page($segments)
+  {
+    $page = (empty($segments)) ? 1 : $segments[0];
+    Parser\Paginate::$page_number = $page;
+    self::_set_data('Index', Data::get('posts'), array());
+  }
+  
+  /**
    * Permalink page routing information
    * 
    * @static
@@ -123,14 +137,14 @@ class Router {
   {
     if( ! isset($segments[0]))
     {
-      self::_not_found();
+      Parser::not_found();
     }
     
     $post_data = Data::find('posts', array('PostID' => $segments[0]));
     
     if(empty($post_data))
     {
-      self::_not_found();
+      Parser::not_found();
     }
     
     self::_set_data('Permalink', $post_data, array());
@@ -183,7 +197,7 @@ class Router {
   {
     if( ! isset($segments[0]))
     {
-      self::_not_found();
+      Parser::not_found();
     }
     
     $tag = urldecode(str_replace('+', ' ', $segments[0]));
@@ -192,33 +206,10 @@ class Router {
     
     if(empty($post_data))
     {
-      self::_not_found();
+      Parser::not_found();
     }
     
     self::_set_data('Tag', $post_data, $tag);
-  }
-  
-  /**
-   * Set's 404 not found page data, which is basically a single text
-   * post with some pre-populated data, then loads the theme
-   * 
-   * @static
-   * @access  private
-   * @return  void
-   */
-  private static function _not_found()
-  {
-    \Themer\Parser::set_page('Permalink');
-    \Themer\Parser::set_post_data(array(
-      array(
-        'PostType'  => 'text',
-        'Title'     => 'Not Found',
-        'Body'      => 'The URL you requested could not be found.'
-      )
-    ));
-    
-    \Themer::parse_theme();
-    exit(1);
   }
   
   /**
@@ -231,11 +222,9 @@ class Router {
    */
   private static function _set_data($page = 'Index', $post_data = array(), $page_data = array())
   {
-    if(empty($page)) $page = 'Index';
-    
-    Parser::set_page(ucwords($page));
-    Parser::set_post_data($post_data);
-    Parser::set_page_data($page_data);
+    Parser::$post_data = $post_data;
+    Parser\Pages::$page = ucwords($page);
+    Parser\Pages::$page_data = $page_data;
   }
   
   // --------------------------------------------------------------------

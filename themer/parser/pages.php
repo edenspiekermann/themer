@@ -29,10 +29,13 @@ use Themer\Error;
  */
 class Pages {
   
+  public static $page       = 'Index';
+  public static $page_data  = array();
+  
   protected static $_pages = array(
     'Day'       => array('Day', 'Index'),
     'Index'     => array('Index'),
-     'Permalink' => array('Permalink'),
+    'Permalink' => array('Permalink'),
     'Search'    => array('Search', 'Index'),
     'Tag'       => array('Tag', 'Index')
   );
@@ -43,26 +46,24 @@ class Pages {
    * @static
    * @access  public
    * @param   string  the theme contents to render out
-   * @param   string  the page we are rendering
-   * @param   array   the page data to use
    * @return  string  the parsed theme
    */
-  public static function render($theme, $page = 'Index', $data = array())
+  public static function render($theme)
   {
-    if( ! array_key_exists($page, static::$_pages))
+    if( ! array_key_exists(static::$page, static::$_pages))
     {
-      Error::display("$page is not a valid Tumblr page block.");
+      Error::display(static::$page." is not a valid Tumblr page block.");
     }
 
-    $theme = self::cleanup($theme, $page);
+    $theme = self::cleanup($theme, static::$page);
     
-    foreach(static::$_pages[$page] as $render)
+    foreach(static::$_pages[static::$page] as $render)
     {
       $func = "self::".strtolower($render);
       
       if(is_callable($func))
       {
-        $theme = call_user_func_array($func, array($theme, $data));
+        $theme = call_user_func_array($func, array($theme, static::$page_data));
       } 
       
       $theme = Block::render($theme, $render.'Page');
@@ -177,7 +178,7 @@ class Pages {
   {
     foreach(static::$_pages as $p => $to_render)
     {
-      if( ! in_array($p, static::$_pages[$page]))
+      if( ! in_array($p, static::$_pages[static::$page]))
       {
         $block = Block::remove($block, $p.'Page');
       }
