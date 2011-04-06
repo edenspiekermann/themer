@@ -1004,13 +1004,13 @@
       <td>{TotalPages}</td>
     </tr>
     {block:PreviousPage}
-    <tr>
+    <tr class="block">
       <td>PreviousPage</td>
       <td><a href="{PreviousPage}">Previous Page</a></td>
     </tr>
     {/block:PreviousPage}
     {block:NextPage}
-    <tr>
+    <tr class="block">
       <td>NextPage</td>
       <td><a href="{NextPage}">Next Page</a></td>
     </tr>
@@ -1032,6 +1032,8 @@
       <td>{lang:Page CurrentPage of TotalPages 2}</td>
     </tr>
   </table>
+  
+  <div class="clear"></div>
   {/block:Pagination}
   
   {block:PermalinkPagination}
@@ -1050,7 +1052,10 @@
     </tr>
     {/block:NextPost}
   </table>
+  
+  <div class="clear"></div>
   {/block:PermalinkPagination}
+  
   {block:DayPage}
   <h3>Day Page</h3>
   <table class="day page">
