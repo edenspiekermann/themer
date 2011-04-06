@@ -94,7 +94,7 @@ class Paginate {
   {
     $theme = Block::remove($theme, self::BLOCK_INDEX);
     
-    if(count(Parser::$post_data) === 1)
+    if(count(Parser::$post_data) != 1)
     {
       $theme = Block::remove($theme, self::BLOCK_PERMALINK);
       return $theme;
@@ -105,7 +105,7 @@ class Paginate {
     $previous = ''; 
     
     $next_key = Parser::$post_data[0]['_post_array_key'] + 1;
-    $post = Data::find('posts', array('_post_array_key' => $next_params));
+    $post = Data::find('posts', array('_post_array_key' => $next_key));
     
     if( ! empty($post))
     {
