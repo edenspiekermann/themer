@@ -194,6 +194,11 @@ class Templatize {
       }
       
       $posts[$k] = array_merge($same, $unique);
+      
+      // Add a private post array key variable to enable easier permalink
+      // pagination
+      
+      $posts[$k]['_post_array_key'] = $k + 1;
     }
     
     return $posts;
