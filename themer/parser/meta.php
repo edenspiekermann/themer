@@ -20,7 +20,7 @@ namespace Themer\Parser;
 use Themer\Parser\Variable;
 use Themer\Parser\Block;
 
-require THEMER_BASEPATH.'themer/third_party/simple_html_dom.php';
+require_once rtrim(__DIR__, '/').'/third_party/simple_html_dom.php';
 
 /**
  * Themer Meta Class 
