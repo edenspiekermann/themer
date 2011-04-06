@@ -65,8 +65,10 @@ class Pages {
       {
         $theme = call_user_func_array($func, array($theme, static::$page_data));
       } 
-      
-      $theme = Block::render($theme, $render.'Page');
+      else
+      {
+        $theme = Block::render($theme, $render.'Page');
+      }
     }
     
     return $theme;
