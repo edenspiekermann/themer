@@ -20,6 +20,7 @@ namespace Themer\Parser;
 use Themer\Data;
 use Themer\Parser\Variable;
 
+// Loaded as a PEAR package
 require_once 'SymfonyComponents/YAML/sfYaml.php';
 
 /**
