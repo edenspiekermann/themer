@@ -100,13 +100,44 @@ class Paginate {
       return $theme;
     }
     
-    $url = '/post/'.static::$post_data[0]['PostID'];
-    $data['NextPost']      = $url;
-    $data['PreviousPost']  = $url;
+    // Let's find the next/previous post params and set the pagination data
+    $next = '';
+    $previous = ''; 
+    
+    $next_key = Parser::$post_data[0]['_post_array_key'] + 1;
+    $post = Data::find('posts', array('_post_array_key' => $next_params));
+    
+    if( ! empty($post))
+    {
+      $next = '/post/'.$post[0]['PostID'];
+    }
+    
+    $previous_key = Parser::$post_data[0]['_post_array_key'] - 1;
+    $post = Data::find('posts', array('_post_array_key' => $previous_key));
+    
+    if( ! empty($post))
+    {
+      $previous = '/post/'.$post[0]['PostID'];
+    }
+    
+    $data = array(
+      'NextPost'      => $next,
+      'PreviousPost'  => $previous
+    );
     
     return self::_render_pagination($theme, self::BLOCK_PERMALINK, $data);
   }
   
+  /**
+   * Renders the specific page data based on the block name and data
+   * passed
+   * 
+   * @access  public
+   * @param   string  the theme contents to parse
+   * @param   string  the name of the page block
+   * @param   array   the page data to parse with
+   * @return  string  the parsed theme
+   */
   private static function _render_pagination($theme, $block_name, $data)
   {
     foreach(Block::find($theme, $block_name) as $block)
