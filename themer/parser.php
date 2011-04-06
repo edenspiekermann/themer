@@ -36,6 +36,8 @@ use Themer\Parser\Variable;
  */
 class Parser {
   
+  public static $lang = 'en';
+  
   public static $data = array();
   public static $post_data = array();
   

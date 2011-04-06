@@ -17,7 +17,7 @@
 
 namespace Themer\Parser;
 
-use Themer\Data;
+use Themer\Parser;
 use Themer\Parser\Variable;
 
 // Loaded as a PEAR package
@@ -33,9 +33,7 @@ require_once 'SymfonyComponents/YAML/sfYaml.php';
  * @author      Braden Schaeffer 
  */
 class Lang {
-  
-  private static $_lang = 'en';
-  
+
   /**
    * Parses Tumblr's lang:Item tags
    * 
@@ -66,7 +64,7 @@ class Lang {
    */
   private static function _load_lang()
   {
-    $path = THEMER_BASEPATH.'themer/locales/'.static::$_lang.YML;
+    $path = rtrim(__DIR__, '/').'/locales/'.Parser::$lang.'.yml';
     $lang = \sfYaml::load($path);
     return $lang;
   }
