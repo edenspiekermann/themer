@@ -1034,6 +1034,23 @@
   </table>
   {/block:Pagination}
   
+  {block:PermalinkPagination}
+  <h3>Permalink Pagination</h3>
+  <table class="permalink-pagination">
+    {block:PreviousPost}
+    <tr class="block">
+      <td>PreviousPost</td>
+      <td><a href="{PreviousPost}">{PreviousPost}</a></td>
+    </tr>
+    {/block:PreviousPost}
+    {block:NextPost}
+    <tr class="block">
+      <td>NextPost</td>
+      <td><a href="{NextPost}">{NextPost}</a></td>
+    </tr>
+    {/block:NextPost}
+  </table>
+  {/block:PermalinkPagination}
   {block:DayPage}
   <h3>Day Page</h3>
   <table class="day page">
