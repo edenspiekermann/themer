@@ -96,7 +96,7 @@ class Router {
       'DayOfMonth'          => $segments[2],
     );
     
-    $post_data = Data::find('posts', $params);
+    $post_data = Data::find('Posts', $params);
     
     if(empty($post_data))
     {
@@ -127,7 +127,7 @@ class Router {
   {
     $page = (empty($segments)) ? 1 : $segments[0];
     Parser\Paginate::$page_number = $page;
-    self::_set_data('Index', Data::get('posts'), array());
+    self::_set_data('Index', Data::get('Posts'), array());
   }
   
   /**
@@ -145,7 +145,7 @@ class Router {
       Parser::not_found();
     }
     
-    $post_data = Data::find('posts', array('PostID' => $segments[0]));
+    $post_data = Data::find('Posts', array('PostID' => $segments[0]));
     
     if(empty($post_data))
     {
@@ -178,7 +178,7 @@ class Router {
       Parser\Paginate::$page_number = $segments[1];
     }
     
-    $post_data = Data::find('posts', array('Tags' => $query), TRUE);
+    $post_data = Data::find('Posts', array('Tags' => $query), TRUE);
     
     $page_data = array(
       'SearchQuery'         => $query,
@@ -211,7 +211,7 @@ class Router {
       Parser\Paginate::$page_number = $segments[1];
     }
     
-    $post_data = Data::find('posts', array('Tags' => $tag), TRUE);
+    $post_data = Data::find('Posts', array('Tags' => $tag), TRUE);
     
     if(empty($post_data))
     {

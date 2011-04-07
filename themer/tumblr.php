@@ -48,7 +48,7 @@ class Tumblr {
     }
     
     $data = Templatize::blog($blog['tumblelog']);
-    $data['posts'] = Templatize::posts($blog['posts']);
+    $data['Posts'] = Templatize::posts($blog['posts']);
     
     return $data;
   }

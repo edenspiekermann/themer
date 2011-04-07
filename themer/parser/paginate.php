@@ -72,7 +72,7 @@ class Paginate {
   {
     $theme = Block::remove($theme, self::BLOCK_PERMALINK);
     
-    if(count(Parser::$data['posts']) <= static::$per_page)
+    if(count(Parser::$data['Posts']) <= static::$per_page)
     {
       $theme = Block::remove($theme, self::BLOCK_INDEX);
       return $theme;
@@ -105,7 +105,7 @@ class Paginate {
     $previous = ''; 
     
     $next_key = Parser::$post_data[0]['_post_array_key'] + 1;
-    $post = Data::find('posts', array('_post_array_key' => $next_key));
+    $post = Data::find('Posts', array('_post_array_key' => $next_key));
     
     if( ! empty($post))
     {
@@ -113,7 +113,7 @@ class Paginate {
     }
     
     $previous_key = Parser::$post_data[0]['_post_array_key'] - 1;
-    $post = Data::find('posts', array('_post_array_key' => $previous_key));
+    $post = Data::find('Posts', array('_post_array_key' => $previous_key));
     
     if( ! empty($post))
     {
@@ -166,7 +166,7 @@ class Paginate {
   
   private static function _parse_pages($current_page = 1, $per_page = 6)
   {
-    $all_posts = Parser::$data['posts'];
+    $all_posts = Parser::$data['Posts'];
     
     $total = count($all_posts);
     $total_pages = ceil($total / $per_page);

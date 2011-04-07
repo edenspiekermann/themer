@@ -94,7 +94,7 @@ class Parser {
     Pages::$page = 'Permalink';
     Pages::$page_data = array();
     
-    self::$data['posts'] = array(
+    self::$data['Posts'] = array(
       array(
         'PostType'  => 'text',
         'PostID'    => '404-not-found',
