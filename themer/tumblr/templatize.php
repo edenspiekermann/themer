@@ -149,7 +149,7 @@ class Templatize {
    */
   public static function blog($data)
   {
-    return self::_templatize_with(static::$_blog_template, $data);
+    return self::templatize_with(static::$_blog_template, $data);
   }
   
   /**
@@ -186,11 +186,11 @@ class Templatize {
       
       $template = "_{$post['type']}_post_template";
       
-      $same = self::_templatize_with(static::$_single_post_template, $post);
+      $same = self::templatize_with(static::$_single_post_template, $post);
       
       if(isset(static::${$template}))
       {
-        $unique = self::_templatize_with(static::${$template}, $post);
+        $unique = self::templatize_with(static::${$template}, $post);
       }
       
       $posts[$k] = array_merge($same, $unique);
@@ -208,11 +208,11 @@ class Templatize {
    * Converts blog data keys to Tumblr template Tags
    * 
    * @static
-   * @access  private
+   * @access  public
    * @param   array   the array to convert
    * @return  array   the array with converted keys
    */
-  private static function _templatize_with($template, $data)
+  public static function templatize_with($template, $data)
   {
     $new = array();
     
