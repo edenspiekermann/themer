@@ -59,16 +59,23 @@ class Parser {
     
     $theme = (empty($theme)) ? static::$_theme : $theme;
     
-    ## NOTE: Language tags must be parsed first due to that fact that they are
-    ## interpolated with other template tags and those variables depend on being
-    ## parsed while the parsing is good (ie. when data is present).
-    
+    # Language tags must be parsed first due to that fact that they are
+    # interpolated with other template tags and those variables depend on being
+    # parsed while the parsing is good (ie. when data is present).
     $theme = Lang::render($theme);
     
-    $theme = Paginate::render($theme);
-    
-    $theme = Pages::render($theme);
+    # Meta data should be rendered second incase the theme designer wants to use
+    # colors and images multiple times inside other template blocks.
     $theme = Meta::render($theme);
+    
+    # The order in which these are rendered doesn't really matter.
+    $theme = Paginate::render($theme);
+    $theme = Pages::render($theme);
+    
+    # Posts should be rendered second to last. If it weren't for some tag name
+    # clashes (ie. {Title} for both blog and text post title), they would be
+    # rendered dead last. Second to last at least allows all other blocks, and 
+    # theme tags to be rendered into/alongside with each post (if desired).
     $theme = Posts::render($theme, static::$post_data);
     
     return $theme;
