@@ -1,6 +1,7 @@
 Title:            'Unititled'
 Description:      ''
 RSS:	            '/rss'
+CustomCSS:         ''
 Favicon:          '/themer_asset/avatars/16.gif'
 PortraitURL-16:	  '/themer_asset/avatars/16.gif'
 PortraitURL-24:   '/themer_asset/avatars/24.gif'
