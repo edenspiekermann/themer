@@ -10,3 +10,11 @@ PortraitURL-48:   '/themer_asset/avatars/48.gif'
 PortraitURL-64:   '/themer_asset/avatars/64.gif'
 PortraitURL-96:	  '/themer_asset/avatars/96.gif'
 PortraitURL-128:  '/themer_asset/avatars/128.gif'
+
+Pages:
+  -
+    Label: GitHub
+    URL: http://bit.ly/themer
+  -
+    Label: BitBucket
+    URL: http://bitbucket.org/
