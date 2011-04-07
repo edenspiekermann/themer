@@ -79,6 +79,72 @@ class Parser {
     # theme tags to be rendered into/alongside with each post (if desired).
     $theme = Posts::render($theme, static::$post_data);
     
+    # Finally, parse all final theme data
+    $theme = self::render_blog($theme);
+    
+    return $theme;
+  }
+  
+  /**
+   * Renders all final template variables and blocks
+   * 
+   * @access  public
+   * @param   string  the theme contents to parse
+   * @return  string  the parsed theme contents
+   */
+  public static function render_blog($theme)
+  {
+    $community = array(
+      'AskEnabled' => 'AskLabel',
+      'SubmissionsEnabled' => 'SubmitLabel'
+    );
+    
+    // Render some community variable
+    foreach($community as $block => $var)
+    {
+      if(static::$data[$block])
+      {
+        $theme = Block::render($theme, $block);
+        $theme = Variable::render($theme, $var, static::$data[$var]);
+      }
+      else
+      {
+        $theme = Block::remove($theme, $block);
+      }
+    }
+    
+    // Render twitter
+    if( ! empty(static::$data['TwitterUsername']))
+    {
+      $theme = Block::render($theme, 'Twitter');
+      $theme = Variable::render($theme, 'TwitterUsername', static::$data['TwitterUsername']);
+    }
+    
+    // Render the blog description
+    if( ! empty(static::$data['Description']))
+    {
+      $theme = Block::render($theme, 'Description');
+      $theme = Variable::render($theme, 'Description', static::$data['Description']);
+      $theme = Variable::render($theme, 'MetaDescription', static::$data['MetaDescription']);
+    }
+    else
+    {
+      $theme = Block::remove($theme, 'Description');
+    }
+    
+    // Render other single tags
+    foreach(array( 'Title', 'RSS', 'Favicon', 'CustomCSS') as $var)
+    {
+      $theme = Variable::render($theme, $var, static::$data[$var]);
+    }
+    
+    // Render the portrait urls
+    foreach(array(16, 24, 30, 40, 48, 64, 96, 128) as $size)
+    {
+      $portrait = 'PortraitURL-'.$size;
+      $theme = Variable::render($theme, $portrait, static::$data[$portrait]);
+    }
+    
     return $theme;
   }
   

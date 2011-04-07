@@ -11,6 +11,12 @@ PortraitURL-64:   '/themer_asset/avatars/64.gif'
 PortraitURL-96:	  '/themer_asset/avatars/96.gif'
 PortraitURL-128:  '/themer_asset/avatars/128.gif'
 
+AskEnabled:         true
+AskLabel:           Ask
+SubmissionsEnabled: true
+SubmitLabel:        Submit
+TwitterUsername:    ''
+
 Pages:
   -
     Label: GitHub
