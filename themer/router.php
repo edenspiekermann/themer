@@ -37,10 +37,6 @@ class Router {
   public static $segments = array();
   
   public static $page = 'Index';
-  public static $data = array(
-    'posts' => array(),
-    'page'  => array(),
-  );
   
   public static function route()
   { 
