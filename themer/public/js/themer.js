@@ -9,7 +9,6 @@ $(function(){
   * Theme Functions
   -------------------------------------------------------*/
   $('iframe').attr('src', '/?theme');
-  
   $('#menus input').change(function(){ updateTheme(); });
   
   /*-------------------------------------------------------

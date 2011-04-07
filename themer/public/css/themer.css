@@ -203,7 +203,7 @@ div.menu {
 		#color-picker:hover {
 			cursor: move;
 			}
-		
+
 		#color-picker a {
 			color: #fff;
 			float: right;
@@ -232,7 +232,7 @@ div.menu {
 			#picker-ok {
 				background-color: #5da200;
 				}
-				
+
 			#picker-cancel {
 				background-color: #bbb;
 				}
