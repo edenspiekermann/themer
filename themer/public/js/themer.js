@@ -6,27 +6,11 @@ $(function(){
       COLOR_PICKER_CANCEL = $('#picker-cancel');
       
   /*-------------------------------------------------------
-  * Initialize the iFrame
+  * Theme Functions
   -------------------------------------------------------*/
-  
   $('iframe').attr('src', '/?theme');
   
-  $('#menus input').change(function(){
-    var frame = $('#theme-frame'),
-        uri = frame.get(0).contentWindow.location.pathname,
-        query = $("#menus").serialize();
-    
-    // If we are loading the theme home page, we need to specify that we are
-    // loading only the theme with '?theme'. If we dont, then Themer will
-    // reload the entire application, along with the app header. If we are
-    // loading a specfic theme page, Themer will simply render the theme,
-    // assume the output will be rendered within an <iframe>, and disregard
-    // loading the Themer header.
-    
-    query = (uri == '/') ? "?theme&" + query : "?" + query;
-    
-    frame.attr('src', uri + query);
-  });
+  $('#menus input').change(function(){ updateTheme(); });
   
   /*-------------------------------------------------------
   * Option Box Display
@@ -110,7 +94,7 @@ $(function(){
   
   COLOR_PICKER_OK.click(function(e){
     e.preventDefault();
-    $('input').first().change();
+    updateTheme();
     resetPicker();
   });
   
@@ -131,5 +115,26 @@ $(function(){
     COLOR_PICKER_INPUT.val('')
       .unbind('blur')
       .unbind('keypress');
+  }
+  
+  /*-------------------------------------------------------
+  * Update Theme
+  -------------------------------------------------------*/
+  function updateTheme()
+  {
+    var frame = $('#theme-frame'),
+        uri = frame.get(0).contentWindow.location.pathname,
+        query = $("#menus").serialize();
+    
+    // If we are loading the theme home page, we need to specify that we are
+    // loading only the theme with '?theme'. If we dont, then Themer will
+    // reload the entire application, along with the app header. If we are
+    // loading a specfic theme page, Themer will simply render the theme,
+    // assume the output will be rendered within an <iframe>, and disregard
+    // loading the Themer header.
+    
+    query = (uri == '/') ? "?theme&" + query : "?" + query;
+    
+    frame.attr('src', uri + query);
   }
 });
