@@ -163,7 +163,579 @@
     {/block:IfNotTwo}
   </table>
   
+  {block:HasPages}
+  <h3>Custom Pages</h3>
+  
+  <table class="custom-pages">
+    {block:Pages}
+    <tr>
+      <td>{Label}</td>
+      <td><a href="{URL}">{URL}</a></td>
+    </tr>
+    {/block:Pages}
+  </table>
+  {/block:HasPages}
+  
+  <div class="clear"></div>
+  
+  {block:Pagination}
+  <h3>Pagination</h3>
+  <table class="pagination">
+    <tr>
+      <td>CurrentPage</td>
+      <td>{CurrentPage}</td>
+    </tr>
+    <tr>
+      <td>TotalPages</td>
+      <td>{TotalPages}</td>
+    </tr>
+    {block:PreviousPage}
+    <tr class="block">
+      <td>PreviousPage</td>
+      <td><a href="{PreviousPage}">Previous Page</a></td>
+    </tr>
+    {/block:PreviousPage}
+    {block:NextPage}
+    <tr class="block">
+      <td>NextPage</td>
+      <td><a href="{NextPage}">Next Page</a></td>
+    </tr>
+    {/block:NextPage}
+    <tr class="locale">
+      <td>CurrentPage of TotalPages</td>
+      <td>{lang:CurrentPage of TotalPages}</td>
+    </tr>
+    <tr class="locale">
+      <td>CurrentPage of TotalPages 2</td>
+      <td>{lang:CurrentPage of TotalPages 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Page CurrentPage of TotalPages</td>
+      <td>{lang:Page CurrentPage of TotalPages}</td>
+    </tr>
+    <tr class="locale">
+      <td>Page CurrentPage of TotalPages 2</td>
+      <td>{lang:Page CurrentPage of TotalPages 2}</td>
+    </tr>
+  </table>
+  
+  <div class="clear"></div>
+  {/block:Pagination}
+  
+  {block:PermalinkPagination}
+  <h3>Permalink Pagination</h3>
+  <table class="permalink-pagination">
+    {block:PreviousPost}
+    <tr class="block">
+      <td>PreviousPost</td>
+      <td><a href="{PreviousPost}">{PreviousPost}</a></td>
+    </tr>
+    {/block:PreviousPost}
+    {block:NextPost}
+    <tr class="block">
+      <td>NextPost</td>
+      <td><a href="{NextPost}">{NextPost}</a></td>
+    </tr>
+    {/block:NextPost}
+  </table>
+  
+  <div class="clear"></div>
+  {/block:PermalinkPagination}
+  
+  {block:DayPage}
+  <h3>Day Page</h3>
+  <table class="day page">
+    <tr>
+      <td>Month</td>
+      <td>{Month}</td>
+    </tr>
+    <tr>
+      <td>DayOfMonth</td>
+      <td>{DayOfMonth}</td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td>{Year}</td>
+    </tr>
+    <tr>
+      <td>PreviousDayPage</td>
+      <td>{PreviousDayPage}</td>
+    </tr>
+    <tr>
+      <td>NextDayPage</td>
+      <td>{NextDayPage}</td>
+    </tr>
+    <tr class="locale">
+      <td>Viewing everything posted on Month DayOfMonth Year</td>
+      <td>{lang:Viewing everything posted on Month DayOfMonth Year}</td>
+    </tr>
+  </table>
+  
+  <div class="clear"></div>
+  {/block:DayPage}
+  
+  {block:SearchPage}
+  <h3>SearchPage</h3>
+  <table class="search page">
+    <tr>
+      <td>SearchQuery</td>
+      <td>{SearchQuery}</td>
+    </tr>
+    <tr>
+      <td>URLSafeSearchQuery</td>
+      <td>{URLSafeSearchQuery}</td>
+    </tr>
+    <tr>
+      <td>SearchResultCount</td>
+      <td>{SearchResultCount}</td>
+    </tr>
+    
+    <tr class="locale">
+      <td>Found SearchResultCount results for SearchQuery</td>
+      <td>{lang:Found SearchResultCount results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>Found SearchResultCount results for SearchQuery 2</td>
+      <td>{lang:Found SearchResultCount results for SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Search results for SearchQuery</td>
+      <td>{lang:Search results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>Search results for SearchQuery 2</td>
+      <td>{lang:Search results for SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>SearchResultCount results</td>
+      <td>{lang:SearchResultCount results}</td>
+    </tr>
+    <tr class="locale">
+      <td>SearchResultCount results for SearchQuery</td>
+      <td>{lang:SearchResultCount results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>SearchResultCount results for SearchQuery 2</td>
+      <td>{lang:SearchResultCount results for SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing SearchResultCount results for SearchQuery</td>
+      <td>{lang:Showing SearchResultCount results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing SearchResultCount results for SearchQuery 2</td>
+      <td>{lang:Showing SearchResultCount results for SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Your search for SearchQuery returned SearchResultCount results</td>
+      <td>{lang:Your search for SearchQuery returned SearchResultCount results}</td>
+    </tr>
+    <tr class="locale">
+      <td>Your search for SearchQuery returned SearchResultCount results 2</td>
+      <td>{lang:Your search for SearchQuery returned SearchResultCount results 2}</td>
+    </tr>
+    {block:NoSearchResults}
+    <tr class="locale">
+      <td>No posts containing SearchQuery</td>
+      <td>{lang:No posts containing SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>No posts containing SearchQuery 2</td>
+      <td>{lang:No posts containing SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>No posts found</td>
+      <td>{lang:No posts found}</td>
+    </tr>
+    <tr class="locale">
+      <td>No results for SearchQuery</td>
+      <td>{lang:No results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>No results for SearchQuery 2</td>
+      <td>{lang:No results for SearchQuery 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>No results found</td>
+      <td>{lang:No results found}</td>
+    </tr>
+    <tr class="locale">
+      <td>No search results for SearchQuery</td>
+      <td>{lang:No search results for SearchQuery}</td>
+    </tr>
+    <tr class="locale">
+      <td>No search results for SearchQuery 2</td>
+      <td>{lang:No search results for SearchQuery 2}</td>
+    </tr>
+    {/block:NoSearchResults}
+  </table>
+  
+  <div class="clear"></div>
+  {/block:SearchPage}
+  
+  {block:TagPage}
+  <h3>Tag Page</h3>
+  <table class="tag page">
+    <tr>
+      <td>Tag</td>
+      <td>{Tag}</td>
+    </tr>
+    <tr>
+      <td>URLSafeTag</td>
+      <td>{URLSafeTag}</td>
+    </tr>
+    <tr>
+      <td>TagURL</td>
+      <td>{TagURL}</td>
+    </tr>
+    <tr>
+      <td>TagURLChrono</td>
+      <td>{TagURLChrono}</td>
+    </tr>
+    <tr class="locale">
+      <td>Posts tagged Tag</td>
+      <td>{lang:Posts tagged Tag}</td>
+    </tr>
+    <tr class="locale">
+      <td>Posts tagged Tag 2</td>
+      <td>{lang:Posts tagged Tag 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Posts tagged Tag 3</td>
+      <td>{lang:Posts tagged Tag 3}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing TagResultCount posts tagged Tag</td>
+      <td>{lang:Showing TagResultCount posts tagged Tag}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing TagResultCount posts tagged Tag 2</td>
+      <td>{lang:Showing TagResultCount posts tagged Tag 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing TagResultCount posts tagged Tag 3</td>
+      <td>{lang:Showing TagResultCount posts tagged Tag 3}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing posts tagged Tag</td>
+      <td>{lang:Showing posts tagged Tag}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing posts tagged Tag 2</td>
+      <td>{lang:Showing posts tagged Tag 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>Showing posts tagged Tag 3</td>
+      <td>{lang:Showing posts tagged Tag 3}</td>
+    </tr>
+    <tr class="locale">
+      <td>TagResultCount posts tagged Tag</td>
+      <td>{lang:TagResultCount posts tagged Tag}</td>
+    </tr>
+    <tr class="locale">
+      <td>TagResultCount posts tagged Tag 2</td>
+      <td>{lang:TagResultCount posts tagged Tag 2}</td>
+    </tr>
+    <tr class="locale">
+      <td>TagResultCount posts tagged Tag 3</td>
+      <td>{lang:TagResultCount posts tagged Tag 3}</td>
+    </tr>
+  </table>
+  
+  <div class="clear"></div>
+  {/block:TagPage}
+  
+  {block:Posts}
+  
+  <h3><span class="post-type">{PostType}</span> Post {block:IndexPage}<a href="{Permalink}">{/block:IndexPage}<code>#{PostID}</code>{block:IndexPage}</a>{/block:IndexPage}</h3>  
+  
+  {block:Text}
+  <table class="text post">
+    {block:Title}
+    <tr class="block">
+      <td>Title</td>
+      <td>{Title}</td>
+    </tr>
+    {/block:Title}
+    <tr>
+      <td>Body</td>
+      <td>{Body}</td>
+    </tr>
+  </table>
+  {/block:Text}
+  
+  {block:Photo}
+  <table class="photo post">
+    {block:Caption}
+    <tr class="block">
+      <td>Caption</td>
+      <td>{Caption}</td>
+    </tr>
+    {/block:Caption}
+    <tr>
+      <td>PhotoAlt</td>
+      <td>{PhotoAlt}</td>
+    </tr>
+    <tr>
+      <td>LinkURL</td>
+      <td>{LinkURL}</td>
+    </tr>
+    <tr>
+      <td>LinkOpenTag</td>
+      <td>{LinkOpenTag}</td>
+    </tr>
+    <tr>
+      <td>LinkCloseTag</td>
+      <td>{LinkCloseTag}</td>
+    </tr>
+    <tr>
+      <td>Test Photo</td>
+      <td><img src="{PhotoURL-250}" alt="{PhotoURL-250}" /></td>
+    </tr>
+    <tr>
+      <td>PhotoURL-500</td>
+      <td>{PhotoURL-500}</td>
+    </tr>
+    <tr>
+      <td>PhotoURL-400</td>
+      <td>{PhotoURL-400}</td>
+    </tr>
+    <tr>
+      <td>PhotoURL-250</td>
+      <td>{PhotoURL-250}</td>
+    </tr>
+    <tr>
+      <td>PhotoURL-100</td>
+      <td>{PhotoURL-100}</td>
+    </tr>
+    <tr>
+      <td>PhotoURL-75sq</td>
+      <td>{PhotoURL-75sq}</td>
+    </tr>
+    {block:HighRes}
+    <tr class="block">
+      <td>PhotoURL-HighRes</td>
+      <td>{PhotoURL-HighRes}</td>
+    </tr>
+    {/block:HighRes}
+  </table>
+  {/block:Photo}
+  
+  {block:Photoset}
+  <table class="photoset post">
+    {block:Caption}
+    <tr class="block">
+      <td>Caption</td>
+      <td>{Caption}</td>
+    </tr>
+    {/block:Caption}
+    <tr>
+      <td>Photoset-500</td>
+      <td>{Photoset-500}</td>
+    </tr>
+    <tr>
+      <td>Photoset-400</td>
+      <td>{Photoset-400}</td>
+    </tr>
+    <tr>
+      <td>Photoset-250</td>
+      <td>{Photoset-250}</td>
+    </tr>
+  </table>
+  {/block:PhotoSet}
+  
+  {block:Link}
+  <table class="link post">
+    <tr>
+      <td>URL</td>
+      <td>{URL}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{Name}</td>
+    </tr>
+    <tr>
+      <td>Target</td>
+      <td>{Target}</td>
+    </tr>
+    {block:Description}
+    <tr class="block">
+      <td>Description</td>
+      <td>{Description}</td>
+    </tr>
+    {/block:Description}
+  </table>
+  {/block:Link}
+  
+  {block:Quote}
+  <table class="quote post">
+    <tr>
+      <td>Quote</td>
+      <td>{Quote}</td>
+    </tr>
+    {block:Source}
+    <tr>
+      <td>Source</td>
+      <td>{Source}</td>
+    </tr>
+    {/block:Source}
+    <tr>
+      <td>Length</td>
+      <td>{Length}</td>
+    </tr>
+  </table>
+  {/block:Quote}
+  
+  {block:Chat}
+  <table class="chat post">
+    {block:Title}
+    <tr class="block">
+      <td>Title</td>
+      <td>{Title}</td>
+    </tr>
+    {/block:Title}
+    {block:Lines}
+    <tr>
+      <td>Line - {Name}</td>  
+      <td>
+        <table class="chat-line">
+          <tr>
+            <td>Line</td>
+            <td>{Line}</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td>{Name}</td>
+          </tr>
+          {block:Label}
+          <tr class="block">
+            <td>Label</td>
+            <td>{Label}</td>
+          </tr>
+          {/block:Label}
+          <tr>
+            <td>UserNumber</td>
+            <td>{UserNumber}</td>
+          </tr>
+          <tr>
+            <td>Alt</td>
+            <td>{Alt}</td>
+          </tr>
+        </table>
+      </td>  
+    <tr>
+    {/block:Lines}
+  </table>
+  {/block:Chat}
+  
+  {block:Audio}
+  <table class="audio post">
+    {block:Caption}
+    <tr class="block">
+      <td>Caption</td>
+      <td>{Caption}</td>
+    </tr>
+    {/block:Caption}
+    <tr>
+      <td>PlayCount</td>
+      <td>{PlayCount}</td>
+    </tr>
+    <tr>
+      <td>FormattedPlayCount</td>
+      <td>{FormattedPlayCount}</td>
+    </tr>
+    <tr>
+      <td>PlayCountWithLabel</td>
+      <td>{PlayCountWithLabel}</td>
+    </tr>
+    <tr>
+      <td>AudioPlayer</td>
+      <td>{AudioPlayer}</td>
+    </tr>
+    <tr>
+      <td>AudioPlayerBlack</td>
+      <td>{AudioPlayerBlack}</td>
+    </tr>
+    <tr>
+      <td>AudioPlayerGrey</td>
+      <td>{AudioPlayerGrey}</td>
+    </tr>
+    <tr>
+      <td>Artist</td>
+      <td>{Artist}</td>
+    </tr>
+    <tr>
+      <td>Album</td>
+      <td>{Album}</td>
+    </tr>
+    <tr>
+      <td>TrackName</td>
+      <td>{TrackName}</td>
+    </tr>
+    <tr class="locale">
+      <td>Played PlayCount times</td>
+      <td>{lang:Played PlayCount times}</td>
+    </tr>
+    <tr class="locale">
+      <td>Posted TimeAgo with NoteCount notes and PlayCount plays</td>
+      <td>{lang:Posted TimeAgo with NoteCount notes and PlayCount plays}</td>
+    </tr>
+    <tr class="locale">
+      <td>TimeAgo with NoteCount notes and PlayCount plays</td>
+      <td>{lang:TimeAgo with NoteCount notes and PlayCount plays}</td>
+    </tr>
+  </table>
+  {/block:Audio}
+  
+  {block:Video}
+  <table class="video post">
+    {block:Caption}
+    <tr class="block">
+      <td>Caption</td>
+      <td>{Caption}</td>
+    </tr>
+    {/block:Caption}
+    <tr>
+      <td>Video-500</td>
+      <td>{Video-500}</td>
+    </tr>
+    <tr>
+      <td>Video-400</td>
+      <td>{Video-400}</td>
+    </tr>
+    <tr>
+      <td>Video-250</td>
+      <td>{Video-250}</td>
+    </tr>
+  </table>
+  {/block:Video}
+  
+  {block:HasTags}
+  <table class="tags">
+    <tr>
+      <th>Tag</th>
+      <th>URLSafeTag</th>
+      <th>TagURL</th>
+      <th>TagURLChrono</th>
+    </tr>
+    {block:Tags}
+    <tr>
+      <td>{Tag}</td>
+      <td>{URLSafeTag}</td>
+      <td>{TagURL}</td>
+      <td>{TagURLChrono}</td>
+    </tr>
+    {/block:Tags}
+  </table>
+  {/block:HasTags}
+  
+  <div class="clear post-clear"></div>
+
+  {/block:Posts}
+  
   {block:IndexPage}
+  <div class="clear"></div>
+  
   <h3>Language Variables (interpolated only)</h3>
   <table>
     <tr class="locale">
@@ -1002,564 +1574,7 @@
       <td>{lang:Zoom}</td>
     </tr>
   </table>
-  
-  <div class="clear"></div>
   {/block:IndexPage}
-  
-  {block:Pagination}
-  <h3>Pagination</h3>
-  <table class="pagination">
-    <tr>
-      <td>CurrentPage</td>
-      <td>{CurrentPage}</td>
-    </tr>
-    <tr>
-      <td>TotalPages</td>
-      <td>{TotalPages}</td>
-    </tr>
-    {block:PreviousPage}
-    <tr class="block">
-      <td>PreviousPage</td>
-      <td><a href="{PreviousPage}">Previous Page</a></td>
-    </tr>
-    {/block:PreviousPage}
-    {block:NextPage}
-    <tr class="block">
-      <td>NextPage</td>
-      <td><a href="{NextPage}">Next Page</a></td>
-    </tr>
-    {/block:NextPage}
-    <tr class="locale">
-      <td>CurrentPage of TotalPages</td>
-      <td>{lang:CurrentPage of TotalPages}</td>
-    </tr>
-    <tr class="locale">
-      <td>CurrentPage of TotalPages 2</td>
-      <td>{lang:CurrentPage of TotalPages 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Page CurrentPage of TotalPages</td>
-      <td>{lang:Page CurrentPage of TotalPages}</td>
-    </tr>
-    <tr class="locale">
-      <td>Page CurrentPage of TotalPages 2</td>
-      <td>{lang:Page CurrentPage of TotalPages 2}</td>
-    </tr>
-  </table>
-  
-  <div class="clear"></div>
-  {/block:Pagination}
-  
-  {block:PermalinkPagination}
-  <h3>Permalink Pagination</h3>
-  <table class="permalink-pagination">
-    {block:PreviousPost}
-    <tr class="block">
-      <td>PreviousPost</td>
-      <td><a href="{PreviousPost}">{PreviousPost}</a></td>
-    </tr>
-    {/block:PreviousPost}
-    {block:NextPost}
-    <tr class="block">
-      <td>NextPost</td>
-      <td><a href="{NextPost}">{NextPost}</a></td>
-    </tr>
-    {/block:NextPost}
-  </table>
-  
-  <div class="clear"></div>
-  {/block:PermalinkPagination}
-  
-  {block:DayPage}
-  <h3>Day Page</h3>
-  <table class="day page">
-    <tr>
-      <td>Month</td>
-      <td>{Month}</td>
-    </tr>
-    <tr>
-      <td>DayOfMonth</td>
-      <td>{DayOfMonth}</td>
-    </tr>
-    <tr>
-      <td>Year</td>
-      <td>{Year}</td>
-    </tr>
-    <tr>
-      <td>PreviousDayPage</td>
-      <td>{PreviousDayPage}</td>
-    </tr>
-    <tr>
-      <td>NextDayPage</td>
-      <td>{NextDayPage}</td>
-    </tr>
-    <tr class="locale">
-      <td>Viewing everything posted on Month DayOfMonth Year</td>
-      <td>{lang:Viewing everything posted on Month DayOfMonth Year}</td>
-    </tr>
-  </table>
-  
-  <div class="clear"></div>
-  {/block:DayPage}
-  
-  {block:SearchPage}
-  <h3>SearchPage</h3>
-  <table class="search page">
-    <tr>
-      <td>SearchQuery</td>
-      <td>{SearchQuery}</td>
-    </tr>
-    <tr>
-      <td>URLSafeSearchQuery</td>
-      <td>{URLSafeSearchQuery}</td>
-    </tr>
-    <tr>
-      <td>SearchResultCount</td>
-      <td>{SearchResultCount}</td>
-    </tr>
-    
-    <tr class="locale">
-      <td>Found SearchResultCount results for SearchQuery</td>
-      <td>{lang:Found SearchResultCount results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>Found SearchResultCount results for SearchQuery 2</td>
-      <td>{lang:Found SearchResultCount results for SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Search results for SearchQuery</td>
-      <td>{lang:Search results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>Search results for SearchQuery 2</td>
-      <td>{lang:Search results for SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>SearchResultCount results</td>
-      <td>{lang:SearchResultCount results}</td>
-    </tr>
-    <tr class="locale">
-      <td>SearchResultCount results for SearchQuery</td>
-      <td>{lang:SearchResultCount results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>SearchResultCount results for SearchQuery 2</td>
-      <td>{lang:SearchResultCount results for SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing SearchResultCount results for SearchQuery</td>
-      <td>{lang:Showing SearchResultCount results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing SearchResultCount results for SearchQuery 2</td>
-      <td>{lang:Showing SearchResultCount results for SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Your search for SearchQuery returned SearchResultCount results</td>
-      <td>{lang:Your search for SearchQuery returned SearchResultCount results}</td>
-    </tr>
-    <tr class="locale">
-      <td>Your search for SearchQuery returned SearchResultCount results 2</td>
-      <td>{lang:Your search for SearchQuery returned SearchResultCount results 2}</td>
-    </tr>
-    {block:NoSearchResults}
-    <tr class="locale">
-      <td>No posts containing SearchQuery</td>
-      <td>{lang:No posts containing SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>No posts containing SearchQuery 2</td>
-      <td>{lang:No posts containing SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>No posts found</td>
-      <td>{lang:No posts found}</td>
-    </tr>
-    <tr class="locale">
-      <td>No results for SearchQuery</td>
-      <td>{lang:No results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>No results for SearchQuery 2</td>
-      <td>{lang:No results for SearchQuery 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>No results found</td>
-      <td>{lang:No results found}</td>
-    </tr>
-    <tr class="locale">
-      <td>No search results for SearchQuery</td>
-      <td>{lang:No search results for SearchQuery}</td>
-    </tr>
-    <tr class="locale">
-      <td>No search results for SearchQuery 2</td>
-      <td>{lang:No search results for SearchQuery 2}</td>
-    </tr>
-    {/block:NoSearchResults}
-  </table>
-  
-  <div class="clear"></div>
-  {/block:SearchPage}
-  
-  {block:TagPage}
-  <h3>Tag Page</h3>
-  <table class="tag page">
-    <tr>
-      <td>Tag</td>
-      <td>{Tag}</td>
-    </tr>
-    <tr>
-      <td>URLSafeTag</td>
-      <td>{URLSafeTag}</td>
-    </tr>
-    <tr>
-      <td>TagURL</td>
-      <td>{TagURL}</td>
-    </tr>
-    <tr>
-      <td>TagURLChrono</td>
-      <td>{TagURLChrono}</td>
-    </tr>
-    <tr class="locale">
-      <td>Posts tagged Tag</td>
-      <td>{lang:Posts tagged Tag}</td>
-    </tr>
-    <tr class="locale">
-      <td>Posts tagged Tag 2</td>
-      <td>{lang:Posts tagged Tag 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Posts tagged Tag 3</td>
-      <td>{lang:Posts tagged Tag 3}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing TagResultCount posts tagged Tag</td>
-      <td>{lang:Showing TagResultCount posts tagged Tag}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing TagResultCount posts tagged Tag 2</td>
-      <td>{lang:Showing TagResultCount posts tagged Tag 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing TagResultCount posts tagged Tag 3</td>
-      <td>{lang:Showing TagResultCount posts tagged Tag 3}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing posts tagged Tag</td>
-      <td>{lang:Showing posts tagged Tag}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing posts tagged Tag 2</td>
-      <td>{lang:Showing posts tagged Tag 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>Showing posts tagged Tag 3</td>
-      <td>{lang:Showing posts tagged Tag 3}</td>
-    </tr>
-    <tr class="locale">
-      <td>TagResultCount posts tagged Tag</td>
-      <td>{lang:TagResultCount posts tagged Tag}</td>
-    </tr>
-    <tr class="locale">
-      <td>TagResultCount posts tagged Tag 2</td>
-      <td>{lang:TagResultCount posts tagged Tag 2}</td>
-    </tr>
-    <tr class="locale">
-      <td>TagResultCount posts tagged Tag 3</td>
-      <td>{lang:TagResultCount posts tagged Tag 3}</td>
-    </tr>
-  </table>
-  
-  <div class="clear"></div>
-  {/block:TagPage}
-  
-  {block:Posts}
-  
-  <h3><span class="post-type">{PostType}</span> Post {block:IndexPage}<a href="{Permalink}">{/block:IndexPage}<code>#{PostID}</code>{block:IndexPage}</a>{/block:IndexPage}</h3>  
-  
-  {block:Text}
-  <table class="text post">
-    {block:Title}
-    <tr class="block">
-      <td>Title</td>
-      <td>{Title}</td>
-    </tr>
-    {/block:Title}
-    <tr>
-      <td>Body</td>
-      <td>{Body}</td>
-    </tr>
-  </table>
-  {/block:Text}
-  
-  {block:Photo}
-  <table class="photo post">
-    {block:Caption}
-    <tr class="block">
-      <td>Caption</td>
-      <td>{Caption}</td>
-    </tr>
-    {/block:Caption}
-    <tr>
-      <td>PhotoAlt</td>
-      <td>{PhotoAlt}</td>
-    </tr>
-    <tr>
-      <td>LinkURL</td>
-      <td>{LinkURL}</td>
-    </tr>
-    <tr>
-      <td>LinkOpenTag</td>
-      <td>{LinkOpenTag}</td>
-    </tr>
-    <tr>
-      <td>LinkCloseTag</td>
-      <td>{LinkCloseTag}</td>
-    </tr>
-    <tr>
-      <td>Test Photo</td>
-      <td><img src="{PhotoURL-250}" alt="{PhotoURL-250}" /></td>
-    </tr>
-    <tr>
-      <td>PhotoURL-500</td>
-      <td>{PhotoURL-500}</td>
-    </tr>
-    <tr>
-      <td>PhotoURL-400</td>
-      <td>{PhotoURL-400}</td>
-    </tr>
-    <tr>
-      <td>PhotoURL-250</td>
-      <td>{PhotoURL-250}</td>
-    </tr>
-    <tr>
-      <td>PhotoURL-100</td>
-      <td>{PhotoURL-100}</td>
-    </tr>
-    <tr>
-      <td>PhotoURL-75sq</td>
-      <td>{PhotoURL-75sq}</td>
-    </tr>
-    {block:HighRes}
-    <tr class="block">
-      <td>PhotoURL-HighRes</td>
-      <td>{PhotoURL-HighRes}</td>
-    </tr>
-    {/block:HighRes}
-  </table>
-  {/block:Photo}
-  
-  {block:Photoset}
-  <table class="photoset post">
-    {block:Caption}
-    <tr class="block">
-      <td>Caption</td>
-      <td>{Caption}</td>
-    </tr>
-    {/block:Caption}
-    <tr>
-      <td>Photoset-500</td>
-      <td>{Photoset-500}</td>
-    </tr>
-    <tr>
-      <td>Photoset-400</td>
-      <td>{Photoset-400}</td>
-    </tr>
-    <tr>
-      <td>Photoset-250</td>
-      <td>{Photoset-250}</td>
-    </tr>
-  </table>
-  {/block:PhotoSet}
-  
-  {block:Link}
-  <table class="link post">
-    <tr>
-      <td>URL</td>
-      <td>{URL}</td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>{Name}</td>
-    </tr>
-    <tr>
-      <td>Target</td>
-      <td>{Target}</td>
-    </tr>
-    {block:Description}
-    <tr class="block">
-      <td>Description</td>
-      <td>{Description}</td>
-    </tr>
-    {/block:Description}
-  </table>
-  {/block:Link}
-  
-  {block:Quote}
-  <table class="quote post">
-    <tr>
-      <td>Quote</td>
-      <td>{Quote}</td>
-    </tr>
-    {block:Source}
-    <tr>
-      <td>Source</td>
-      <td>{Source}</td>
-    </tr>
-    {/block:Source}
-    <tr>
-      <td>Length</td>
-      <td>{Length}</td>
-    </tr>
-  </table>
-  {/block:Quote}
-  
-  {block:Chat}
-  <table class="chat post">
-    {block:Title}
-    <tr class="block">
-      <td>Title</td>
-      <td>{Title}</td>
-    </tr>
-    {/block:Title}
-    {block:Lines}
-    <tr>
-      <td>Line - {Name}</td>  
-      <td>
-        <table class="chat-line">
-          <tr>
-            <td>Line</td>
-            <td>{Line}</td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>{Name}</td>
-          </tr>
-          {block:Label}
-          <tr class="block">
-            <td>Label</td>
-            <td>{Label}</td>
-          </tr>
-          {/block:Label}
-          <tr>
-            <td>UserNumber</td>
-            <td>{UserNumber}</td>
-          </tr>
-          <tr>
-            <td>Alt</td>
-            <td>{Alt}</td>
-          </tr>
-        </table>
-      </td>  
-    <tr>
-    {/block:Lines}
-  </table>
-  {/block:Chat}
-  
-  {block:Audio}
-  <table class="audio post">
-    {block:Caption}
-    <tr class="block">
-      <td>Caption</td>
-      <td>{Caption}</td>
-    </tr>
-    {/block:Caption}
-    <tr>
-      <td>PlayCount</td>
-      <td>{PlayCount}</td>
-    </tr>
-    <tr>
-      <td>FormattedPlayCount</td>
-      <td>{FormattedPlayCount}</td>
-    </tr>
-    <tr>
-      <td>PlayCountWithLabel</td>
-      <td>{PlayCountWithLabel}</td>
-    </tr>
-    <tr>
-      <td>AudioPlayer</td>
-      <td>{AudioPlayer}</td>
-    </tr>
-    <tr>
-      <td>AudioPlayerBlack</td>
-      <td>{AudioPlayerBlack}</td>
-    </tr>
-    <tr>
-      <td>AudioPlayerGrey</td>
-      <td>{AudioPlayerGrey}</td>
-    </tr>
-    <tr>
-      <td>Artist</td>
-      <td>{Artist}</td>
-    </tr>
-    <tr>
-      <td>Album</td>
-      <td>{Album}</td>
-    </tr>
-    <tr>
-      <td>TrackName</td>
-      <td>{TrackName}</td>
-    </tr>
-    <tr class="locale">
-      <td>Played PlayCount times</td>
-      <td>{lang:Played PlayCount times}</td>
-    </tr>
-    <tr class="locale">
-      <td>Posted TimeAgo with NoteCount notes and PlayCount plays</td>
-      <td>{lang:Posted TimeAgo with NoteCount notes and PlayCount plays}</td>
-    </tr>
-    <tr class="locale">
-      <td>TimeAgo with NoteCount notes and PlayCount plays</td>
-      <td>{lang:TimeAgo with NoteCount notes and PlayCount plays}</td>
-    </tr>
-  </table>
-  {/block:Audio}
-  
-  {block:Video}
-  <table class="video post">
-    {block:Caption}
-    <tr class="block">
-      <td>Caption</td>
-      <td>{Caption}</td>
-    </tr>
-    {/block:Caption}
-    <tr>
-      <td>Video-500</td>
-      <td>{Video-500}</td>
-    </tr>
-    <tr>
-      <td>Video-400</td>
-      <td>{Video-400}</td>
-    </tr>
-    <tr>
-      <td>Video-250</td>
-      <td>{Video-250}</td>
-    </tr>
-  </table>
-  {/block:Video}
-  
-  {block:HasTags}
-  <table class="tags">
-    <tr>
-      <th>Tag</th>
-      <th>URLSafeTag</th>
-      <th>TagURL</th>
-      <th>TagURLChrono</th>
-    </tr>
-    {block:Tags}
-    <tr>
-      <td>{Tag}</td>
-      <td>{URLSafeTag}</td>
-      <td>{TagURL}</td>
-      <td>{TagURLChrono}</td>
-    </tr>
-    {/block:Tags}
-  </table>
-  {/block:HasTags}
-  
-  <div class="clear"></div>
-
-  {/block:Posts}
 </div>
 </body>
 </html>
