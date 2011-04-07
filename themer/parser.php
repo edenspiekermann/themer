@@ -119,6 +119,10 @@ class Parser {
       $theme = Block::render($theme, 'Twitter');
       $theme = Variable::render($theme, 'TwitterUsername', static::$data['TwitterUsername']);
     }
+    else
+    {
+      $theme = Block::remove($theme, 'Twitter');
+    }
     
     // Render the blog description
     if( ! empty(static::$data['Description']))
