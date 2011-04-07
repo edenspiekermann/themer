@@ -118,6 +118,49 @@ $(function(){
   }
   
   /*-------------------------------------------------------
+  * Pages
+  -------------------------------------------------------*/
+  
+  $('#pages').sortable({
+    handle: 'img.sort',
+    update: function(event, ui) {
+      reindexPages();
+      updateTheme();
+    }
+  });
+  
+  $('a.edit-page').click(function(e){
+    e.preventDefault();
+    $(this).toggleClass('open');
+    $(this).parent().find('div.page-inputs').toggle();
+  });
+  
+  $('a.save-page').click(function(e){
+    e.preventDefault();
+    reindexPages();
+    updateTheme();
+  });
+  
+  $('a.delete-page').click(function(e){
+    e.preventDefault();
+    
+    if(confirm('Are you sure you want to delete this page?'))
+    {
+      $(this).parent().remove();
+      updateTheme();
+    }
+  });
+  
+  function reindexPages()
+  {
+    $('div.page-inputs').each(function(i, el){
+      var index = 'Page[' + i + ']';
+      $('.page-label', el).attr('name', index + '[Label]');
+      $('.page-url', el).attr('name', index + '[URL]');
+    });
+  }
+  
+  /*-------------------------------------------------------
   * Update Theme
   -------------------------------------------------------*/
   function updateTheme()

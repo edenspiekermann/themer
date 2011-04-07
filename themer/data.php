@@ -201,6 +201,34 @@ class Data {
   }
   
   /**
+   * Merges the passed data into the main configuration array
+   *
+   * @static
+   * @access  public
+   * @param   array   the data to merge with
+   * @return  array   the merged data
+   */
+  public static function merge_with($data)
+  {
+    foreach($data as $k => $v)
+    { 
+      if(isset(static::$config[$k]))
+      {
+        if(is_array(static::$config[$k]))
+        {
+          static::$config[$k] = array_merge(static::$config[$k], $v);
+        }
+        else
+        {
+          static::$config[$k] = $v;
+        }
+      }
+    }
+    
+    return static::$config;
+  }
+  
+  /**
    * Converts an array to a string representing a valid YAML <file></file>
    * 
    * @static

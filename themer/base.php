@@ -125,6 +125,24 @@ class Themer {
   {
     Data::load('defaults');
     Data::load('data');
+    
+    // Filter out the '?theme' portion of the GET request
+    $get = array_diff_assoc($_GET, array('theme' => ''));
+    
+    // Let's see if there is any $_GET data left to merge
+    if( ! empty($get))
+    {
+      $defaults = array(
+        'Title'               => 'Title',
+        'Description'         => 'Description',
+        'Pages'               => array('Pages', array()),
+      );
+      
+      $data = \Themer\Tumblr\Templatize::templatize_with($defaults, $get);
+    
+      Data::merge_with($data);
+    }
+    
     Parser::$data = Data::get();
   }
   

@@ -61,10 +61,13 @@ class Load {
   {
     $theme_contents = \Themer::load_theme();
     
-    $data['metas'] = Parser\Meta::load($theme_contents);
-    $data['info'] = array(
-      'Title'       => Data::get('Title'),
-      'Description' => Data::get('Description')
+    $data = array(
+      'metas'         => Parser\Meta::load($theme_contents),
+      'info' => array(
+        'Title'       => Data::get('Title'),
+        'Description' => Data::get('Description'),
+      ),
+      'pages'         => Data::get('Pages'),
     );
     
     $themer = static::view('application', array('data' => $data), TRUE);
