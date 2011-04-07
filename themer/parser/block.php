@@ -70,7 +70,7 @@ class Block {
    */
   public static function render_if($block, $tag, $render = FALSE)
   {
-    $tag = self::_tag_for_if_block($tag);
+    $tag = self::_format_tag_for_if_block($tag);
     
     if($render === TRUE)
     {
@@ -169,7 +169,7 @@ class Block {
    * @param   string  the tag name to format
    * @return  string  the formatted tag
    */
-  private static function _tag_for_if_block($tag = '')
+  private static function _format_tag_for_if_block($tag = '')
   {
     return str_replace(array(" ", "_"), "", $tag);
   }
