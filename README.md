@@ -14,7 +14,7 @@ Right now, Themer supports these Tumblr template features, all configurable in a
 * Ask and Submissions enabled
 * Meta Data (custom variables)
 * Page specific rendering (Day, Tag, Search, Index and Permalink)
-* Permalink Pagination (rudimentary)
+* Permalink Pagination
 * Index page pagination (including tag, search, and day pages)
 * Localizations (English only for now)
 
