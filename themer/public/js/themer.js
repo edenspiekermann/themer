@@ -12,8 +12,20 @@ $(function(){
   $('iframe').attr('src', '/?theme');
   
   $('#menus input').change(function(){
-    var url = "/?theme&" + $("#menus").serialize();
-    $('iframe').attr('src', url);
+    var frame = $('#theme-frame'),
+        uri = frame.get(0).contentWindow.location.pathname,
+        query = $("#menus").serialize();
+    
+    // If we are loading the theme home page, we need to specify that we are
+    // loading only the theme with '?theme'. If we dont, then Themer will
+    // reload the entire application, along with the app header. If we are
+    // loading a specfic theme page, Themer will simply render the theme,
+    // assume the output will be rendered within an <iframe>, and disregard
+    // loading the Themer header.
+    
+    query = (uri == '/') ? "?theme&" + query : "?" + query;
+    
+    frame.attr('src', uri + query);
   });
   
   /*-------------------------------------------------------
