@@ -13,10 +13,12 @@ PortraitURL-96:	  '/themer_asset/avatars/96.gif'
 PortraitURL-128:  '/themer_asset/avatars/128.gif'
 
 AskEnabled:         true
-AskLabel:           Ask
+AskLabel:           'Ask me anything'
 SubmissionsEnabled: true
 SubmitLabel:        Submit
 TwitterUsername:    ''
+
+per_page: 6
 
 Pages:
   -

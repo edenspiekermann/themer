@@ -135,7 +135,15 @@ class Themer {
       $defaults = array(
         'Title'               => 'Title',
         'Description'         => 'Description',
+        'MetaDescription'     => array('Description', '', 'strip_tags'),
         'Pages'               => array('Pages', array()),
+        'AskEnabled'          => array('AskEnabled', FALSE),
+        'AskLabel'            => 'AskLabel',
+        'CustomCSS'           => 'CustomCSS',
+        'SubmissionsEnabled'  => array('SubmissionsEnabled', FALSE),
+        'SubmitLabel'         => 'SubmitLabel',
+        'TwitterUsername'     => 'TwitterUsername',
+        'per_page'            => array('per_page', 6)
       );
       
       $data = \Themer\Tumblr\Templatize::templatize_with($defaults, $get);

@@ -62,12 +62,21 @@ class Load {
     $theme_contents = \Themer::load_theme();
     
     $data = array(
-      'metas'         => Parser\Meta::load($theme_contents),
+      'metas'                 => Parser\Meta::load($theme_contents),
       'info' => array(
-        'Title'       => Data::get('Title'),
-        'Description' => Data::get('Description'),
+        'Title'               => Data::get('Title'),
+        'Description'         => Data::get('Description'),
       ),
-      'pages'         => Data::get('Pages'),
+      'pages'                 => Data::get('Pages'),
+      'advanced' => array(
+        'AskEnabled'          => Data::get('AskEnabled'),
+        'AskLabel'            => Data::get('AskLabel'),
+        'CustomCSS'           => Data::get('CustomCSS'),
+        'SubmissionsEnabled'  => Data::get('SubmissionsEnabled'),
+        'SubmitLabel'         => Data::get('SubmitLabel'),
+        'TwitterUsername'     => Data::get('TwitterUsername'),
+        'per_page'            => Data::get('per_page'),
+      )
     );
     
     $themer = static::view('application', array('data' => $data), TRUE);

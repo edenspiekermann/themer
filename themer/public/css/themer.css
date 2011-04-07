@@ -369,5 +369,97 @@ div.page-inputs {
 		color: #fff;
 		background-color: #5da200;
 		}
+		
+/* Advanced Settings */
+
+div#advanced {
+	padding-top: 15px;
+	padding-bottom: 5px;
+	width: 400px;
+	}
+
+div.advanced-box {
+	border: 1px solid #aaa;
+	margin-bottom: 10px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-o-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #ddd;
+	}
+	
+	div.advanced-box.single {
+		padding: 5px;
+		}
+		
+		div.twitter label {
+			display: block;
+			margin: 5px 0 0 0;
+			}
+			
+		div.twitter input {
+			margin: 0 15px 5px 0;
+			float: left;
+			width: 150px;
+			}
+			
+	div.advanced-box p.info {
+		font-style: italic;
+		font-size: 12px;
+		color: #888;
+		}
+	
+	div.advanced-box.float {
+		width: 192px;
+		float: left;
+		margin-right: 10px;
+		}
+		
+	div.advanced-box:nth-child(2) {
+		margin-right: 0;
+		}
+	
+	div.advanced-box .head {
+		padding: 5px;
+		background: #aaa;
+		}
+		
+	div.advanced-box .content {
+		padding: 5px;
+		}
+		
+	div.advanced-box .content label {
+		display: block;
+		margin: 5px 0 0;
+		}
+	div.advanced-box .content input {
+		width: 172px;
+		font-size: 12px;
+		}
+	
+	div.advanced-box .content input {
+		margin: 0 0 3px 0;
+		}
+		
+	div.advanced-box h2 {
+		font-size: 16px;
+		padding: 3px;
+		}
+		
+	div.advanced-box h3 {
+		padding: 4px 2px;
+		}
+		
+	div.advanced-box .content textarea {
+		width: 377px;
+		min-width: 377px;
+		max-width: 377px;
+		min-height: 100px;
+		font-family: Monaco, Consolas, mono;
+		min-height: ;
+		}
+
 /* Clear Fix */
 div.clear { clear:  both; }
