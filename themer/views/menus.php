@@ -24,5 +24,4 @@
   <?php \Themer\Load::view('menus/pages', array('pages' => $pages)); ?>
 </div>
 
-<div id="community" class="menu"></div>
 <div id="advanced" class="menu"></div>

@@ -24,7 +24,6 @@
     <a href="#" name="info" class="option button">Info</a>
     <a href="#" name="appearance" class="option button">Appearance</a>
     <a href="#" name="pages" class="option button">Pages</a>
-    <a href="#" name="community" class="option button">Community</a>
     <a href="#" name="advanced" class="option button">Advanced</a>
 
     <a href="#" name="export" class="action button">Export</a>
