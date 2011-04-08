@@ -9,7 +9,7 @@ $(function(){
   * Theme Functions
   -------------------------------------------------------*/
   $('iframe').attr('src', '/?theme');
-  $('#menus input').change(function(){ updateTheme(); });
+  $('input, select', '#menus').change(function(){ updateTheme(); });
   
   /*-------------------------------------------------------
   * Option Box Display
