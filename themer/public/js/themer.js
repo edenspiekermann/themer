@@ -154,9 +154,9 @@ $(function(){
   function reindexPages()
   {
     $('div.page-inputs').each(function(i, el){
-      var index = 'Page[' + i + ']';
-      $('.page-label', el).attr('name', index + '[Label]');
-      $('.page-url', el).attr('name', index + '[URL]');
+      var index = 'Pages[' + i + ']';
+      $('.page-label', $(this)).attr('name', index + '[Label]');
+      $('.page-url', $(this)).attr('name', index + '[URL]');
     });
   }
   

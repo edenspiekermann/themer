@@ -216,7 +216,7 @@ class Data {
       {
         if(is_array(static::$config[$k]))
         {
-          static::$config[$k] = array_merge(static::$config[$k], $v);
+          static::$config[$k] = $v + static::$config[$k];
         }
         else
         {

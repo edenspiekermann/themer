@@ -8,10 +8,10 @@
   <div class="clear"></div>
 
   <div class="page-inputs">
-    <label for="page[<?php echo $i; ?>][Label]">Label</label>
+    <label for="Pages[<?php echo $i; ?>][Label]">Label</label>
     <input class="page-label" type="text" name="Pages[<?php echo $i; ?>][Label]" value="<?php echo $page['Label']; ?>" /><br />
   
-    <label for="page[<?php echo $i; ?>][URL]">URL</label>
+    <label for="Pages[<?php echo $i; ?>][URL]">URL</label>
     <input class="page-url" type="text" name="Pages[<?php echo $i; ?>][URL]" value="<?php echo $page['URL']; ?>" />
   
     <a href="#" class="save-page page-button">Save</a>
