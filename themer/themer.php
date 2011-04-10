@@ -146,7 +146,7 @@ class Themer {
         'per_page'            => array('per_page', 6)
       );
       
-      $data = \Themer\Tumblr\Templatize::templatize_with($defaults, $get);
+      $data = \Themer\Tumblr\Templatize::with($defaults, $get);
     
       Data::merge_with($data);
     }
