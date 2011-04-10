@@ -98,6 +98,7 @@ class Templatize {
     'Name'        => 'link-text',
     'URL'         => 'link-url',
     'Description' => 'link-description',
+    'Target'      => 'link-target' // This not an actual API item
   );
   
   protected static $_photo_post_template = array(
