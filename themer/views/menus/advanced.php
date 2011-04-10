@@ -41,10 +41,10 @@
 
 <div class="advanced-box single">
   <label for="per_page">Post Limit:</label>
-  <select name="per_page">
+  <select name="_per_page">
   <?php for($i = 1; $i <= 15; $i++) : ?>
     <option
-      <?php if($i == $per_page) : ?>selected="selected"<?php endif; ?>
+      <?php if($i == $_per_page) : ?>selected="selected"<?php endif; ?>
       value="<?php echo $i; ?>"><?php echo $i; ?></option>
   <?php endfor; ?>
   </select>

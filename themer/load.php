@@ -75,7 +75,7 @@ class Load {
         'SubmissionsEnabled'  => Data::get('SubmissionsEnabled'),
         'SubmitLabel'         => Data::get('SubmitLabel'),
         'TwitterUsername'     => Data::get('TwitterUsername'),
-        'per_page'            => Data::get('per_page'),
+        '_per_page'           => Data::get('_per_page'),
       )
     );
     

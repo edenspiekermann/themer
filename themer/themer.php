@@ -143,7 +143,7 @@ class Themer {
         'SubmissionsEnabled'  => array('SubmissionsEnabled', FALSE),
         'SubmitLabel'         => 'SubmitLabel',
         'TwitterUsername'     => 'TwitterUsername',
-        'per_page'            => array('per_page', 6)
+        '_per_page'           => array('_per_page', 6)
       );
       
       $data = \Themer\Tumblr\Templatize::with($defaults, $get);

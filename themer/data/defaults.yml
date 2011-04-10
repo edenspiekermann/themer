@@ -18,7 +18,7 @@ SubmissionsEnabled: true
 SubmitLabel:        Submit
 TwitterUsername:    ''
 
-per_page: 6
+_per_page: 6
 
 Pages:
   -

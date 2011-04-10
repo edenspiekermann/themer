@@ -78,7 +78,7 @@ class Paginate {
       return $theme;
     }
   
-    $data = static::_parse_pages(static::$page_number, static::$per_page);
+    $data = static::_parse_pages(static::$page_number, Parser::$data['_per_page']);
     
     return self::_render_pagination($theme, self::BLOCK_INDEX, $data);
   }
