@@ -42,7 +42,7 @@ class Themer {
   public static function run($path = '')
   {     
     self::_init($path);
-  
+    
     // If $_GET['theme'] is set, we are loading a theme within an iframe
     // so we don't need any extra mumbo jumbo... I think
     if( ! isset($_GET['theme']))
@@ -188,5 +188,5 @@ class Themer {
   }
 }
 
-/* End of file base.php */
-/* Location: ./themer/base.php */
+/* End of file themer.php */
+/* Location: ./themer/themer.php */
