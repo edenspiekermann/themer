@@ -32,8 +32,17 @@ use Themer\Parser\Variable;
  */
 class Posts {
   
+  /**
+   * Renders {block:Posts} blocks in the given theme
+   *
+   * @static
+   * @access  public
+   * @param   string  the theme contents to render
+   * @param   array   the post data to use
+   * @return  string  the parsed theme contents
+   */
   public static function render($theme, $post_data)
-  {     
+  {
     $posts = Block::find($theme, 'Posts');
     
     foreach($posts as $post)
@@ -46,6 +55,15 @@ class Posts {
     return $theme;
   }
   
+  /**
+   * Renders post data for a single {block:Posts} block
+   *
+   * @static
+   * @access  private
+   * @param   string  the post block to parse
+   * @param   array   the post data to use
+   * @return  string  the parsed post block
+   */
   public static function _render_posts($block, $post_data)
   { 
     if(empty($post_data))
@@ -99,6 +117,15 @@ class Posts {
     return $rendered;
   }
   
+  /**
+   * Renders {block:Tags} blocks found within a given post block
+   *
+   * @static
+   * @access  private
+   * @param   string  the post block to use
+   * @param   array   the tag data
+   * @return  string  the parsed post block
+   */
   private static function _render_tags($block, $tags)
   {
     if(empty($tags))
@@ -136,6 +163,16 @@ class Posts {
     return $block;
   }
   
+  /**
+   * Renders post type blocks like {block:Lines} for chat posts, etc.
+   * 
+   * @static
+   * @access  private
+   * @param   string  the block to use
+   * @param   string  the block Template tag
+   * @param   array   the block data
+   * @return  string  the parsed block
+   */
   private static function _render_array($block, $tag, $data)
   {
     foreach(Block::find($block, $tag) as $b)
