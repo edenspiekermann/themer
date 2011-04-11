@@ -1,3 +1,9 @@
+window.isLocal = function(url) {
+  var matcher = RegExp('^http:\/\/' + window.location.host);
+  if(url.match(matcher)) return true;
+  return false;
+}
+
 $(function(){
 
   var COLOR_PICKER        = $('#color-picker'),
@@ -11,7 +17,7 @@ $(function(){
   * Theme Functions
   -------------------------------------------------------*/
   // Initialize the Themer iFrame window
-  FRAME.attr('src', '/?theme');
+  FRAME.attr('src', '/?is_frame&theme');
   
   // Watch for options changes and update the Theme
   $('input, select', FORM).change(function(){ updateTheme(); });
@@ -168,9 +174,12 @@ $(function(){
   /*-------------------------------------------------------
   * Update Theme
   -------------------------------------------------------*/
+  window.updateTheme = updateTheme;
+  
   function updateTheme(path)
   {
     var uri = (path) ? path : $(FRAME).get(0).contentWindow.location.pathname,
+        start = '?is_frame&',
         query = FORM.serialize();
     
     // If we are loading the theme home page, we need to specify that we are
@@ -180,7 +189,7 @@ $(function(){
     // assume the output will be rendered within an <iframe>, and disregard
     // loading the Themer header.
     
-    query = (uri == '/') ? "?theme&" + query : "?" + query;
+    query = (uri == '/') ? start + "theme&" + query : start + query;
     
     FRAME.attr('src', uri + query);
   }

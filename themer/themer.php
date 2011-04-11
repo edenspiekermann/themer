@@ -44,13 +44,20 @@ class Themer {
     self::_init($path);
     
     // If $_GET['theme'] is set, we are loading a theme within an iframe
-    // so we don't need any extra mumbo jumbo... I think
+    // so we don't need any extra mumbo jumbo to load the application frame
     if( ! isset($_GET['theme']))
     {
       Router::route();
     }
     
-    self::parse_theme();
+    $theme = self::parse_theme();
+    
+    if(isset($_GET['is_frame']))
+    {
+      $theme = self::add_js_insert($theme);
+    }
+    
+    Load::display_html($theme);
   }
   
   /**
@@ -64,7 +71,7 @@ class Themer {
   {
     $theme = self::load_theme();
     $theme = Parser::parse($theme);
-    Load::display_html($theme);
+    return $theme;
   }
 
   /**
@@ -152,6 +159,18 @@ class Themer {
     }
     
     Parser::$data = Data::get();
+  }
+  
+  public static function add_js_insert($theme)
+  {
+    $script = "<script type='text/javascript' src='/themer_asset/js/themer_insert.js'></script>";
+    
+    if(($pos = strrpos($theme, "</body>")) !== FALSE)
+    {
+      return substr_replace($theme, $script."</body>", $pos, $pos + 7);
+    }
+    
+    return $theme.$script;
   }
   
   /**
