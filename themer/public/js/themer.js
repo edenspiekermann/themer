@@ -1,15 +1,20 @@
 $(function(){
-  
+
   var COLOR_PICKER        = $('#color-picker'),
       COLOR_PICKER_INPUT  = $('#picker-input'),
       COLOR_PICKER_OK     = $('#picker-ok'),
-      COLOR_PICKER_CANCEL = $('#picker-cancel');
-      
+      COLOR_PICKER_CANCEL = $('#picker-cancel'),
+      FORM                = $('#menus'),
+      FRAME               = $('#theme');
+    
   /*-------------------------------------------------------
   * Theme Functions
   -------------------------------------------------------*/
-  $('iframe').attr('src', '/?theme');
-  $('input, select', '#menus').change(function(){ updateTheme(); });
+  // Initialize the Themer iFrame window
+  FRAME.attr('src', '/?theme');
+  
+  // Watch for options changes and update the Theme
+  $('input, select', FORM).change(function(){ updateTheme(); });
   
   /*-------------------------------------------------------
   * Option Box Display
@@ -163,11 +168,10 @@ $(function(){
   /*-------------------------------------------------------
   * Update Theme
   -------------------------------------------------------*/
-  function updateTheme()
+  function updateTheme(path)
   {
-    var frame = $('#theme-frame'),
-        uri = frame.get(0).contentWindow.location.pathname,
-        query = $("#menus").serialize();
+    var uri = (path) ? path : $(FRAME).get(0).contentWindow.location.pathname,
+        query = FORM.serialize();
     
     // If we are loading the theme home page, we need to specify that we are
     // loading only the theme with '?theme'. If we dont, then Themer will
@@ -178,6 +182,6 @@ $(function(){
     
     query = (uri == '/') ? "?theme&" + query : "?" + query;
     
-    frame.attr('src', uri + query);
+    FRAME.attr('src', uri + query);
   }
 });
