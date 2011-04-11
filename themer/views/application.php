@@ -34,7 +34,7 @@
   </div>
   
   <div id="theme-container">
-    <iframe id="theme-frame" scrolling="auto" frameborder="0" src="/?iframe"></iframe>
+    <iframe id="theme" name="theme" scrolling="auto" frameborder="0" src=""></iframe>
   </div>
 </body>
 </html>
