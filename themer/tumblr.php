@@ -73,9 +73,6 @@ class Tumblr {
   public static function blog($username, $json = TRUE)
   {
     $data = API::read($username, NULL, $json);
-    echo "<pre>";
-    var_dump($data);
-    exit();
     return $data[self::BLOG_KEY];
   }
   
