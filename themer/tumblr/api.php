@@ -62,6 +62,28 @@ class API {
   }
   
   /**
+   * Makes an authenticated request to 
+   * 
+   * @final
+   * @static
+   * @access  public
+   * @return  void
+   */
+  final public static function authenticate($email, $password)
+  {
+    $url = self::_parse_url('', self::API_AUTHENTICATE);
+    
+    $credentials = array(
+      'email' => $email,
+      'password' => $password
+    );
+    
+    $result = self::_curl($url, $credentials, TRUE);
+    
+    return ($result !== FALSE);
+  }
+  
+  /**
    * Makes a cURL request to the given api
    * 
    * @static

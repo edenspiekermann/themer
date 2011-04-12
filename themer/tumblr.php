@@ -34,6 +34,10 @@ class Tumblr {
   const BLOG_KEY  = 'tumblelog';
   const POSTS_KEY = 'posts';
   
+  private static $_authenticated = FALSE;
+  private static $_email    = '';
+  private static $_password = '';
+  
   /**
    * Initialize an API request
    * 
@@ -101,8 +105,29 @@ class Tumblr {
    */
   public static function set_login($email, $password)
   {
+    static::$_authenticated = FALSE;
     static::$_email = $email;
     static::$_password = $password;
+  }
+  
+  /**
+   * Checks whether the previously set email and password is valid
+   * 
+   * @static
+   * @access  public
+   * @return  bool    whether or not the credentials were been verified
+   */
+  public static function authenticate()
+  {
+    if(static::$_authenticated) return TRUE;
+    
+    if(empty(static::$_email) || empty(static::$_password)) return FALSE;
+    
+    $result = API::authenticate(static::$_email, static::$_password);
+    
+    static::$_authenticated = $result;
+    
+    return $result;
   }
 }
 
