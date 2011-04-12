@@ -41,6 +41,7 @@ class Templatize {
     'Bookmarklet' => array('bookmarklet', 0),
     'Mobile'      => array('mobile', 0),
     'Tags'        => array('tags', array()),
+    'PostNotesURL'  => array('id', '/notes/%x%'),
     'DayOfMonth'          => array('unix-timestamp', '', 'self::_time', 'j'),
     'DayOfMonthWithZero'  => array('unix-timestamp', '', 'self::_time', 'd'),
     'DayOfWeek'           => array('unix-timestamp', '', 'self::_time', 'l'),
