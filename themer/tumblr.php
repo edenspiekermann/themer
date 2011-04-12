@@ -17,6 +17,7 @@
 
 namespace Themer;
 
+use Themer\Tumblr\API;
 use Themer\Tumblr\Templatize;
 
 /**
@@ -30,97 +31,78 @@ use Themer\Tumblr\Templatize;
  */
 class Tumblr {
   
+  const BLOG_KEY  = 'tumblelog';
+  const POSTS_KEY = 'posts';
+  
   /**
    * Initialize an API request
    * 
    * @access  public
    * @param   string  the url or username for the Tumblr blog
-   * @param   bool   whether or not to 'templatize' the results
+   * @param   bool    whether or not to 'templatize' the results
    * @return  mixed
    */
   public static function all($username, $templatize = FALSE)
   {
-    $blog = self::read($username);
+    $results = API::read($username, array('num' => 50));
     
     if( ! $templatize)
     {
-      return $blog;
+      return $results;
     }
     
-    $data = Templatize::blog($blog['tumblelog']);
-    $data['Posts'] = Templatize::posts($blog['posts']);
+    $data = Templatize::blog($results[self::BLOG_KEY]);
+    $data['Posts'] = Templatize::posts($results[self::POSTS_KEY]);
     
     return $data;
   }
   
   /**
-   * Handles an API Request to Tumblr for blog/post information for the
-   * given user
-   * 
+   * Requests blog data only from a Tumblr blog
+   *
    * @static
    * @access  public
-   * @param   string  the username
-   * @param   array   the options to include in the request
-   * @return  array   the blog and post data
+   * @param   string  the tumblr username (john in john.tumblr.com)
+   * @param   bool    whether or not to request JSON data
+   * @return  array   the blog data
    */
-  public static function read($username, $options = array())
+  public static function blog($username, $json = TRUE)
   {
-    $url = self::_parse_url($username, 'read/json');
-    $data = self::_curl($url, $options);
-    
-    return $data;
+    $data = API::read($username, NULL, $json);
+    echo "<pre>";
+    var_dump($data);
+    exit();
+    return $data[self::BLOG_KEY];
   }
   
   /**
-   * Makes a cURL request to the given url
+   * Requests post data for a given user's Tumblr blog
    * 
-   * @static
-   * @access  private
-   * @param   string  the url to make the request
-   * @param   array   the options to include in the request
-   * @param   bool    whether the request is a POST or not
-   * @param   array   the post data
-   * @return  array   the resulting data
+   * @access  public
+   * @param   string  the tumblr username (john in john.tumblr.com)
+   * @param   array   the request options to use
+   * @param   bool    whether or not to request JSON data
+   * @return  array   the posts
    */
-  private static function _curl($url, $options = array())
+  public static function posts($username, $options = array(), $json = TRUE)
   {
-    if(! empty($options))
-    {
-      $url .= "?".http_build_query($options);
-    }
-    
-    $c = curl_init($url);
-    
-    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-    $output = curl_exec($c);
-    curl_close($c);
-    
-    $output = str_replace('var tumblr_api_read = ', '', $output);
-    $output = rtrim(trim($output), ';');
-    $output = json_decode($output, TRUE);
-    
-    return $output;
+    $data = API::read($username, $options, $json);
+    return $data[self::POSTS_KEY];
   }
   
   /**
-   * Parses the passed target into a valid tumblr API endpoint.
+   * Sets the class email and password variables
    * 
-   * If it starts with http, we assume a direct url, else we automatically
-   * assume a username
-   * 
+   * @static
    * @access  public
-   * @param   string  the url or username for the Tumblr blog
-   * @param   string  the type of data (ie 'read', 'pages', etc...)
-   * @return  string  the Tumblr API endpoint in url form
+   * @param   string  the tumblr account email address
+   * @param   string  the tumblr account password
+   * @return  void
    */
-  private static function _parse_url($target = '', $type = 'read')
+  public static function set_login($email, $password)
   {
-    if( ! empty($target))
-    {
-      return "http://$target.tumblr.com/api/$type";
-    }
-    
-    return "http://tumblr.com/api/$type";
+    static::$_email = $email;
+    static::$_password = $password;
   }
 }
 
