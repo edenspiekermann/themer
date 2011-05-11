@@ -2,7 +2,8 @@
 
 namespace Themer;
 
-require_once 'SymfonyComponents/YAML/sfYaml.php';
+// Load Symfony's YAML parser
+require_once THEMER_BASEPATH.'themer/third_party/sfYaml/sfYaml.php';
 
 class Data {
   

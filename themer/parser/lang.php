@@ -20,8 +20,8 @@ namespace Themer\Parser;
 use Themer\Parser;
 use Themer\Parser\Variable;
 
-// Loaded as a PEAR package
-require_once 'SymfonyComponents/YAML/sfYaml.php';
+// Load Symfony's YAML parser
+require_once THEMER_BASEPATH.'themer/third_party/sfYaml/sfYaml.php';
 
 /**
  * Themer Language Class 
