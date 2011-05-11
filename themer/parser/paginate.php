@@ -18,6 +18,7 @@ namespace Themer\Parser;
 
 use Themer\Data;
 use Themer\Parser;
+use Themer\Router;
 
 /**
  * Themer Paginate Class 
@@ -104,27 +105,30 @@ class Paginate {
     $next = '';
     $previous = ''; 
     
-    $next_key = Parser::$post_data[0]['_post_array_key'] + 1;
-    $post = Data::find('Posts', array('_post_array_key' => $next_key));
-    
-    if( ! empty($post))
+    if(count(Parser::$post_data) > 1)
     {
-      $next = '/post/'.$post[0]['PostID'];
-    }
+      $next_key = Parser::$post_data[0]['_post_array_key'] + 1;
+      $post = Data::find('Posts', array('_post_array_key' => $next_key));
     
-    $previous_key = Parser::$post_data[0]['_post_array_key'] - 1;
-    $post = Data::find('Posts', array('_post_array_key' => $previous_key));
+      if( ! empty($post))
+      {
+        $next = '/post/'.$post[0]['PostID'];
+      }
     
-    if( ! empty($post))
-    {
-      $previous = '/post/'.$post[0]['PostID'];
+      $previous_key = Parser::$post_data[0]['_post_array_key'] - 1;
+      $post = Data::find('Posts', array('_post_array_key' => $previous_key));
+    
+      if( ! empty($post))
+      {
+        $previous = '/post/'.$post[0]['PostID'];
+      }
     }
     
     $data = array(
       'NextPost'      => $next,
       'PreviousPost'  => $previous
     );
-    
+  
     return self::_render_pagination($theme, self::BLOCK_PERMALINK, $data);
   }
   
@@ -176,7 +180,7 @@ class Paginate {
     
     if($current_page > $total_pages)
     {
-      Parser::not_found();
+      Router::not_found();
     }
     
     // We need to figure out where to start the post offset...

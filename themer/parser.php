@@ -41,8 +41,6 @@ class Parser {
   public static $data = array();
   public static $post_data = array();
   
-  private static $_theme = '';
-  
   /**
    * Parses the Tumblr theme
    *
@@ -52,12 +50,7 @@ class Parser {
    */
   public static function parse($theme = '')
   {
-    if(empty($theme) && empty(static::$_theme))
-    {
-      return '';
-    }
-    
-    $theme = (empty($theme)) ? static::$_theme : $theme;
+    if(empty($theme)) return '';
     
     # Language tags must be parsed first due to that fact that they are
     # interpolated with other template tags and those variables depend on being
@@ -202,32 +195,6 @@ class Parser {
     }
     
     return $theme;
-  }
-  
-  /**
-   * Set's 404 not found page data, which is basically a single text
-   * post with some pre-populated data, then loads the theme
-   * 
-   * @static
-   * @access  private
-   * @return  void
-   */
-  public static function not_found()
-  {
-    Pages::$page = 'Permalink';
-    Pages::$page_data = array();
-    
-    self::$data['Posts'] = array(
-      array(
-        'PostType'  => 'text',
-        'PostID'    => '404-not-found',
-        'Title'     => 'Not Found',
-        'Body'      => 'The URL you requested could not be found.'
-      )
-    );
-    
-    self::render();
-    exit(1);
   }
 }
 
