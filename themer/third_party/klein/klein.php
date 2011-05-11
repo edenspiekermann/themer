@@ -40,6 +40,8 @@ function dispatch($uri = null, $req_method = null, array $params = null, $captur
 
     $matched = false;
     $apc = function_exists('apc_fetch');
+    
+    ob_start();
 
     foreach ($__routes as $handler) {
         list($method, $_route, $callback) = $handler;
@@ -135,6 +137,13 @@ function dispatch($uri = null, $req_method = null, array $params = null, $captur
     }
     if (false === $matched) {
         $response->code(404);
+    }
+    if ($capture) {	 	
+        return ob_get_clean();
+    } elseif ($response->isChunked()) {
+        $response->chunk();
+    } else {
+    	  ob_end_flush();
     }
 }
 
