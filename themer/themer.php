@@ -42,21 +42,15 @@ class Themer {
   public static function run($path = '')
   {     
     self::_init($path);
-    
-    // If $_GET['theme'] is set, we are loading a theme within an iframe
-    // so we don't need any extra mumbo jumbo to load the application frame
-    if( ! isset($_GET['theme']))
-    {
-      Router::route();
-    }
+    Router::route();
     
     $theme = self::parse_theme();
-    
+
     if(isset($_GET['is_frame']))
     {
-      $theme = self::add_js_insert($theme);
+      $theme = \Themer::add_js_insert($theme);
     }
-    
+
     Load::display_html($theme);
   }
   
@@ -134,7 +128,7 @@ class Themer {
     Data::load('data');
     
     // Filter out the '?theme' portion of the GET request
-    $get = array_diff_assoc($_GET, array('theme' => ''));
+    $get = array_diff_assoc($_GET, array('theme' => '', 'is_frame' => ''));
     
     // Let's see if there is any $_GET data left to merge
     if( ! empty($get))

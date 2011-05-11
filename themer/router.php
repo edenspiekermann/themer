@@ -31,72 +31,79 @@ use Themer\Load;
  */
 class Router {
   
-  protected static $_valid_pages = array('day', 'page', 'post', 'search', 'tagged');
-  
-  public static $uri = '';
-  public static $segments = array();
-  
-  public static $page = 'Index';
-  
   public static function route()
   { 
-    self::_set_uri();
-    $segments = self::_set_segments();
+    // Load the klein.php router
+    \Themer::load_lib('klein/klein.php');
     
-    if(empty($segments))
-    {
-      Load::application();
-    }
+    // Route for themer assets
+    respond('/themer_asset/[**:asset]', function($req, $res) {
+      $asset = ltrim($req->param('asset'), '/');
+      Load::asset($asset);
+    });
     
-    $action = array_shift($segments);
+    // Day Pages
+    respond('/day/[i:year]/[i:month]/[i:day]', function($req) {
+      $dates = $req->params(array('year', 'month', 'day'));
+      Router::day($dates);
+    });
     
-    if($action === 'themer_asset')
-    {
-      Load::asset(implode($segments, '/'));
-    }
+    // Index Pagination
+    respond('/page/[i:page_number]', function($req) {
+      Router::page($req->page_number);
+    });
     
-    if(in_array($action, static::$_valid_pages))
-    {
-      $func = "self::_route_".$action;
-      call_user_func($func, $segments);
-      return;
-    }
+    // Permalink Pages
+    respond('/post/[i:post_id]', function($req) {
+      Router::post($req->post_id);
+    });
     
-    Parser::not_found();
+    // Search Pages
+    respond('/search/[:term]/[i:page_number]?', function($req) {
+      Router::search($req->term, $req->page_number);
+    });
+    
+    // Tag Pages
+    respond('/tagged/[:tag]/[i:page_number]?', function($req) {
+      Router::tagged($req->tag, $req->page_number);
+    });
+    
+    // Home Page
+    respond('/', function($req) {
+      // If there is no ?theme param, load the Themer app front
+      if( ! array_key_exists('theme', $req->params())) Load::application();
+    });
+    
+    // 404 Not Found
+    respond('*', function ($req, $ig, $nore, $matched) {
+      // If we didn't match a route, set some not found "post data"
+      if( ! $matched) Router::not_found();
+    });
+
+    dispatch(NULL, NULL, NULL, TRUE);
   }
   
   /**
    * Day page routing information
    *
    * @static
-   * @access  private
+   * @access  public
    * @param   array   the year, month and day to filter
    * @return  void
    */
-  private static function _route_day($segments)
+  public static function day($dates)
   {
-    // If there are not at least three segments, it's not a valid day page
-    if( ! isset($segments[2]))
-    {
-      Parser::not_found();
-    }
-    
-    if(isset($segments[3]) && is_int($segments[3]))
-    {
-      Parser\Paginate::$page_number = $segments[3];
-    }
-  
     $params = array(
-      'Year'                => $segments[0],
-      'MonthNumberWithZero' => $segments[1],
-      'DayOfMonth'          => $segments[2],
+      'Year'                => $dates['year'],
+      'MonthNumberWithZero' => $dates['month'],
+      'DayOfMonth'          => $dates['day'],
     );
     
     $post_data = Data::find('Posts', $params);
     
     if(empty($post_data))
     {
-      Parser::not_found();
+      self::not_found();
     }
   
     $date = strtotime(implode($segments, '-'));
@@ -115,13 +122,12 @@ class Router {
   /**
    * Pagination routing
    * 
-   * @access  private
-   * @param   array   the uri segments
+   * @access  public
+   * @param   int     the page number
    * @return  void
    */
-  private static function _route_page($segments)
+  public static function page($page)
   {
-    $page = (empty($segments)) ? 1 : $segments[0];
     Parser\Paginate::$page_number = $page;
     self::_set_data('Index', Data::get('Posts'), array());
   }
@@ -130,22 +136,17 @@ class Router {
    * Permalink page routing information
    * 
    * @static
-   * @access  private
-   * @param   array   the uri segments
+   * @access  public
+   * @param   string  the post id
    * @return  void
    */
-  private static function _route_post($segments)
+  public static function post($post_id)
   {
-    if( ! isset($segments[0]))
-    {
-      Parser::not_found();
-    }
-    
-    $post_data = Data::find('Posts', array('PostID' => $segments[0]));
+    $post_data = Data::find('Posts', array('PostID' => $post_id));
     
     if(empty($post_data))
     {
-      Parser::not_found();
+      self::not_found();
     }
     
     self::_set_data('Permalink', $post_data, array());
@@ -154,22 +155,18 @@ class Router {
   /**
    * Search page routing
    * 
-   * @access  private
-   * @param   array   the uri segments
-   * @return  string  the parsed template
+   * @access  public
+   * @param   string  the search term
+   * @param   int     the page number to start from
+   * @return  void
    */
-  private static function _route_search($segments)
+  public static function search($term, $page = NULL)
   {
-    if(empty($segments))
-    {
-      Parser::not_found();
-    }
-    
-    $query = $segments[0];
+    $query = $term;
     $query = urldecode(str_replace(array('%20', '+'), ' ', $query));
     $safe  = urlencode(str_replace(array(' ', '%20'), '+', $query));
     
-    if(isset($segments[1]) && is_int($segments[1]))
+    if(is_int($page) && $page > 0)
     {
       Parser\Paginate::$page_number = $segments[1];
     }
@@ -189,32 +186,51 @@ class Router {
    * Tag page routing
    * 
    * @static
-   * @access  private
-   * @param   array the uri segments
+   * @access  public
+   * @param   string  the tag to lookup
+   * @param   string  the page to start from
    * @return  void
    */
- private static function _route_tagged($segments)
+ public static function tagged($tag, $page = NULL)
   {
-    if( ! isset($segments[0]))
-    {
-      Parser::not_found();
-    }
+    $tag = urldecode(str_replace('+', ' ', $tag));
     
-    $tag = urldecode(str_replace('+', ' ', $segments[0]));
-    
-    if(isset($segments[1]) && is_int($segments[1]))
+    if(is_int($page) && $page > 0)
     {
-      Parser\Paginate::$page_number = $segments[1];
+      Parser\Paginate::$page_number = $page;
     }
     
     $post_data = Data::find('Posts', array('Tags' => $tag), TRUE);
     
     if(empty($post_data))
     {
-      Parser::not_found();
+      self::not_found();
     }
     
     self::_set_data('Tag', $post_data, $tag);
+  }
+  
+  /**
+   * Set's 404 not found page data, which is basically a single text
+   * post with some pre-populated data, then loads the theme
+   * 
+   * @static
+   * @access  private
+   * @return  void
+   */
+  public static function not_found()
+  { 
+    $post_data = array(
+      array(
+        'PostType'        => 'text',
+        'PostID'          => '404-not-found',
+        'Title'           => 'Not Found',
+        'Body'            => 'The URL you requested could not be found.',
+        '_post_array_key' => '404-not-found'
+      )
+    );
+    
+    self::_set_data('Permalink', $post_data);
   }
   
   /**
@@ -230,127 +246,6 @@ class Router {
     Parser::$post_data = $post_data;
     Parser\Pages::$page = ucwords($page);
     Parser\Pages::$page_data = $page_data;
-  }
-  
-  // --------------------------------------------------------------------
-  
-  /*-----------------------------------------------------------------
-  * Most of the following code was taken from CodeIgniter Reactor
-  * and can be found at http://codeigniter.com
-  -----------------------------------------------------------------*/
-  
-  private static function _set_uri()
-  {
-    if($uri = self::_detect_uri())
-    {
-      static::$uri = $uri;
-      return;
-    }
-    
-    // Is there a PATH_INFO variable?
-    // Note: some servers seem to have trouble with getenv() so we'll test it two ways
-    
-    $path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
-    
-    if(trim($path, '/') != '' && $path != "/".SELF)
-    {
-      static::$uri = $path;
-      return;
-    }
-    
-    static::$uri = '';
-  }
-  
-  /**
-   * Detects the URI
-   * 
-   * This function will detect the URI automatically and fix the query
-   * string if necessary.
-   * 
-   * Taken from CodeIgniter Reactor -- codeigniter.com
-   * 
-   * @static
-   * @access  private
-   * @return  string  the uri string
-   */
-  private static function _detect_uri()
-  {
-    if( ! isset($_SERVER['REQUEST_URI']))
-    {
-      return '';
-    }
-
-    $uri = $_SERVER['REQUEST_URI'];
-    
-    if(strpos($uri, $_SERVER['SCRIPT_NAME']) === 0)
-    {
-      $uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
-    }
-    elseif(strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0)
-    {
-      $uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
-    }
-
-    // This section ensures that even on servers that require the URI to be in the
-    // query string (Nginx) a correct URI is found, and also fixes the QUERY_STRING
-    // server var and $_GET array.
-    
-    if(strncmp($uri, '?/', 2) === 0)
-    {
-      $uri = substr($uri, 2);
-    }
-    
-    $parts = preg_split('#\?#i', $uri, 2);
-    $uri = $parts[0];
-    
-    if(isset($parts[1]))
-    {
-      $_SERVER['QUERY_STRING'] = $parts[1];
-      parse_str($_SERVER['QUERY_STRING'], $_GET);
-    }
-    else
-    {
-      $_SERVER['QUERY_STRING'] = '';
-      $_GET = array();
-    }
-    
-    if ($uri == '/' || empty($uri))
-    {
-      return '/';
-    }
-        
-    $uri = parse_url($uri, PHP_URL_PATH);
-
-    // Do some final cleaning of the URI and return it
-    return str_replace(array('//', '../'), '/', trim($uri, '/'));
-  }
-  
-  /**
-   * Explode the URI Segments. The individual segments will
-   * be stored in the Router::$segments array.
-   *
-   * @static
-   * @access  private
-   * @return  void
-   */
-  private static function _set_segments()
-  {
-    static::$segments = array();
-    
-    if(empty(static::$uri))
-    {
-      return array();
-    }
-    
-    foreach(explode("/", preg_replace("|/*(.+?)/*$|", "\\1", static::$uri)) as $val)
-    {
-      if($val != '')
-      {
-        static::$segments[] = $val;
-      }
-    }
-    
-    return static::$segments;
   }
 }
 
