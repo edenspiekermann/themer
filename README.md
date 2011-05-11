@@ -18,13 +18,9 @@ Right now, Themer supports these Tumblr template features, all configurable in a
 * Index page pagination (including tag, search, and day pages)
 * Localizations (English only for now)
 
-...and much more will come as it happens. Ev
+...and much more will come as it happens.
 
 ## Quick setup
-
-Install Symfony's YAML library:
-
-    $ [sudo] pear install pear.symfony-project.com/YAML
 
 Create an index.php that looks like this in your project directory:
 
@@ -34,7 +30,7 @@ Create an index.php that looks like this in your project directory:
     Themer::$theme_file = 'my_theme.html'; // the default is 'theme.html';
     Themer::run(__DIR__);
 
-Let your server know how to treat this directory. A simple `.htaccess` example for Apache would look like this:
+Let your server know how to treat this directory. A simple `.htaccess` example for Apache/MAMP would look like this:
 
     RewriteEngine on
     RewriteBase /
@@ -45,7 +41,8 @@ Let your server know how to treat this directory. A simple `.htaccess` example f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
     
-    # MAMP needs to know where you system php is for PEAR libraries
+    # If you're running Themer as a PEAR package (future), expose the
+    # PEAR path (it may differ from system)
     php_value include_path ".:/usr/lib/php"
     
     # Logging is really optional but recommended so you can `tail -f` it 
@@ -61,7 +58,6 @@ Point your server to your project directory and go...
 * Notes: because Tumblr doesn't have a great API for reading notes, we'll have to set up some defaults and distribute them with the library for now
 * Reblog Attribution: see notes
 * Sources: see notes
-* Real permalink pagination
 * Improve localizations
 * '-X, --no-teen-posts' (this will make sense later)
 
