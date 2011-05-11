@@ -205,6 +205,26 @@ class Themer {
 
     return rtrim($path, '/').'/';
   }
+  
+  /**
+   * Load a third party library
+   * 
+   * @access  public
+   * @param   string  the third party library to load
+   * @return  void
+   */
+  public static function load_lib($lib)
+  {
+    static $loaded = array();
+
+    if(in_array($lib, $loaded)) return;
+    
+    if(file_exists(THEMER_BASEPATH.'themer/third_party/'.$lib))
+    {
+      require_once THEMER_BASEPATH.'themer/third_party/'.$lib;
+      $loaded[] = $lib;
+    }
+  }
 }
 
 /* End of file themer.php */

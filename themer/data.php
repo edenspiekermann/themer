@@ -3,7 +3,7 @@
 namespace Themer;
 
 // Load Symfony's YAML parser
-require_once THEMER_BASEPATH.'themer/third_party/sfYaml/sfYaml.php';
+\Themer::load_lib('sfYaml/sfYaml.php');
 
 class Data {
   
