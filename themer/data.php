@@ -7,6 +7,8 @@ namespace Themer;
 
 class Data {
   
+  const EXT = '.yml';
+  
   public static $paths = array();
   public static $config = array();
   
@@ -42,7 +44,7 @@ class Data {
     
     foreach(static::$paths as $p)
     {
-      $path = $p.$file.YML;
+      $path = $p.$file.self::EXT;
       
       if(($tmp = self::load_file($path)) !== FALSE)
       {
@@ -175,7 +177,7 @@ class Data {
    */
   public static function write($data, $name, $local = TRUE)
   { 
-    $file_name = $name.YML;
+    $file_name = $name.self::EXT;
     $data = (is_array($data)) ? self::to_yaml($data) : $data;
     
     $dir = \Themer::$PWD."themer/";
@@ -188,11 +190,11 @@ class Data {
       }
     }
     
-    $file_path = $dir.$name.YML;
+    $file_path = $dir.$name.self::EXT;
     
     if( ! ($fh = @fopen($file_path, 'w')))
     {
-      Error::display("cannot open file '".$name.YML."' at path $path");
+      Error::display("cannot open file '".$name.self::EXT."' at path $path");
     }
     
     $result = fwrite($fh, $data);

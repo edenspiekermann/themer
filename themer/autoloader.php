@@ -28,6 +28,8 @@ namespace Themer;
 
 class Autoloader {
   
+  const EXT = '.php';
+  
   public static $loaded = array();
 
   /**
@@ -48,7 +50,7 @@ class Autoloader {
       return TRUE;
     }
     
-    $path = THEMER_BASEPATH.$load_class.EXT;
+    $path = THEMER_BASEPATH.$load_class.self::EXT;
     
     if(file_exists($path))
     {  
